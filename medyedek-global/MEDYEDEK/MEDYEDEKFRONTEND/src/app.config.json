@@ -1,0 +1,5 @@
+{
+    "baseUrl": "http://localhost:8093/",
+    "title": "My awesome app",
+    "authUrl" : "http://localhost:8080/login"
+  }
