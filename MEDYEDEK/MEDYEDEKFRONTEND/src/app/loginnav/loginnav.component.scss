@@ -1,0 +1,21 @@
+.navbar{
+    height: 70px;
+    margin-bottom: 10px;
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+    opacity: 1;
+    }
+    .logo-img {
+         background: url('medyedek.jpeg');
+         height: 80px;
+         border-radius: 58px;
+      }
+      .logo-text
+      {
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        color: rgb(255, 255, 255);
+      }
+      a:hover {
+        text-decoration: none;
+      }

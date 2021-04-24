@@ -1,0 +1,24 @@
+
+<app-loginnav>
+
+</app-loginnav>
+<div class="main">
+         <div class="col-md-6 col-sm-12">
+            <div class="login-form">
+               <form  [formGroup]="loginForm" (ngSubmit)="onSubmitForm()">
+                  <div class="form-group">
+                     <b><label class="libellenoir">Adresse e-mail</label></b>
+                     <input type="text" class="form-control" placeholder="User Name" formControlName="email">
+                  </div>
+                  <div class="form-group">
+                     <b> <label class="libellenoir">Mot de pass</label></b>
+                     <input type="password" class="form-control" placeholder="Password" formControlName="mdp">
+                  </div>
+                  <button type="submit" [disabled]="loginForm.invalid" class="btn btn-success" (click)="manageAccess()">Se Connecter</button>
+                  <button type="submit" class="btn btn-primary"  routerLink="/inscription" routerLinkActive="router-link-active">Creer un nouveau Compte</button>
+               </form>
+               <label class="alert-link" >{{ErrorLogin}}</label>
+            </div>  
+         </div>
+      </div>
+ 

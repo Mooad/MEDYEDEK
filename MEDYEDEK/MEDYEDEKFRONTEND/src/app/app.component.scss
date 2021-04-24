@@ -1,0 +1,60 @@
+.navbar {
+	width: 100%;
+	margin-bottom: 100px;
+	background-color: #555;
+	overflow: hidden;
+	background-color: #333;
+	position: fixed;
+	display: block;
+	z-index: 1;
+	font-style: "Trebuchet MS";
+	box-shadow: yellow;
+  }
+  
+
+  .search {
+	float: left;
+	padding: 10px;
+	color: white;
+	text-decoration: none;
+	font-size: 20px;
+	width: 20%; /* Four links of equal widths */
+	text-align: center;
+	
+  }
+  
+  .navbar a:hover {
+	background-color: #000;
+	border-radius: 10%;
+  }
+  
+  .search {
+	background-color: rgb(216, 221, 203);
+	margin-left: 60px;
+  }
+  .btnsearsh
+   {
+	width: 150px;
+	height: 45px;
+	margin-left: 10px;
+   }
+  .homecontainer {
+	width: 600px;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+	align-content: center;
+	border: 1px solid rgb(49, 45, 12);
+
+  }
+  .inventory-body{
+    z-index: 15;
+	width:100%;
+	position: fixed ;
+	overflow: scroll;
+	background-color: rgb(243, 241, 241);
+}

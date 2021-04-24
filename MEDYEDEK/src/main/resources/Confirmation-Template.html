@@ -1,0 +1,172 @@
+<tbody>
+<script type="text/javascript" >
+function confirm() {
+
+  var xhr = new XMLHttpRequest();
+  xhr.open("GET", 'http://localhost:8093/ValidateSignUp?token', false);
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  xhr.setRequestHeader('Access-Control-Allow-Origin' ,'*');
+  xhr.send();
+
+
+
+
+      if (xhr.status === 200) {
+      	window.open("http://localhost:4200/confirmed", "_blank");
+      }
+
+      // end of state change: it can be after some time (async)
+
+}
+
+</script>
+<div>
+    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px; background-color:rgb(173, 171, 171)">
+        <tr>
+            <td align="center" valign="top" style="padding: 40px 10px 10px 10px;">
+
+            </td>
+        </tr>
+    </table>
+    <!--[if (gte mso 9)|(IE)]>
+    </td>
+    </tr>
+    </table>
+    <![endif]-->
+    </td>
+    </tr>
+    <!-- HERO -->
+    <tr>
+        <td align="center" style="padding: 0px 10px 0px 10px;">
+            <!--[if (gte mso 9)|(IE)]>
+            <table align="center" border="0" cellspacing="0" cellpadding="0" width="600">
+                <tr>
+                    <td align="center" valign="top" width="600">
+            <![endif]-->
+            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
+                <tr>
+                    <td bgcolor="#ffffff" align="center" valign="top"
+                        style="padding: 40px 20px 20px 20px; border-radius: 4px 4px 0px 0px; color: #111111; font-family: 'Poppins', sans-serif; font-size: 48px; font-weight: 400; letter-spacing: 2px; line-height: 48px;">
+                        <h1 style="font-size: 36px; font-weight: 600; margin: 0;">WELCOME TO MEDYEDK</h1>
+                    </td>
+                </tr>
+            </table>
+            <!--[if (gte mso 9)|(IE)]>
+            </td>
+            </tr>
+            </table>
+            <![endif]-->
+        </td>
+    </tr>
+    <!-- COPY BLOCK -->
+    <tr>
+        <td align="center" style="padding: 0px 10px 0px 10px;">
+            <!--[if (gte mso 9)|(IE)]>
+            <table align="center" border="0" cellspacing="0" cellpadding="0" width="600">
+                <tr>
+                    <td align="center" valign="top" width="600">
+            <![endif]-->
+            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
+                <!-- COPY -->
+                <tr>
+                    <td bgcolor="#ffffff" align="left"
+                        style="padding: 20px 30px 20px 30px; color: #666666; font-family: 'Poppins', sans-serif; font-size: 16px; font-weight: 400; line-height: 25px;">
+                        <p style="margin: 0;">We're excited to have you get started. First, you need to confirm your
+                            account. Just press the button below.</p>
+                    </td>
+                </tr>
+                <!-- BULLETPROOF BUTTON -->
+                <tr>
+                    <td bgcolor="#ffffff" align="left">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td bgcolor="#ffffff" align="center" style="padding: 20px 30px 30px 30px;">
+                                    <table border="0" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                            <a href="#" target="_blank" style="text-decoration: none;">
+                                                <span style="display: block; font-family: 'Poppins', sans-serif; color: black; font-size: 36px; background-color:rgb(173, 171, 171)"
+                                                      border="0"><b> {user} !!</span>
+                                            </a>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <!-- COPY -->
+                <tr>
+                    <td bgcolor="#ffffff" align="left"
+                        style="padding: 0px 30px 0px 30px; color: #666666; font-family: &apos;Lato&apos;, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 25px;">
+                        <p style="margin: 0;">If that doesn't work, copy and paste the following link in your
+                            browser:</p>
+                    </td>
+                </tr>
+                <!-- COPY -->
+                <tr>
+                    <td bgcolor="#ffffff" align align="center"
+                        style="padding: 20px 30px 20px 30px; color: #666666; font-family: &apos;Lato&apos;, Helvetica, Arial, sans-serif; font-size: 12px; font-weight: 400; line-height: 25px;">
+                    <p style="margin: 0;"><a href="http://localhost:8093/ValidateSignUp?token" style="color: #17b3a3; background-color: green;
+                                                                                                                            color: black;
+                                                                                                                            position :relative;
+                                                                                                                            border-radius :5px;
+                                                                                                                            margin-left:37%;
+                                                                                                                            font-family: 'Poppins', sans-serif;
+                                                                                                                            border: 2px solid black;
+                                                                                                                            padding: 10px 20px;
+                                                                                                                            text-decoration:none;
+                                                                                                                            text-align: center;
+
+                                                                                                                            display: inline-block;">Confirm
+                            your Account</a></p>
+                    </td>
+                </tr>
+                <!-- COPY -->
+                <tr>
+                    <td bgcolor="#ffffff" align="left"
+                        style="padding: 0px 30px 20px 30px; color: #666666; font-family: &apos;Lato&apos;, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 25px;">
+                        <p style="margin: 0;">If you have any questions, just reply to this email—we're always happy to
+                            help out.</p>
+                    </td>
+                </tr>
+                <!-- COPY -->
+                <tr>
+                    <td bgcolor="#ffffff" align="left"
+                        style="padding: 0px 30px 40px 30px; border-radius: 0px 0px 0px 0px; color: #666666; font-family: 'Poppins', sans-serif; font-size: 14px; font-weight: 400; line-height: 25px;">
+                        <p style="margin: 0;">Cheers,<br>Team</p>
+                    </td>
+                </tr>
+            </table>
+            <!--[if (gte mso 9)|(IE)]>
+            </td>
+            </tr>
+            </table>
+            <![endif]-->
+        </td>
+    </tr>
+    <!-- FOOTER -->
+    <tr>
+        <td align="center" style="padding: 10px 10px 50px 10px;">
+            <!--[if (gte mso 9)|(IE)]>
+            <table align="center" border="0" cellspacing="0" cellpadding="0" width="600">
+                <tr>
+                    <td align="center" valign="top" width="600">
+            <![endif]-->
+            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="max-width: 600px;">
+                <!-- NAVIGATION -->
+                <tr>
+                    <td bgcolor="#ffffff" align="left"
+                        style="padding: 30px 30px 30px 30px; color: #aaaaaa; font-family: 'Poppins', sans-serif; font-size: 12px; font-weight: 400; line-height: 18px;">
+                        <p style="margin: 0;">
+                            <a href="#" target="_blank" style="color: #999999; font-weight: 700;">Dashboard</a> -
+                            <a href="#" target="_blank" style="color: #999999; font-weight: 700;">Billing</a> -
+                            <a href="#" target="_blank" style="color: #999999; font-weight: 700;">Help</a>
+                        </p>
+                    </td>
+                </tr>
+
+                </td>
+                </tr>
+            </table>
+</div>
+</tbody>

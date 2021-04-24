@@ -1,0 +1,64 @@
+@charset "UTF-8";
+#confirmation {
+	background-color: rgba(208,208,211,1.00);
+	position: fixed;
+	width: auto;
+	height: auto;
+	left: 172px;
+	top: 5px;
+	border-radius: 12px;
+	-webkit-box-shadow: 1px 3px 3px rgba(167,158,158,1.00);
+	box-shadow: 1px 3px 3px rgba(167,158,158,1.00);
+	margin-left: 3%;
+}
+.bodyBackground {
+	background-image: url(96616352-seamless-simple-geometric-pattern-vector-illustration-.jpg);
+}
+.btn-primary {
+	margin-left:35%;
+	width: 24%;
+}
+
+.logo-img {
+	margin-left: 20px;
+	margin-top: 20px;
+	background: url('medyedek.jpeg');
+	height: 80px;
+	width: auto;
+	border-radius: 58px;
+ }
+ .logo-text
+ {
+   font-family: Verdana, Geneva, Tahoma, sans-serif;
+   color: rgb(255, 255, 255);
+ }
+ .mail {
+	 position: absolute;
+	background: url('untitled-3-01.jpg');
+	top:25%;
+	left: 42%;
+align-content: center;
+display: block;
+margin-left: auto;
+margin-right: auto;
+width: 10%;
+z-index: 1;
+border-radius: 2px;
+
+
+}
+.bienvenue{
+	position: absolute;
+	background: url('untitled-3-01.jpg');
+	top:10%;
+	left: 35%;
+align-content: center;
+display: block;
+margin-left: auto;
+margin-right: auto;
+width: 100%;
+z-index: 2;
+border-radius: 2px;
+font-size: 20px;
+
+}

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.velocity</groupId>
+            <artifactId>velocity</artifactId>
+            <version>1.5</version>
+        </dependency>
+    </dependencies>
+    <parent>
+		<groupId>medyedek-global</groupId>
+		<artifactId>medyedek-global</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
+	<groupId>org.sid</groupId>
+	<artifactId>medyedek-service</artifactId>
+	<name>MedyedekService</name>
+	<description>medyedek services </description>
+	
+	<properties>
+		<java.version>1.8</java.version>
+	</properties>
+<build>
+	<plugins>
+	<plugin>
+		<groupId>cz.habarta.typescript-generator</groupId>
+		<artifactId>typescript-generator-maven-plugin</artifactId>
+		<version>2.24.612</version>
+		<executions>
+			<execution>
+				<id>generate</id>
+				<goals>
+					<goal>generate</goal>
+				</goals>
+				<phase>process-classes</phase>
+			</execution>
+		</executions>
+		<configuration>
+
+			<jsonLibrary>jackson2</jsonLibrary>
+			<classes>
+				<class>org.sid.dto.post.PostDto</class>
+			</classes>
+			<outputFile>../MEDYEDEK/MEDYEDEKFRONTEND/src/app/entities/Post.ts</outputFile>
+			<outputKind>module</outputKind>
+			<outputFileType>implementationFile</outputFileType>
+			<mapClasses>asInterfaces</mapClasses>
+			<mapEnum>asEnum</mapEnum>
+			<nonConstEnums>true</nonConstEnums>
+			<optionalProperties>useLibraryDefinition</optionalProperties>
+		</configuration>
+	</plugin>
+	</plugins>
+</build>
+
+</project>

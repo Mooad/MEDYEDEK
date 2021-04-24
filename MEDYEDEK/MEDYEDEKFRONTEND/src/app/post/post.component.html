@@ -1,0 +1,51 @@
+
+
+<li class ="postitem" >
+   <div class ="post">
+      <div class="header">
+         <div>
+            <img [src]="post.beneficiaire.image"   class="profilePicture">
+         </div>
+      </div>
+      <div class="body">
+         <p class="postcontent">Le mot-clé  class  permet de définir un corps de classe, dont les éléments (constructeur, méthodes, etc.) n’ont pas besoin d’être séparés par des virgules, contrairement à ce qui se passe dans les littéraux objets.
+ 
+ Il est facile de spécialiser une classe par héritage à l’aide du mot-clé  extends 
+ </p>
+          <ul>
+       <li>
+         <div *ngIf="selectedImage" >
+            <div  class="slider">
+               <div class="img-box">
+
+                  <img [src]="selectedImage" class="postImg slider-img" >
+               </div>
+
+              
+      
+               <button class="nav-btn-left" (click)="prev()"><</button>
+               <button class="nav-btn-right" (click)="next()">></button>
+            </div>
+
+      
+      </div>
+      </li>
+         <li>  	
+       <div class="ineractContainer">
+ 
+         <button type="button" name="likeButton" class ="btn btn-primary interactButton" value="like"><i class="fa fa-thumbs-up"></i> </button>
+         <button type="button" name="commentButton" class ="btn btn-info interactButton" value="comment"><i class="fa fa-comment"></i></button>
+         <button type="button" name="shareButton"  class="btn btn-dark interactButton" value="share"><i class="fa fa-share"></i>  </button>
+      </div>
+ 
+      </li>
+         <li>
+          <div class="comments"> </div> 	
+         </li> 	
+         
+      </ul>
+      </div>
+ 
+     
+   </div>
+ </li> 
