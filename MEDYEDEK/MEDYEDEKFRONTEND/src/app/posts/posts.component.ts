@@ -1,4 +1,4 @@
-import {  PostDto } from './../entities/Post';
+import { PostDto } from './../entities/Post';
 import { postService } from './../services/postServices';
 import { Component, OnInit, ɵConsole, Input } from '@angular/core';
 import { AppConfig } from '../config/appConfig';
@@ -21,19 +21,19 @@ export class PostsComponent implements OnInit {
     //this.dataSource = new FactsDataSource(postService);
 
   }
- 
+
   ngOnInit(): void {
     this.Url = this.appConfig.baseUrl;
-   this.getPosts();
-   console.log(this.Posts);
+    this.getPosts();
+    console.log(this.Posts);
   }
 
   private getPosts() {
 
     this.postService.getAllPosts()
-    .subscribe(
-      (res) => {this.Posts=res;}
-    );
+      .subscribe(
+        (res) => { this.Posts = res; }
+      );
 
   }
   /* 

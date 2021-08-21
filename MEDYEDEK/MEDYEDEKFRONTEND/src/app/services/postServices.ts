@@ -17,9 +17,10 @@ export class postService {
 
     public getAllPosts(): Observable<PostDto[]> {
         return this.http.get<PostDto[]>(this.appConfig.baseUrl + "posts/all");
+
+
+        
     }
-
-
 
     /*     uploadPhotoProduct(file: File, idProduct): Observable<HttpEvent<{}>> {
             const formdata: FormData = new FormData();
@@ -32,6 +33,7 @@ export class postService {
             return this.http.request(req);
         }*/
 
+  
 }
 
 

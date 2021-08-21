@@ -23,7 +23,7 @@ import { HomeComponent } from './home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SomethingwrongComponent } from './somethingwrong/somethingwrong.component';
 import { InscriptionComponent } from './inscription/inscription.component';
-import { HttpConfigInterceptor } from './interceptor/HttpConfigInterceptor ';
+import { AuthInterceptor } from './interceptor/AuthInterceptor';
 import { LoginnavComponent } from './loginnav/loginnav.component';
 import { InscriptionstepsComponent } from './inscriptionsteps/inscriptionsteps.component';
 import { SpinnerComponent } from './spinner/spinner.component';
@@ -31,6 +31,12 @@ import { SpinnerOverlayComponent } from './spinner-overlay/spinner-overlay.compo
 import { NewpostComponent } from './newpost/newpost.component';
 import { MyprofileComponent } from './myprofile/myprofile.component';
 import { ConfirmaccountComponent } from './confirmaccount/confirmaccount.component';
+import { PasswordResetComponent } from './password-reset/password-reset.component';
+import { ConfirmationResetComponent } from './confirmation-reset/confirmation-reset.component';
+import { AboutUsComponent } from './about-us/about-us.component';
+import { GetIntouchComponent } from './get-intouch/get-intouch.component';
+import { UsefulLinksComponent } from './useful-links/useful-links.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 
@@ -58,7 +64,13 @@ export function initializerFn(jsonAppConfigService: JsonAppConfigService) {
     SpinnerOverlayComponent,
     NewpostComponent,
     MyprofileComponent,
-    ConfirmaccountComponent  ],
+    ConfirmaccountComponent,
+    PasswordResetComponent,
+    ConfirmationResetComponent,
+    AboutUsComponent,
+    GetIntouchComponent,
+    UsefulLinksComponent,
+    FooterComponent  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -79,7 +91,7 @@ export function initializerFn(jsonAppConfigService: JsonAppConfigService) {
   },
    AuthGuardService,
    ErrorDialogService,
-   { provide: HTTP_INTERCEPTORS, useClass: HttpConfigInterceptor, multi: true },
+   { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   {
     provide: APP_INITIALIZER,
     multi: true,

@@ -1,5 +1,7 @@
 {
     "baseUrl": "http://localhost:8093/",
     "title": "My awesome app",
-    "authUrl" : "http://localhost:8080/login"
+    "authUrl" : "http://localhost:8080/authenticate",
+    "syncUrl" : "http://localhost:8080/syncAuth",
+    "changePasswordUrl" : "http://localhost:8093/change-pass"
   }

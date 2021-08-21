@@ -27,10 +27,20 @@ export class LoginComponent implements OnInit {
       mdp: ['', Validators.required]
     });
   }
-
+ 
   onSubmitForm() {
     const formValue = this.loginForm.value;
-    this.loginproxy.login(formValue['email'], formValue['mdp']);
+  const o =   this.loginproxy.login(formValue['email'], formValue['mdp']).subscribe((value) => {
+           console.log("Oh an error occured"+value);
+  }, 
 
+  (error) => {
+    console.log('Uh-oh, an error occurred! : ' + error);
+  },
+  () => {
+    console.log('Observable complete!');
+  }
+);
+console.log("heeeeey");
   }
 }

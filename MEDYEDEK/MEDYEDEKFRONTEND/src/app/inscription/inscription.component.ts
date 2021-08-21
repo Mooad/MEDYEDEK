@@ -111,15 +111,9 @@ export class InscriptionComponent implements OnInit {
       //affectation de l'image (Base 64) a une variable du formulaire
       this.registerForm.controls['image'].setValue(this.ImageBaseData);
 
-      
-
-     
-
-  
-
       this.inscriptionService.addUser(JSON.parse(JSON.stringify(this.registerForm.value)));
-     // alert(PrenomUtilisateur + " vous avez été enregistrer votre compte avec succes , veuillez confirmer votre compte svp");
-     this.router.navigateByUrl('/confirmed');
+     alert(PrenomUtilisateur + " vous avez été enregistrer votre compte avec succes , veuillez confirmer votre compte svp");
+  
 
 
     }

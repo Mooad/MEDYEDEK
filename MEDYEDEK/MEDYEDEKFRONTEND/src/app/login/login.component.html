@@ -1,24 +1,57 @@
 
 <app-loginnav>
-
 </app-loginnav>
+<div class = "content">
+
 <div class="main">
          <div class="col-md-6 col-sm-12">
+           <b><p class ="welcome-title"> WELCOME TO MEDYEDEK</p></b>
+            <p class ="welcome-title">"A Simplified plateforme to Share you needs or help others"</p>
             <div class="login-form">
-               <form  [formGroup]="loginForm" (ngSubmit)="onSubmitForm()">
+             
+               <form  [formGroup]="loginForm" (ngSubmit)="onSubmitForm()" autocomplete="on">
                   <div class="form-group">
-                     <b><label class="libellenoir">Adresse e-mail</label></b>
-                     <input type="text" class="form-control" placeholder="User Name" formControlName="email">
+                     <b><label class="libellenoir">E-MAIL OR PHONE NUMBER</label></b>
+                     <input class="form-control" type="email" placeholder="User Name" formControlName="email" autocomplete="on">
                   </div>
                   <div class="form-group">
-                     <b> <label class="libellenoir">Mot de pass</label></b>
+                     <b> <label class="libellenoir">PASSWORD</label></b>
                      <input type="password" class="form-control" placeholder="Password" formControlName="mdp">
                   </div>
-                  <button type="submit" [disabled]="loginForm.invalid" class="btn btn-success" (click)="manageAccess()">Se Connecter</button>
-                  <button type="submit" class="btn btn-primary"  routerLink="/inscription" routerLinkActive="router-link-active">Creer un nouveau Compte</button>
+                  <div class="form-group"  >
+                           <table>
+                              <tr>
+                                 <td>
+                                    <b> <label >keep me signed in ?</label></b>
+                                 </td>
+                                 <td>
+                                    <input type="checkbox"  value="1" formControlName="kms"/>
+                                 </td>
+                              </tr>
+                               <tr>
+                                 <td>
+                                    <b> <label  >Forgot Password ?</label></b>
+                                 </td>
+                                 <td>
+                                    <a  routerLink="/resetPassword">Reset Your Password</a>
+                                 </td>
+                              </tr>
+                           </table>
+                  </div>
+                  <div id="outer">
+                  <button  type="submit" [disabled]="loginForm.invalid" class="inner btn btn-success">Se Connecter</button>
+                  <button  type="submit" class="inner btn btn-primary"  routerLink="/inscription" routerLinkActive="router-link-active">Creer un nouveau Compte</button>
+               </div>
                </form>
-               <label class="alert-link" >{{ErrorLogin}}</label>
+               <div *ngIf= "loading" class="loader"></div>
+
+                <div *ngIf= "errorLogin" class="alert" role="alert">
+                  <div class="alert alert-danger">
+                    Email ou Mot de Passe Incorrect , essayer a nouveau.
+                   </div>
+               </div>
             </div>  
          </div>
       </div>
- 
+      <app-footer></app-footer>
+   </div>

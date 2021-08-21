@@ -3,6 +3,7 @@ import { postService } from '../services/postServices';
 import { AppConfig } from '../config/appConfig';
 import { TypePostService } from '../services/type-post-service';
 import { Router } from '@angular/router';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-home',
@@ -19,10 +20,31 @@ export class HomeComponent implements OnInit {
   constructor(private appConfig: AppConfig, postservice: postService,
     private typePostService: TypePostService,
     private elementRef: ElementRef,
-    private router: Router) { }
+    private router: Router,
+    private http:HttpClient) { }
 
   ngOnInit(): void {
-    this.router.navigateByUrl("home/posts/all");
+    if(sessionStorage.getItem('token'))
+    {
+    this.router.navigateByUrl("home/posts/all")
+    }
+    else
+    {
+      this.router.navigate(['/login']);
+    }
   }
+  //var headers = new HttpHeaders()
 
+  //if(sessionStorage.getItem('token'))
+  //{
+  //headers.append('Content-Type','application/json');
+  //headers.append('Authorization',`Bearer ${sessionStorage.getItem('token')}`);
+
+   //this.http.get("http://localhost:8080/syncAuth", { headers: headers }).subscribe(
+    //result=>  {},
+    //error => {
+     // sessionStorage.clear();
+      //this.router.navigate(['/login'])
+    //});
+//}
 }

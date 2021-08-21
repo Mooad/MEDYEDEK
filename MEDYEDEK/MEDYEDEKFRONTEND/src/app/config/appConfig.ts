@@ -6,4 +6,6 @@ export abstract class AppConfig {
     baseUrl: string;
     title: string;
      authUrl: string;
+     syncUrl :string;
+     changePasswordUrl :string;
 }

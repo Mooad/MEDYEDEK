@@ -1,0 +1,2 @@
+package org.sid.repositories;public interface RoleRepository {
+}

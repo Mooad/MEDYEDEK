@@ -25,8 +25,7 @@ export class SearchLeftComponent implements OnInit {
     node.src = ''; // sets the source (insert url in between quotes)
     node.type = 'text/javascript'; // set the script type
     node.async = true; // makes script run asynchronously
-    node.charset = 'utf-8';
-    // append to head of document
+    node.charset = 'utf-8'    // append to head of document
     document.getElementsByTagName('head')[0].appendChild(node); 
   }
 
@@ -36,7 +35,7 @@ export class SearchLeftComponent implements OnInit {
       .subscribe(data => { this.Typeposts = data; });
 }
 SignOut(): void {
-  localStorage.clear();
+  sessionStorage.clear();
   this.router.navigate(['/login']);
 }
 GotoProfile()

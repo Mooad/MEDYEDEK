@@ -2,6 +2,9 @@ import { Component, OnInit, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginproxyService } from '../services/loginproxy.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { first } from 'rxjs/operators';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -9,37 +12,65 @@ import { LoginproxyService } from '../services/loginproxy.service';
 })
 export class LoginComponent implements OnInit {
 
-  @Input() ErrorLogin: string;
+  @Input() errorLogin: string;
+  @Input() loading: boolean;
+  @Input() logged: boolean;
+  @Input() connected: boolean;
   loginForm: FormGroup;
   public LOGO = 'medyedek.jpeg';
 
   constructor(private loginproxy: LoginproxyService, private formBuilder: FormBuilder, private router: Router) {
- 
+
   }
 
   ngOnInit(): void {
-    if (localStorage.getItem('user')) {
+    this.logged = true;
+
+    if (sessionStorage.getItem('token')) {
       this.router.navigate(['/home']);
     }
-    this.initForm();
-  }
 
+    this.initForm();
+    
+  }
+ 
   initForm() {
     this.loginForm = this.formBuilder.group({
-      email: ['', Validators.required],
-      mdp: ['', Validators.required]
+      email: ['', [Validators.email,Validators.required]],
+      mdp: ['', Validators.required],
+      kms: ['']
+
     });
   }
 
-  onSubmitForm() {
+  async onSubmitForm() {
+    this.loading = true;
+    this.connected = true;
+
     const formValue = this.loginForm.value;
+    const isKms =  formValue['kms'];
+    const access = this.loginproxy.login(formValue['email'], formValue['mdp'],formValue['kms']).pipe(first())
+    .subscribe(
+        data => {
+          this.router.navigate(['/home/posts/all']);
+        },
+        error => {
+            this.errorLogin = error;
+            this.loading = false;
+        });
 
-    const error = this.loginproxy.login(formValue['email'], formValue['mdp']);
-    if (error === 'NOACCESS') {
-      this.ErrorLogin = 'Le Mot de passe ou le non d utilisateur est erronee';
+    if(access instanceof HttpErrorResponse)
+    {
+      this.logged=false;
     }
-  }
-  manageAccess() {
+    else
+    {
+      this.router.navigate(['/home/posts/all']);
+    }
+    console.log("fffff");
 
+    console.log(access);
+    this.loading = false;
+    debugger;
   }
 }

@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-// Generated using typescript-generator version 2.24.612 on 2021-01-30 23:56:36.
+// Generated using typescript-generator version 2.24.612 on 2021-07-13 21:45:16.
 
 export interface PostDto {
     id_post?: number;
@@ -50,8 +50,8 @@ export interface Adresse {
     adresse_id?: number;
     rue?: string;
     utilisteur?: Utilisateur;
-    pays?: string;
     quartier?: string;
+    pays?: string;
     ville?: string;
 }
 

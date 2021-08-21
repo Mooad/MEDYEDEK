@@ -1,8 +1,10 @@
-import { Observable } from 'rxjs';
-import { Router } from '@angular/router';
+import { HttpClient, HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Router } from '@angular/router';
 import { AppConfig } from '../config/appConfig';
+import { TokenStorageService } from '../bearer/TokenStorageService';
+import { map } from "rxjs/operators";
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,32 +12,37 @@ import { AppConfig } from '../config/appConfig';
 export class LoginproxyService {
 
   authenticated = false;
+  token: string ;
+  private currentUserSubject: BehaviorSubject<any>;
+  public currentUser: Observable<any>;
 
-  constructor(private http: HttpClient, private router: Router, private appConfig: AppConfig) { }
 
-
-  public  login(username: string, password: string): any {
-    return this.http.get(this.appConfig.authUrl,
-      // tslint:disable-next-line: max-line-length
-      {
-        headers: {
-          authorization: this.createBasicAuthToken(username, password),
-          'Access-Control-Expose-Headers': '*'
-        },
-        responseType: 'text' as 'json'
-      })
-      .subscribe((next) => {
-        console.log(next);
-        this.registerSuccessfulLogin(username, password);
-        this.router.navigate(['/confirmed']);
-      },
-        (error) => {
-          if (error.status === 401) {
-            return 'NOACCESS';
-          }
-        }
-      );
+  public get currentUserValue(): any {
+      return this.currentUserSubject.value;
   }
+  constructor(private http: HttpClient, private router: Router, private appConfig: AppConfig,private tokenStorageService :TokenStorageService) {
+
+    this.currentUserSubject = new BehaviorSubject<any>(JSON.parse(localStorage.getItem('user')));
+    this.currentUser = this.currentUserSubject.asObservable();
+   }
+
+
+  login(username: string, password: string,kms: string)  : any{
+
+    // Provide username and password for authentication, and once authentication is successful, 
+//store JWT token in session   
+
+return this.http
+.post<any>(this.appConfig.authUrl, { username, password ,kms})
+.pipe(map(user => {
+  // store user details and jwt token in local storage to keep user logged in between page refreshes
+  sessionStorage.setItem('thCurUsr', JSON.stringify(user));
+  this.currentUserSubject.next(user);
+  console.log(user);
+  return user;
+}));
+  }
+
 
   createBasicAuthToken(username: string, password: string) {
     return 'Basic ' + window.btoa(username + ":" + password);
@@ -44,4 +51,17 @@ export class LoginproxyService {
   registerSuccessfulLogin(username, password) {
     localStorage.setItem('user', JSON.stringify(username + ":" + password));
   }
+
+  
+  isUserLoggedIn() {
+    let user = sessionStorage.getItem("username");
+    console.log(!(user === null));
+    return !(user === null);
+  }
+
+  logOut() {
+    sessionStorage.removeItem("username");
+    sessionStorage.removeItem("token")
+  }
+
 }

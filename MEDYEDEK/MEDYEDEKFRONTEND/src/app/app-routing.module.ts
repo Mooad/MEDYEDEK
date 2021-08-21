@@ -10,6 +10,8 @@ import { profile } from 'console';
 import { MyprofileComponent } from './myprofile/myprofile.component';
 import { PostsComponent } from './posts/posts.component';
 import { ConfirmaccountComponent } from './confirmaccount/confirmaccount.component';
+import { PasswordResetComponent } from './password-reset/password-reset.component';
+import { ConfirmationResetComponent } from './confirmation-reset/confirmation-reset.component';
 
 
 const routes: Routes = [
@@ -33,6 +35,9 @@ const routes: Routes = [
   { path: 'inscription', component: InscriptionComponent },
   { path: '', component: HomeComponent },
   { path: 'confirmed', component: ConfirmaccountComponent },
+  { path:'resetPassword' , component:PasswordResetComponent},
+  { path:'reset-password-confirm' , component:ConfirmationResetComponent} 
+
 
   // { path: 'userprofile', outlet: 'in-actions', component: MyprofileComponent }
 

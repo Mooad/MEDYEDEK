@@ -13,15 +13,21 @@ text-align: center;
 vertical-align: middle;
 font-size:20px;
 }
-
 .Normallink
 {
  color:white;
 }
 .main-menu:hover,nav.main-menu.expanded {
-width:250px;
+width:15%;
 overflow:visible;
 }
+@media screen and (max-width: 800px) {
+  .main-menu:hover,nav.main-menu.expanded  {
+    width: 80%;
+  }
+
+}
+
 
 .main-menu {
 background:#212121;
@@ -133,5 +139,4 @@ height: 80%;
 
 .userprofile
 {color: rgb(90, 85, 85);
-
 }

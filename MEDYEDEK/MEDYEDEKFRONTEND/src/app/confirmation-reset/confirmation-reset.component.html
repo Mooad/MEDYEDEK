@@ -1,0 +1,40 @@
+<app-loginnav>
+</app-loginnav>
+<div class="container">
+<section class="mb-5 text-center">
+  <b>Please provide the temporary password sent to your email and set your new password and confirm it </b>
+  <br>
+  <p>New Password</p>
+
+  <form action="#!">
+
+    <div class="md-form md-outline">
+      <input type="password" id="newPass" class="form-control">
+      <label data-error="wrong" data-success="right" for="newPass">Repeat New password</label>
+    </div>
+
+    <div class="md-form md-outline">
+      <input type="password" id="newPass" class="form-control">
+      <label data-error="wrong" data-success="right" for="newPass">Temporary password received</label>
+    </div>
+
+    <div class="md-form md-outline">
+      <input type="password" id="newPassConfirm" class="form-control">
+      <label data-error="wrong" data-success="right" for="newPassConfirm"></label>
+    </div>
+
+    <button type="submit" class="btn btn-primary mb-4">Change password</button>
+
+  </form>
+
+  <div class="d-flex justify-content-between align-items-center mb-2">
+
+    <u><a href="/login">Back to Log In</a></u>
+
+    <u><a href="/inscription">Register</a></u>
+
+  </div>
+
+</section>
+</div>
+<!--Section: Block Content-->
