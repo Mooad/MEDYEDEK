@@ -19,8 +19,8 @@ import javax.persistence.Table;
 public class Donnateur extends Utilisateur {
 	
 	public Donnateur(String firstname, String lastname, String email, String cin, String phone_number,
-			Domaine domaine, Adresse adresse, String confirmationmdp,String image,String token) {
-		super(firstname, lastname, email, cin, phone_number, domaine, adresse, confirmationmdp, image,token);
+			Domaine domaine, Adresse adresse, String confirmationmdp,String image,Role role,String token) {
+		super(firstname, lastname, email, cin, phone_number, domaine, adresse, confirmationmdp, image,role,token);
 	
 	}
 

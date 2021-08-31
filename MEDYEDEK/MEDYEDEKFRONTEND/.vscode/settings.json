@@ -1,5 +1,5 @@
 {
-    "window.zoomLevel": 0.001,
+    "window.zoomLevel": -2,
     "debug.javascript.codelens.npmScripts": "all",
     "debug.allowBreakpointsEverywhere": true,
     "debug.console.closeOnEnd": true

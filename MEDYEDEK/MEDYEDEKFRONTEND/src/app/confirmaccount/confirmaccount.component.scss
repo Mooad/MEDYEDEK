@@ -48,7 +48,7 @@ border-radius: 2px;
 
 }
 .bienvenue{
-	position: absolute;
+	position: fixed;
 	background: url('untitled-3-01.jpg');
 	top:10%;
 	left: 35%;
@@ -60,5 +60,19 @@ width: 100%;
 z-index: 2;
 border-radius: 2px;
 font-size: 20px;
+}
 
+.footer
+{
+    position: fixed;
+	z-index: 0;
+    bottom: -25%;
+    width: 100%;
+    height: 50%;
+     @media only screen 
+ and (min-device-width :250px) 
+ and (max-device-width : 1024px) {
+  height: 150px;
+  bottom: 0.1%;
+}
 }

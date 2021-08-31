@@ -16,7 +16,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @EntityScan({"org.sid.entities"})
 @EnableJpaRepositories({"org.sid.repositories"})
-@ComponentScan({"org.sid.entities","org.sid.config","org.sid.service.*","org.sid.mailconfirmation","org.sid.setting","org.sid.repositories","org.sid.serviceproxy","org.sid.mappers","org.sid.conf"})
+@ComponentScan({"org.sid.entities","org.sid.config","org.sid.service.*","org.sid.mailconfirmation","org.sid.setting","org.sid.repositories","org.sid.serviceproxy","org.sid.mappers","org.sid.conf","org.sid.handler","org.sid.service.filter"})
 @SpringBootApplication
 @EnableAutoConfiguration(exclude = {org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration.class})
 public class MedeyedekApp  implements CommandLineRunner {

@@ -30,13 +30,15 @@ const routes: Routes = [
   },
  
   { path: 'login', component: LoginComponent },
-  { path: 'home', component: HomeComponent },
+  { path: 'home', component: LoginComponent },
   { path: 'somethingswrong', component: ErrordialogComponent },
   { path: 'inscription', component: InscriptionComponent },
   { path: '', component: HomeComponent },
   { path: 'confirmed', component: ConfirmaccountComponent },
   { path:'resetPassword' , component:PasswordResetComponent},
-  { path:'reset-password-confirm' , component:ConfirmationResetComponent} 
+  { path:'reset-password-confirm' , component:ConfirmationResetComponent},
+  { path:'**' , component:LoginComponent},
+  { path:'*' , component:HomeComponent} 
 
 
   // { path: 'userprofile', outlet: 'in-actions', component: MyprofileComponent }

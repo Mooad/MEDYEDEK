@@ -1,18 +1,27 @@
 @charset "UTF-8";
 .post {
 	position: static;
-	left: 310px;
+
 	top: 11px;
 	height: auto;
 	border-radius: 5px;
 	background-color: rgba(233,233,233,1.00);
-	width: 450px;
+	width: 100%;
 	-webkit-box-shadow: 1px 1px 1px 1px rgba(169,169,169,1.00);
 	box-shadow: 1px 1px 1px 1px rgba(169,169,169,1.00);
 	padding-top: 48px;
 	padding-bottom: 34px;
 	margin-bottom: 12px;
 	text-shadow: 0px 0px rgba(226,226,226,0.49);
+	@media only screen 
+	and (min-device-width :250px) 
+	and (max-device-width : 425px) {
+		right: 20px;
+		left: -20%;
+
+/* Styles */
+}
+
 }
 #infoButton {
 	background-color: rgba(255,255,255,1.00);
@@ -41,17 +50,7 @@
 	text-align: left;
 	position: relative;
 }
-.interactButton {
-	font-size: 14px;
-	z-index: 10;
-	padding-right: 20 px;
-	margin-right: 3px;
-	position: relative;
-	padding-bottom: 0px;
-	bottom: 0px;
-	top: 0px;
-	display: inline;
-}
+
 .profilePicture {
 	width: 60px;
 	height: 60px;
@@ -63,7 +62,7 @@ li {
 }
 .ineractContainer {
 	padding-left: 0px;
-	width: 150px;
+	width: 100%;
 	left: 0px;
 	top: 0px;
 	margin-left: 127px;
@@ -77,9 +76,9 @@ li {
 	-webkit-box-sizing: content-box;
 	-moz-box-sizing: content-box;
 	box-sizing: content-box;
-	left: 355px;
+	left: 60%;
 	top: 48px;
-	width: 503px;
+	width: 100%;
 	padding-top: 0px;
 	position: static;
 }
@@ -96,7 +95,16 @@ li {
 	height: 289px;
 	position: relative ;
 }
+.card-footer
+{
+	right: 20px;
+	display: flex;
+    align-items: center;
+    justify-content: center;
+	align-content: center;
+	position: relative ;
 
+}
 
 .slider{
 	right: 30px;
@@ -115,6 +123,7 @@ li {
 
 
 .nav-btn-left{
+	width: 10px;
 	border: none;
 	background-color: #888;
 	position: relative;
@@ -128,6 +137,7 @@ li {
 	opacity: 0.51;
 	}
 .nav-btn-right{
+	width: 10px;
 	border: none;
 	background: #888;
 	position: relative;

@@ -112,8 +112,6 @@ export class InscriptionComponent implements OnInit {
       this.registerForm.controls['image'].setValue(this.ImageBaseData);
 
       this.inscriptionService.addUser(JSON.parse(JSON.stringify(this.registerForm.value)));
-     alert(PrenomUtilisateur + " vous avez été enregistrer votre compte avec succes , veuillez confirmer votre compte svp");
-  
 
 
     }

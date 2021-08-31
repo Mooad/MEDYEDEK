@@ -44,10 +44,10 @@ public abstract class Utilisateur implements Serializable {
     protected Adresse adresse;
     protected String password;
     protected String userToken;
+    protected String temp_pass;
 
 
-
-    public Utilisateur(String firstname, String lastname, String email, String cin, String phone_number, Domaine domaine, Adresse adresse, String password, String image,String token) {
+    public Utilisateur(String firstname, String lastname, String email, String cin, String phone_number, Domaine domaine, Adresse adresse, String password, String image,Role role,String token) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
@@ -58,7 +58,7 @@ public abstract class Utilisateur implements Serializable {
         this.password = password;
         this.image = image==null ? null : Base64.getEncoder().encode(image.getBytes());
         this.userToken = token;
-
+        this.role=role;
     }
 
 

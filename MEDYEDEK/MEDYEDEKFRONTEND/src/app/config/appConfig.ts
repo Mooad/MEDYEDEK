@@ -8,4 +8,6 @@ export abstract class AppConfig {
      authUrl: string;
      syncUrl :string;
      changePasswordUrl :string;
+     confirmPassword :string;
+
 }

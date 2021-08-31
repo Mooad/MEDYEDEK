@@ -5,7 +5,7 @@ import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AppConfig } from '../config/appConfig';
 import { AjaxResponse } from '../entities/AjaxResponse';
-import { UserResetDto } from '../entities/UserResetDto';
+import { UserResetDto, PasswordDto } from '../entities/UserResetDto';
 
 @Injectable({
     providedIn: 'root'
@@ -19,6 +19,10 @@ export class ChangePassword {
     public changeUserPassword(email:String): Observable<UserResetDto[]> {
                return this.http.post<UserResetDto[]>(this.appConfig.changePasswordUrl,{"userEmail":email});
     }
+
+    public confirmNewPassword(passwordDto : PasswordDto): Observable<PasswordDto[]> {
+        return this.http.post<PasswordDto[]>(this.appConfig.confirmPassword,passwordDto);
+}
 
     /*     uploadPhotoProduct(file: File, idProduct): Observable<HttpEvent<{}>> {
             const formdata: FormData = new FormData();

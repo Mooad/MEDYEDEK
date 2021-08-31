@@ -25,10 +25,13 @@ export class ConfirmaccountComponent implements OnInit {
     {
       this.router.navigate(['/Error']);
     } */
-
-
   }
-  getUserWithToken(): void {
+
+  onSubmit() {
+  
+    }
+    
+    getUserWithToken(): void {
     const error = this.userService.getUserByToken();
     }
 }

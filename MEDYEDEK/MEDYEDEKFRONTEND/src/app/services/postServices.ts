@@ -15,11 +15,8 @@ export class postService {
     constructor(private http: HttpClient, private appConfig: AppConfig) { }
 
 
-    public getAllPosts(): Observable<PostDto[]> {
-        return this.http.get<PostDto[]>(this.appConfig.baseUrl + "posts/all");
-
-
-        
+    public getAllPosts(lastPost:String): Observable<PostDto[]> {
+        return this.http.post<PostDto[]>(this.appConfig.baseUrl + "posts/all",{"lastPost":lastPost});
     }
 
     /*     uploadPhotoProduct(file: File, idProduct): Observable<HttpEvent<{}>> {

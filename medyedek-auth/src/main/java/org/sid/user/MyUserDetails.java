@@ -4,7 +4,6 @@ import org.sid.entities.Utilisateur;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -18,11 +17,11 @@ public class MyUserDetails implements UserDetails {
     private boolean active;
     private List<GrantedAuthority> authorities;
 
-    public MyUserDetails(Utilisateur utilisateur, BCryptPasswordEncoder encoder) {
+    public MyUserDetails(Utilisateur utilisateur) {
 
 
         this.username = utilisateur.getEmail();
-        this.password = encoder.encode(utilisateur.getPassword());
+        this.password = utilisateur.getPassword();
         this.active = true;
         this.authorities = Arrays.stream(utilisateur.getRole().getRolename()
                 .split(",")).map(SimpleGrantedAuthority::new)
@@ -66,11 +65,5 @@ public class MyUserDetails implements UserDetails {
     public boolean isEnabled() {
         return this.active;
     }
-
-    public MyUserDetails() {
-    }
-
-    public MyUserDetails(String userName) {
-        this.username = userName;
-    }
+    
 }

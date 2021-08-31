@@ -10,7 +10,7 @@
     border-radius: 10px;
     box-shadow: 1px 1px 1px 1px rgba(169,169,169,1.00);
     background-color: rgb(241, 238, 238);
-    z-index: 12;
+    z-index: 0;
   
 }
 
@@ -24,7 +24,8 @@
 
 
 .main {
-    height: 100%;
+    height: 80%;
+    overflow-y: auto;
 }
 
 @media screen and (max-height: 450px) {
@@ -43,6 +44,7 @@
 
 .content
 {
+    z-index: 0;
  //   background-image: url('133-1337948_abstract-wallpaper-bw.jpeg');
     height: 100%; 
 }
@@ -171,4 +173,19 @@ position: relative;
     position: relative;
     font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-size: xx-large;
+}
+.footer
+{
+    position: fixed;
+    z-index: 0;
+    bottom: -23%;
+    width: 100%;
+    overflow-y: auto;
+    height: 50%;
+     @media only screen 
+ and (min-device-width :250px) 
+ and (max-device-width : 1024px) {
+  height: 150px;
+}
+
 }

@@ -22,6 +22,7 @@ export class JsonAppConfigService extends AppConfig {
         this.authUrl = data.authUrl;
         this.syncUrl = data.syncUrl;
         this.changePasswordUrl = data.changePasswordUrl;
+        this.confirmPassword = data.confirmPassword;
       })
       .catch(() => {
         console.error('Could not load configuration');

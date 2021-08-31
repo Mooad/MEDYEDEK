@@ -1,2 +1,4 @@
-package org.sid.mailconfirmation;public class MailUtils {
+package org.sid.mailconfirmation;
+
+public class MailUtils {
 }

@@ -15,14 +15,8 @@ export class AuthInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
 
-    if (sessionStorage.getItem('username') && sessionStorage.getItem('token')) {
-      req = req.clone({
-        setHeaders: {
-          Authorization: sessionStorage.getItem('token')
-        }
-
-      })
-    
+    if (!sessionStorage.getItem('thCurUsr')) {
+      sessionStorage.clear();
     }
     
  

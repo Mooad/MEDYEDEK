@@ -14,17 +14,16 @@ connexionState:ConnexionState;
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot)
     : Observable<boolean> | Promise<boolean> | boolean {
     
-    if (sessionStorage.getItem('token') && sessionStorage.getItem('token').length>0) {
+    if (sessionStorage.getItem('thCurUsr') && sessionStorage.getItem('thCurUsr').length>0) {
       let headers = new HttpHeaders();
      this.createAuthorizationHeader(headers); 
-      this.http.get<ConnexionState>(this.appConfig.syncUrl,{headers: {'Authorization': sessionStorage.getItem('token')}}).subscribe(
+      this.http.get<ConnexionState>(this.appConfig.syncUrl,{headers: {'Authorization': "Bearer "+ sessionStorage.getItem('thCurUsr')}}).subscribe(
         (res) => {this.connexionState=res;
           if(res.status==='401')
           {
             this.router.navigate(['/login']);
             return false;
           }
-            this.router.navigate(['/home/posts/all']);
         }
         );
 
@@ -35,7 +34,7 @@ connexionState:ConnexionState;
   }
    createAuthorizationHeader(headers:HttpHeaders) {
 
-    headers.append('Authorization', sessionStorage.getItem('token')); 
+    headers.append('Authorization', 'Bearer '+sessionStorage.getItem('thCurUsr')); 
     return headers
   }
 

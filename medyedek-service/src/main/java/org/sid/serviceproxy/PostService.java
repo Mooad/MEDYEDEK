@@ -1,10 +1,10 @@
 package org.sid.serviceproxy;
 
 import org.sid.dto.post.PostDto;
+import org.sid.dto.user.LastPost;
 import org.sid.entities.Post;
 import org.sid.mappers.PostMapper;
-import org.sid.repositories.ContentRepository;
-import org.sid.repositories.PostsRepository;
+import org.sid.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -16,7 +16,6 @@ public class PostService {
 
     @Autowired
     PostsRepository postsRepo;
-
     @Autowired
     ContentRepository contentRepository;
 
@@ -27,11 +26,14 @@ public class PostService {
      * Class used to get all the postDto and return them to front End App
      * @return
      */
-    public List<PostDto> getAllPosts() {
+    public List<PostDto> getAllPosts(LastPost lastPost) {
 
-        List<Post> PostsList = postsRepo.findAll();
+        List<Post> postsList=null;
+        if (lastPost == null || lastPost.isLastPost=="") {
+            postsList = postsRepo.findAll();
+        }
         List<PostDto> postDtos = new ArrayList<>();
-        for (Post p : PostsList) {
+        for (Post p : postsList) {
             PostDto postDto = postMapper.PosttoDto(p);
 
             postDto.postContent =  contentRepository.getContentsOfPost(p.getId_post());

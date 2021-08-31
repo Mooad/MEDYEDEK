@@ -1,6 +1,7 @@
 package org.sid.service.postservices;
 
 import org.sid.dto.post.PostDto;
+import org.sid.dto.user.LastPost;
 import org.sid.serviceproxy.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -22,16 +23,16 @@ public class PostController {
 	}
 
 
-	@GetMapping("all")
-	public List<PostDto> allPosts()
+	@PostMapping("all")
+	public List<PostDto> allPosts(LastPost lastPost)
 	{
-		return postService.getAllPosts();
+		return postService.getAllPosts(lastPost);
 	}
 
 	@PostMapping("create")
 	public List<PostDto> newPost()
 	{
-		return postService.getAllPosts();
+		return null;
 	}
 
 

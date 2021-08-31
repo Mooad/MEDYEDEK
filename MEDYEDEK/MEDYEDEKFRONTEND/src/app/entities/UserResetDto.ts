@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-// Generated using typescript-generator version 2.24.612 on 2021-07-14 16:56:17.
+// Generated using typescript-generator version 2.24.612 on 2021-08-31 20:06:50.
 
 export interface PostDto {
     id_post?: number;
@@ -10,8 +10,14 @@ export interface PostDto {
     postContent?: Content[];
 }
 
-export interface UserResetDto {
+export interface UserResetDto extends Serializable {
     userEmail?: string;
+}
+
+export interface PasswordDto extends Serializable {
+    email?: string;
+    tempPass?: string;
+    newPass?: string;
 }
 
 export interface Typepost {
@@ -29,6 +35,9 @@ export interface Content {
     content?: any;
     post_id?: number;
     post?: Post[];
+}
+
+export interface Serializable {
 }
 
 export interface Post extends Serializable {
@@ -54,8 +63,8 @@ export interface Adresse {
     adresse_id?: number;
     rue?: string;
     utilisteur?: Utilisateur;
-    ville?: string;
     pays?: string;
+    ville?: string;
     quartier?: string;
 }
 
@@ -75,7 +84,4 @@ export interface Utilisateur extends Serializable {
     userToken?: string;
     temp_pass?: string;
     notValid?: boolean;
-}
-
-export interface Serializable {
 }

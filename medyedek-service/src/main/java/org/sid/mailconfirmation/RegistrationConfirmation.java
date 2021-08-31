@@ -42,66 +42,67 @@ public class RegistrationConfirmation implements MailConfirmation {
         this.mailSetting = mailSetting;
     }
 
-
     @Override
-    public void sendMail(String from, String to, String content, String subject, String user, String token) {
+    public void sendMail(String to, String content, String subject,String user , String token) {
+        {
 
-        //getting user and password of smtp server
-        final String username = medyedekConfiguration.getSmtpUser();
-        final String password = medyedekConfiguration.getSmtpPassword();
+            //getting user and password of smtp server
+            final String username = medyedekConfiguration.getSmtpUser();
+            final String password = medyedekConfiguration.getSmtpPassword();
 
-        Properties prop = new Properties();
-        prop.put("mail.smtp.host", medyedekConfiguration.getSmtpHost());
-        prop.put("mail.smtp.port", medyedekConfiguration.getSmtpPort());
-        prop.put("mail.smtp.auth", medyedekConfiguration.getSmtpAuth());
-        prop.put("mail.smtp.ssl.enable", "true");
-        Session session = Session.getInstance(prop,
-                new javax.mail.Authenticator() {
-                    protected PasswordAuthentication getPasswordAuthentication() {
-                        return new PasswordAuthentication(username, password);
-                    }
-                });
-        try {
-            MimeMultipart multipart = new MimeMultipart();
+            Properties prop = new Properties();
+            prop.put("mail.smtp.host", medyedekConfiguration.getSmtpHost());
+            prop.put("mail.smtp.port", medyedekConfiguration.getSmtpPort());
+            prop.put("mail.smtp.auth", medyedekConfiguration.getSmtpAuth());
+            prop.put("mail.smtp.ssl.enable", "true");
+            Session session = Session.getInstance(prop,
+                    new javax.mail.Authenticator() {
+                        protected PasswordAuthentication getPasswordAuthentication() {
+                            return new PasswordAuthentication(username, password);
+                        }
+                    });
+            try {
+                MimeMultipart multipart = new MimeMultipart();
 
-            Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress("username"));
-            message.setRecipients(
-                    Message.RecipientType.TO,
-                    InternetAddress.parse("moad52@hotmail.fr")
-            );
-            message.setSubject("Welcome TO MEDYEDEK");
+                Message message = new MimeMessage(session);
+                message.setFrom(new InternetAddress("username"));
+                message.setRecipients(
+                        Message.RecipientType.TO,
+                        InternetAddress.parse("moad52@hotmail.fr")
+                );
+                message.setSubject("Welcome TO MEDYEDEK");
 
-            final MimeBodyPart messageBodyPart = new MimeBodyPart();
-            messageBodyPart.setContent(content, "text/html;charset=iso-8859-1");
-            messageBodyPart.setHeader("Content-type", "text/HTML");
-            // add it
-            multipart.addBodyPart(messageBodyPart);
-            // don't forget to add the content to your message.
+                final MimeBodyPart messageBodyPart = new MimeBodyPart();
+                messageBodyPart.setContent(content, "text/html;charset=iso-8859-1");
+                messageBodyPart.setHeader("Content-type", "text/HTML");
+                // add it
+                multipart.addBodyPart(messageBodyPart);
+                // don't forget to add the content to your message.
 
-            HtmlEmail email = new HtmlEmail();
-            email.setHostName(medyedekConfiguration.getSmtpHost());
-            email.setSmtpPort(Integer.valueOf(medyedekConfiguration.getSmtpPort()));
-            email.setAuthenticator(new DefaultAuthenticator(username, password));
-            email.setSSLOnConnect(true);
-            //Remplacing User Name and token in email body
-            content =content.replace("token", "token="+token);
-            content =  content.replace("{user}", user);
+                HtmlEmail email = new HtmlEmail();
+                email.setHostName(medyedekConfiguration.getSmtpHost());
+                email.setSmtpPort(Integer.valueOf(medyedekConfiguration.getSmtpPort()));
+                email.setAuthenticator(new DefaultAuthenticator(username, password));
+                email.setSSLOnConnect(true);
+                //Remplacing User Name and token in email body
+                content =content.replace("token", "token="+token);
+                content =  content.replace("{user}", user);
 
-            email.setFrom(from);
-            email.setSubject(subject);
-            //  email.setMsg(Content);
-            email.setHtmlMsg(content);
-            email.addTo(to);
-            email.send();
-            // HTML Content
+                email.setFrom(username);
+                email.setSubject(subject);
+                //  email.setMsg(Content);
+                email.setHtmlMsg(content);
+                email.addTo(to);
+                email.send();
+                // HTML Content
 
-            message.setContent(multipart);
-            //  Transport.send(message);
+                message.setContent(multipart);
+                //  Transport.send(message);
 
-            System.out.println("Done");
-        } catch (MessagingException | EmailException e) {
-            e.printStackTrace();
+                System.out.println("Done");
+            } catch (MessagingException | EmailException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

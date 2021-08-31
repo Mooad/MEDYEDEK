@@ -1,51 +1,65 @@
 package org.sid.service.mail.passwordreset;
 
-import org.sid.entities.Utilisateur;
+import com.google.common.io.Resources;
+import com.sun.jersey.api.NotFoundException;
+import org.apache.commons.lang.RandomStringUtils;
+import org.sid.dto.user.UserResetDto;
+import org.sid.handler.UserPasswordResetService;
+import org.sid.mailconfirmation.ResetConfirmation;
 import org.sid.repositories.UtilisateurRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.temporal.ChronoUnit;
-import java.util.List;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
 
-@CrossOrigin
-@Controller
+@CrossOrigin("*")
+@RestController
 @Service
 public class PasswordResetConfirmation {
 
     @Autowired
     UtilisateurRepository userRepo;
+    @Autowired
+    ResetConfirmation resetConfirmation;
+    @Autowired
+    UserPasswordResetService userPasswordResetService;
 
-
-
-    @RequestMapping("/ValidateSignUp")
-    public String validateSubscription(@RequestParam("token")String token) throws IOException {
-
-        List<Utilisateur> users = userRepo.getUserbyToken(token);
-
-        if (token.length() > 30 && users.size() > 0) {
-            Utilisateur user = users.get(0);
-            //calculating the difference bettween registration time and now
-            LocalTime registerationTime = LocalTime.parse(token.substring(31));
-
-            long minutes = registerationTime.until(LocalDateTime.now(), ChronoUnit.MINUTES);
-            if (minutes <= 5L) {
-                user.setIsValidUser("01");
-                userRepo.save(user);
-
-                return "WelcomeAfterSoubsc.html";
-            } else {
-                return "SoubscriptionNotCompleted.html";
+    @PostMapping("/change-pass")
+    public UserResetDto sendResetPasswordEmailConfirmation(@RequestBody UserResetDto userResetDto) throws IOException {
+        if(userResetDto.getUserEmail()!=null) {
+            URL url = null;
+            ClassLoader classLoader = getClass().getClassLoader();
+            URL resource = classLoader.getResource("Reset-Password-Confirmation.txt");
+            if (resource == null) {
+                throw new IllegalArgumentException("file not found! " + "Reset-Password-Confirmation.txt");
             }
+            String temp_pass = generateRandomPassword(30);
+
+            String MailBody = Resources.toString(resource, StandardCharsets.UTF_8);
+
+            resetConfirmation.sendMail(userResetDto.getUserEmail(),
+                    MailBody, "MEDYEDEK ACCOUNT PASSWORD RESET", temp_pass, "");
+
+
+            userPasswordResetService.updateUserPasswordAfterReset(userResetDto.getUserEmail(), temp_pass);
         }
-        return null;
+        else
+        {
+            throw  new  NotFoundException();
+        }
+
+        return userResetDto;
     }
+
+    public static String generateRandomPassword(int len) {
+        return RandomStringUtils.randomAlphanumeric(len);
     }
+
+}
 

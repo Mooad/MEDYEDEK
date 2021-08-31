@@ -24,9 +24,9 @@ export class HomeComponent implements OnInit {
     private http:HttpClient) { }
 
   ngOnInit(): void {
-    if(sessionStorage.getItem('token'))
+    if(sessionStorage.getItem('thCurUsr'))
     {
-    this.router.navigateByUrl("home/posts/all")
+    this.router.navigateByUrl("/home/posts/all")
     }
     else
     {

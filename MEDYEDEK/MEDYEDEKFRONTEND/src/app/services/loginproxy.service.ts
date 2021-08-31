@@ -22,7 +22,7 @@ export class LoginproxyService {
   }
   constructor(private http: HttpClient, private router: Router, private appConfig: AppConfig,private tokenStorageService :TokenStorageService) {
 
-    this.currentUserSubject = new BehaviorSubject<any>(JSON.parse(localStorage.getItem('user')));
+    this.currentUserSubject = new BehaviorSubject<any>(JSON.parse(sessionStorage.getItem('thCurUsr')));
     this.currentUser = this.currentUserSubject.asObservable();
    }
 
@@ -36,7 +36,7 @@ return this.http
 .post<any>(this.appConfig.authUrl, { username, password ,kms})
 .pipe(map(user => {
   // store user details and jwt token in local storage to keep user logged in between page refreshes
-  sessionStorage.setItem('thCurUsr', JSON.stringify(user));
+  sessionStorage.setItem('thCurUsr', user['token']);
   this.currentUserSubject.next(user);
   console.log(user);
   return user;
@@ -49,7 +49,7 @@ return this.http
   }
 
   registerSuccessfulLogin(username, password) {
-    localStorage.setItem('user', JSON.stringify(username + ":" + password));
+    localStorage.setItem('thCurUsr', JSON.stringify(username + ":" + password));
   }
 
   
@@ -61,7 +61,7 @@ return this.http
 
   logOut() {
     sessionStorage.removeItem("username");
-    sessionStorage.removeItem("token")
+    sessionStorage.removeItem("thCurUsr")
   }
 
 }

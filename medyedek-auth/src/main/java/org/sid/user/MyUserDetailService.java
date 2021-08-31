@@ -30,20 +30,15 @@ public class MyUserDetailService implements UserDetailsService {
         Predicate<Utilisateur> isNotValid = item -> item.isNotValid();
 
         users.removeIf(isNotValid);
-        BCryptPasswordEncoder encoder = passwordEncoder();
 
         MyUserDetails myUserDetails = null;
         if (!users.isEmpty() && users != null) {
 
-            myUserDetails = new MyUserDetails(users.get(0),encoder);
+            myUserDetails = new MyUserDetails(users.get(0));
         } else {
             throw new UsernameNotFoundException("user unknown");
         }
-        return myUserDetails;
-    }
 
-    @Bean
-    public BCryptPasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+        return myUserDetails;
     }
 }

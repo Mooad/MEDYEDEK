@@ -1,8 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
 import * as $ from 'jquery';
-import { FormGroup, FormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
+import { ChangePassword } from '../services/ChangePassword';
+import { PasswordDto } from '../entities/UserResetDto';
+import { DialogService } from '../services/DialogService';
 
 @Component({
   selector: 'app-confirmation-reset',
@@ -11,20 +14,42 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class ConfirmationResetComponent implements OnInit {
 
-  @Input() ErrorLogin: string;
-  @Input() Loading: boolean;
   resetPasswordForm: FormGroup;
-
-
-  constructor(private formBuilder: FormBuilder, private router: Router) { }
-
-  ngOnInit(): void {
-  
+   passwordDto : PasswordDto;
+   emailParam : string;
+  constructor(private formBuilder: FormBuilder, private router: Router , private changePassword :ChangePassword,private activatedRoute:ActivatedRoute,private dialogService : DialogService) { 
+    this.activatedRoute.queryParams.subscribe(params => {
+      this.emailParam= params['m'].replace('"',"");
+  });
   }
 
-  async onSubmitForm() {
-    this.Loading = true;
-    const formValue = this.resetPasswordForm.value;
+  ngOnInit(): void {
+    this.resetPasswordForm = this.formBuilder.group({
+      newPass: ['', Validators.required],
+      tempPass: ['', Validators.required],
+      newPassConfirm: ['', Validators.required]
+    }, {
+    });
+  }
+
+  async onSubmit() {
+    
+    this.passwordDto = {email: this.emailParam, newPass: this.resetPasswordForm.controls['newPass'].value, tempPass: this.resetPasswordForm.controls['tempPass'].value};
+    if(!(this.passwordDto.newPass===this.resetPasswordForm.controls['newPassConfirm'].value))
+    {
+        this.dialogService.confirmationDialog("The passwords entered does not match please confirm your password !");
+        return;
+    }
+
+    const access = this.changePassword.confirmNewPassword(this.passwordDto)
+    .subscribe(
+        data => {
+          this.dialogService.confirmationDialog("Your Password has been modified succefully");
+
+            this.router.navigate(['/login']);
+        },
+        error => {
+        });
 
    /*   const access = this.loginproxy.login(formValue['email'], formValue['mdp'],formValue['kms']) .pipe(first())
   .subscribe(

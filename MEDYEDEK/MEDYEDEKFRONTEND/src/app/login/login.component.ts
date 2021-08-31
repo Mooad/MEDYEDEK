@@ -4,6 +4,9 @@ import { Router } from '@angular/router';
 import { LoginproxyService } from '../services/loginproxy.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { first } from 'rxjs/operators';
+import { ConfirmResetPassDialogComponent } from '../confirm-reset-pass-dialog/confirm-reset-pass-dialog.component';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { DialogService } from '../services/DialogService';
 
 @Component({
   selector: 'app-login',
@@ -16,17 +19,19 @@ export class LoginComponent implements OnInit {
   @Input() loading: boolean;
   @Input() logged: boolean;
   @Input() connected: boolean;
+
   loginForm: FormGroup;
   public LOGO = 'medyedek.jpeg';
+  dialogRef: MatDialogRef<ConfirmResetPassDialogComponent>;
 
-  constructor(private loginproxy: LoginproxyService, private formBuilder: FormBuilder, private router: Router) {
+  constructor(private loginproxy: LoginproxyService, private formBuilder: FormBuilder, private router: Router,public dialog: MatDialog , private dialogService: DialogService) {
 
   }
 
   ngOnInit(): void {
     this.logged = true;
 
-    if (sessionStorage.getItem('token')) {
+    if (sessionStorage.getItem('thCurUsr')) {
       this.router.navigate(['/home']);
     }
 
@@ -52,7 +57,7 @@ export class LoginComponent implements OnInit {
     const access = this.loginproxy.login(formValue['email'], formValue['mdp'],formValue['kms']).pipe(first())
     .subscribe(
         data => {
-          this.router.navigate(['/home/posts/all']);
+          this.router.navigateByUrl("home/posts/all");
         },
         error => {
             this.errorLogin = error;
@@ -63,14 +68,26 @@ export class LoginComponent implements OnInit {
     {
       this.logged=false;
     }
-    else
-    {
-      this.router.navigate(['/home/posts/all']);
-    }
-    console.log("fffff");
 
     console.log(access);
     this.loading = false;
     debugger;
   }
+
+
+  changePasswordRequest()
+
+  {
+if(!this.loginForm.controls['email'].invalid)
+{
+  this.router.navigateByUrl("/resetPassword"+"?m="+this.loginForm.controls['email'].value);
 }
+
+else
+{
+  this.dialogService.confirmationDialog("Please enter your email :)")
+}
+  
+}
+
+  }

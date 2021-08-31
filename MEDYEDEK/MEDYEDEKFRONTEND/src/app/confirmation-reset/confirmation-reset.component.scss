@@ -4,16 +4,31 @@
     display: block;
     position: relative;
     top: 200px; 
-    @media (max-width: 480px) {
-        #div {
-            top: 50%; /* IMPORTANT */
-            left: 50%; /* IMPORTANT */
-            display: block;
-            position: absolute;
-            width: 750px;
-            height: 417px;
-            margin-top: -208.5px; /* HALF OF THE HEIGHT */
-            margin-left: -375px; /* HALF OF THE WIDTH */
-        }
+    overflow-y: auto;
+    overflow-x: auto;
+    @media only screen 
+    and (min-device-width :250px) 
+    and (max-device-width : 1024px)  {
+        top: 15%; /* IMPORTANT */
+        position: absolute;
+        overflow-y: auto;
+
     }    z-index: 0;
+}
+
+.footer
+{
+    position: fixed;
+	z-index: 0;
+    bottom: -23%;
+    width: 100%;
+    height: 50%;
+     @media only screen 
+ and (min-device-width :250px) 
+ and (max-device-width : 1024px) {
+    overflow-y: auto;
+
+  height: 150px;
+  bottom: 0;
+}
 }

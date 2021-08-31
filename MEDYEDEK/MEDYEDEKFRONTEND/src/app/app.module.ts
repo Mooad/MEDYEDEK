@@ -37,6 +37,9 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { GetIntouchComponent } from './get-intouch/get-intouch.component';
 import { UsefulLinksComponent } from './useful-links/useful-links.component';
 import { FooterComponent } from './footer/footer.component';
+import { ConfirmResetPassDialogComponent } from './confirm-reset-pass-dialog/confirm-reset-pass-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { DialogService } from './services/DialogService';
 
 
 
@@ -70,20 +73,21 @@ export function initializerFn(jsonAppConfigService: JsonAppConfigService) {
     AboutUsComponent,
     GetIntouchComponent,
     UsefulLinksComponent,
-    FooterComponent  ],
+    FooterComponent,
+    ConfirmResetPassDialogComponent  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
     ScrollingModule,
+    MatDialogModule
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA],
-    entryComponents: [ErrordialogComponent],
+    entryComponents: [ErrordialogComponent,ConfirmResetPassDialogComponent],
   providers: [{
     provide: AppConfig,
     deps: [HttpClient],
@@ -91,6 +95,7 @@ export function initializerFn(jsonAppConfigService: JsonAppConfigService) {
   },
    AuthGuardService,
    ErrorDialogService,
+   DialogService,
    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   {
     provide: APP_INITIALIZER,
