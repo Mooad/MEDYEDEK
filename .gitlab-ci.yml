@@ -1,3 +1,14 @@
-hello-job:
-    script:
-        - echo "Hello You MDF"
+image: maven:latest
+
+variables:
+  MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository"
+
+cache:
+  paths:
+    - .m2/repository/
+    - target/
+
+build:
+  stage: build
+  script:
+    - mvn compile
