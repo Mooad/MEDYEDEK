@@ -1,5 +1,6 @@
 package org.sid.serviceproxy;
 
+import org.apache.commons.lang.StringUtils;
 import org.sid.dto.post.PostDto;
 import org.sid.dto.user.LastPost;
 import org.sid.entities.Post;
@@ -29,7 +30,7 @@ public class PostService {
     public List<PostDto> getAllPosts(LastPost lastPost) {
 
         List<Post> postsList=null;
-        if (lastPost == null || lastPost.isLastPost=="") {
+        if (lastPost == null || StringUtils.isBlank(lastPost.isLastPost)) {
             postsList = postsRepo.findAll();
         }
         List<PostDto> postDtos = new ArrayList<>();

@@ -30,7 +30,7 @@ export class PostsComponent implements OnInit {
 
   private getPosts() {
 
-    this.postService.getAllPosts(JSON.stringify(this.Posts.length))
+    this.postService.getAllPosts('')
       .subscribe(
         (res) => { this.Posts = res; }
       );
