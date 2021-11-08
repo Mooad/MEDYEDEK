@@ -22,7 +22,7 @@ export class LoginproxyService {
   }
   constructor(private http: HttpClient, private router: Router, private appConfig: AppConfig,private tokenStorageService :TokenStorageService) {
 
-    this.currentUserSubject = new BehaviorSubject<any>(JSON.parse(sessionStorage.getItem('thCurUsr')));
+    this.currentUserSubject = new BehaviorSubject<any>(JSON.stringify(sessionStorage.getItem('thCurUsr')));
     this.currentUser = this.currentUserSubject.asObservable();
    }
 

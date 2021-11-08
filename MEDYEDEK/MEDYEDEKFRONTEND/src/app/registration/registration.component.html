@@ -27,20 +27,7 @@
 				<b> <span class="bg-light">INSCRIPTION USING BELOW INFORMATIONS</span></b>
 			</p>
 			<form class="form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-				<div class="form-group input-group">
-					<div class="input-group-prepend">
-						<span class="input-group-text"> <i class="fa fa-user"></i></span>
-					</div>
-					<input class="form-control" placeholder="Votre Prenom" type="text" formControlName="firstname"
-						pattern="[a-zA-Z ]*" required [ngClass]="{ 'is-invalid': submitted && f.firstname.errors }" />
-					<div *ngIf="submitted && f.firstname.errors" class="invalid-feedback">
-						<div *ngIf="f.firstname.errors.required">Le Prenom et Obligatoire</div>
-					</div>
 
-				</div>
-	
-				
-			
 				<div class="container row">
 					<div class="col-md-6">
 						<div  *ngIf=retreivedImage>
@@ -49,14 +36,38 @@
 					</div>
 
 					</div>
+					<div class="form-group input-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"> <i class="fa fa-user"></i> </span>
+						</div>
+						<input class="form-control" placeholder="Your Pseudo" type="text" formControlName="pseudo" required
+							pattern="[a-zA-Z ]*" [ngClass]="{ 'is-invalid': submitted && f.pseudo.errors }" />
+						<div *ngIf="submitted && f.pseudo.errors" class="invalid-feedback">
+							<div *ngIf="f.pseudo.errors.required">The Pseudo is mandatory</div>
+						</div>
+					</div>
+	
+					<div class="form-group input-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"> <i class="fa fa-user"></i></span>
+						</div>
+						<input class="form-control" placeholder="Your First Name" type="text" formControlName="firstname"
+							pattern="[a-zA-Z ]*" required [ngClass]="{ 'is-invalid': submitted && f.firstname.errors }" />
+						<div *ngIf="submitted && f.firstname.errors" class="invalid-feedback">
+							<div *ngIf="f.firstname.errors.required">the first name is mandatory</div>
+						</div>
+	
+					</div>
+
+					
 				<div class="form-group input-group">
 					<div class="input-group-prepend">
 						<span class="input-group-text"> <i class="fa fa-user"></i> </span>
 					</div>
-					<input class="form-control" placeholder="Votre Nom" type="text" formControlName="lastname" required
+					<input class="form-control" placeholder="Your Last Name" type="text" formControlName="lastname" required
 						pattern="[a-zA-Z ]*" [ngClass]="{ 'is-invalid': submitted && f.lastname.errors }" />
 					<div *ngIf="submitted && f.lastname.errors" class="invalid-feedback">
-						<div *ngIf="f.lastname.errors.required">Le Nom et Obligatoire</div>
+						<div *ngIf="f.lastname.errors.required">the name is mandatory</div>
 					</div>
 				</div>
 
@@ -69,10 +80,10 @@
 					<div class="input-group-prepend">
 						<span class="input-group-text"> <i class="fa fa-address-card"></i> </span>
 					</div>
-					<input class="form-control" placeholder="Votre CIN" type="text" formControlName="cin" required
+					<input class="form-control" placeholder="Your ID number" type="text" formControlName="cin" required
 						pattern="[A-Z0-9]*" [ngClass]="{ 'is-invalid': submitted && f.cin.errors }" />
 					<div *ngIf="submitted && f.cin.errors" class="invalid-feedback">
-						<div *ngIf="f.cin.errors.required">Le CIN et Obligatoire</div>
+						<div *ngIf="f.cin.errors.required">the ID  is mandatory</div>
 					</div>
 				</div>
 
@@ -82,10 +93,10 @@
 					<div class="input-group-prepend">
 						<span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
 					</div>
-					<input class="form-control" placeholder="Votre Adresse Email" type="email" formControlName="email"
+					<input class="form-control" placeholder="Email" type="email" formControlName="email"
 						required [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
 					<div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-						<div *ngIf="f.email.errors.required">L'email et Obligatoire</div>
+						<div *ngIf="f.email.errors.required">email is mandatory</div>
 					</div>
 				</div> <!-- form-group// -->
 
@@ -100,56 +111,56 @@
 		    <option value="3">+701</option>
 		</select> -->
 
-					<input class="form-control" placeholder="Votre Numero de Telephone" type="text"
+					<input class="form-control" placeholder="Phone Number" type="text"
 						formControlName="phone_number" required pattern="[0-9]*"
 						[ngClass]="{ 'is-invalid': submitted && f.phone_number.errors }" />
 					<div *ngIf="submitted && f.phone_number.errors" class="invalid-feedback">
-						<div *ngIf="f.phone_number.errors.required">Le Numéro de Telephone et Obligatoire</div>
+						<div *ngIf="f.phone_number.errors.required">The Phone Number is mandatory</div>
 					</div>
 				</div> <!-- form-group// -->
 				<div class="form-group input-group">
 					<div class="input-group-prepend">
-						<span class="input-group-text"> <i class="fa fa-building"></i> </span>
+						<span class="input-group-text"> <i class="fa fa-building"></i> Domaine </span>
 					</div>
 					<select class="form-control" formControlName="domaine" required
 						[ngClass]="{ 'is-invalid': submitted && f.domaine.errors }">
 
 					
 
-						<option>Infographiste</option>
+						<option>Information/Communication</option>
 						<option>Juriste</option>
 						<option>Industrie</option>
 					</select>
 					<div *ngIf="submitted && f.domaine.errors" class="invalid-feedback">
-						<div *ngIf="f.domaine.errors.required">Le Domaine et Obligatoire</div>
+						<div *ngIf="f.domaine.errors.required">The Domaine is mandatory</div>
 					</div>
 				</div> <!-- form-group end.// -->
 				<div class="form-group input-group">
 					<div class="input-group-prepend">
 						<span class="input-group-text"> <i class="fa fa-lock"></i> </span>
 					</div>
-					<input class="form-control" placeholder="Mot de passe" type="password" formControlName="mdp"
+					<input class="form-control" placeholder="Password" type="password" formControlName="mdp"
 						[ngClass]="{ 'is-invalid': submitted && f.mdp.errors }">
 
 					<div *ngIf="submitted && f.mdp.errors" class="invalid-feedback">
-						<div *ngIf="f.mdp.errors.required">Mot de passe Obligatoire</div>
+						<div *ngIf="f.mdp.errors.required">Password is mandatory</div>
 					</div>
 				</div> <!-- form-group// -->
 				<div class="form-group input-group">
 					<div class="input-group-prepend">
 						<span class="input-group-text"> <i class="fa fa-lock"></i> </span>
 					</div>
-					<input class="form-control" placeholder="Confirmation du Mot de passe" type="password"
+					<input class="form-control" placeholder="password confirmation" type="password"
 						formControlName="confirmationmdp" required [ngClass]="{ 'is-invalid': submitted && f.mdp.errors }">  
 				</div>
 				<div *ngIf="submitted && f.confirmationmdp.errors" class="invalid-feedback">
-					<div *ngIf="f.confirmationmdp.errors.required">Veulliez confirmer votre mot de passe</div>
+					<div *ngIf="f.confirmationmdp.errors.required">Password confirmation is mandatory</div>
 				</div>
 				<div class="form-group input-group">
 					<div class="input-group-prepend">
-						<span class="input-group-text"> <i class="fa fa-globe"></i> </span>
+						<span class="input-group-text"> <i class="fa fa-globe"></i>Country :  </span>
 					</div>
-					<select class="form-control" formControlName="country" [ngClass]="{ 'is-invalid': submitted && f.country.errors }">
+					<select class="form-control"  formControlName="country" [ngClass]="{ 'is-invalid': submitted && f.country.errors }">
 
 						<option value="France">France </option>
 
@@ -407,7 +418,7 @@
 						<option value="Zimbabwe">Zimbabwe </option>
 					</select>
 					<div *ngIf="submitted && f.country.errors" class="invalid-feedback">
-						<div *ngIf="f.country.errors.required">Le Pays et Obligatoire</div>
+						<div *ngIf="f.country.errors.required">Please choose a country</div>
 					</div>
 				</div>
 
@@ -415,10 +426,10 @@
 					<div class="input-group-prepend">
 						<span class="input-group-text"> <i class="fa fa-building"></i> </span>
 					</div>
-					<input class="form-control" placeholder="Ville" type="text" formControlName="city" required
+					<input class="form-control" placeholder="city" type="text" formControlName="city" required
 						pattern="[a-zA-Z ]*" [ngClass]="{ 'is-invalid': submitted && f.city.errors }" />
 						<div *ngIf="submitted && f.city.errors" class="invalid-feedback">
-							<div *ngIf="f.city.errors.required">La Ville et Obligatoire</div>
+							<div *ngIf="f.city.errors.required">city is mandatory</div>
 						</div>
 				</div>
 
@@ -426,10 +437,10 @@
 					<div class="input-group-prepend">
 						<span class="input-group-text"> <i class="fa fa-child"></i> </span>
 					</div>
-					<input class="form-control" placeholder="Votre Age" type="number" formControlName="age" required
+					<input class="form-control" placeholder="Age" type="number" formControlName="age" required
 						pattern="[0-9]*" [ngClass]="{ 'is-invalid': submitted && f.age.errors }" />
 						<div *ngIf="submitted && f.age.errors" class="invalid-feedback">
-							<div *ngIf="f.age.errors.required">La Ville et Obligatoire</div>
+							<div *ngIf="f.age.errors.required">City is mandatory</div>
 						</div>
 				</div>
 
@@ -440,29 +451,19 @@
 					<input class="form-control" placeholder="Rue" type="text" formControlName="rue" required
 						pattern="[a-zA-Z ]*" [ngClass]="{ 'is-invalid': submitted && f.rue.errors }" />
 						<div *ngIf="submitted && f.rue.errors" class="invalid-feedback">
-							<div *ngIf="f.rue.errors.required">La Ville et Obligatoire</div>
+							<div *ngIf="f.rue.errors.required">age is mandatory</div>
 						</div>
 				</div>
 
-				<div class="form-group input-group">
-					<div class="input-group-prepend">
-						<span class="input-group-text"> <i class="fa fa-street-view"></i> </span>
-					</div>
-					<input class="form-control" placeholder="Quartier" type="text" formControlName="quartier" required
-						pattern="[a-zA-Z ]*" [ngClass]="{ 'is-invalid': submitted && f.quartier.errors }" />
-						<div *ngIf="submitted && f.quartier.errors" class="invalid-feedback">
-							<div *ngIf="f.quartier.errors.required">La Ville et Obligatoire</div>
-						</div>
-				</div>
 
 				<div class="form-group input-group">
 					<div class="input-group-prepend">
 						<span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
 					</div>
-					<input class="form-control" placeholder="Code Postal" type="text" formControlName="postalcode"
+					<input class="form-control" placeholder="Postal code" type="text" formControlName="postalcode"
 						required [ngClass]="{ 'is-invalid': submitted && f.postalcode.errors }" />
 						<div *ngIf="submitted && f.postalcode.errors" class="invalid-feedback">
-							<div *ngIf="f.postalcode.errors.required">La Ville et Obligatoire</div>
+							<div *ngIf="f.postalcode.errors.required">Postal code is mandatory</div>
 						</div>
 				</div>
 
@@ -472,16 +473,16 @@
 					</div>
 					<div class="typeUtilisateur">
 						<b>
-							<p> vous utiliserer l'application entant que :</p>
+							<p> you use the application as a :</p>
 						</b>
 						<label>
 							<input type="radio" value="1" formControlName="role" name="role">
-							<span>Donnateur</span>
+							<span>GIVER</span>
 						</label>
 
 						<label>
 							<input class="radiobenef" type="radio" value="2" formControlName="role" name="role">
-							<span>Beneficiaire</span>
+							<span>NEEDER</span>
 						</label>
 					</div>
 				</div>

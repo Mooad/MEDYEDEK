@@ -1,10 +1,8 @@
-import { Post, PostDto } from './../entities/Post';
-import { Subject } from 'rxjs';
+import { PostDto } from './../entities/Post';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AppConfig } from '../config/appConfig';
-import { AjaxResponse } from '../entities/AjaxResponse';
 
 @Injectable({
     providedIn: 'root'

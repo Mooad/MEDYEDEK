@@ -1,13 +1,10 @@
 import { ErrordialogComponent } from './errordialog/errordialog.component';
-import { InscriptionComponent } from './inscription/inscription.component';
-import { AppComponent } from './app.component';
+import { InscriptionComponent } from './registration/registration.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuardService } from './auth-guard.service';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
-import { profile } from 'console';
-import { MyprofileComponent } from './myprofile/myprofile.component';
 import { PostsComponent } from './posts/posts.component';
 import { ConfirmaccountComponent } from './confirmaccount/confirmaccount.component';
 import { PasswordResetComponent } from './password-reset/password-reset.component';
@@ -21,14 +18,32 @@ const routes: Routes = [
     component: HomeComponent,
     children: [
       {
-        path: 'userprofile', component: MyprofileComponent
+        path: 'userprofile', loadChildren : () => (import(`./myprofile/myprofile.module`).then(p => p.MyprofileModule))
       },
       {
         path: 'posts/all', component: PostsComponent,
-      }
+      },
     ]
   },
- 
+  /* {
+    path: 'home',
+    component: MyprofileComponent,
+    children: [
+      {
+        path: 'userprofile/infos', 
+        component: ProfileInformationsComponent,
+      },
+      {
+        path: 'userprofile/security', 
+        component: ProfileSecuritySettingsComponent,
+      },
+      {
+        path: 'userprofile/preferences',
+        component: ProfileGeneralSettingsComponent,
+      }
+    ],
+    outlet: "profile"
+  }, */
   { path: 'login', component: LoginComponent },
   { path: 'home', component: LoginComponent },
   { path: 'somethingswrong', component: ErrordialogComponent },
@@ -37,14 +52,11 @@ const routes: Routes = [
   { path: 'confirmed', component: ConfirmaccountComponent },
   { path:'resetPassword' , component:PasswordResetComponent},
   { path:'reset-password-confirm' , component:ConfirmationResetComponent},
-  { path:'**' , component:LoginComponent},
-  { path:'*' , component:HomeComponent} 
+  { path:'**' , component:HomeComponent},
+  { path:'*' , component:HomeComponent}
 
 
   // { path: 'userprofile', outlet: 'in-actions', component: MyprofileComponent }
-
-
-
 ]
 
 @NgModule({

@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 
-import { InscriptionService } from './inscription-service.service';
+import { InscriptionService } from './registration-service.service';
 
-describe('InscriptionServiceService', () => {
+describe('RegistrationServiceService', () => {
   let service: InscriptionService;
 
   beforeEach(() => {

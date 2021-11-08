@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-// Generated using typescript-generator version 2.24.612 on 2021-08-31 20:06:50.
+// Generated using typescript-generator version 2.24.612 on 2021-11-06 13:50:03.
 
 export interface PostDto {
     id_post?: number;
@@ -26,7 +26,7 @@ export interface Typepost {
     post?: Post[];
 }
 
-export interface Beneficiaire extends Utilisateur {
+export interface Beneficiaire extends User {
     nombre_postes?: number;
 }
 
@@ -51,7 +51,7 @@ export interface Post extends Serializable {
 export interface Role {
     role_id?: number;
     rolename?: string;
-    utilisateurs?: Utilisateur[];
+    utilisateurs?: User[];
 }
 
 export interface Domaine extends Serializable {
@@ -62,16 +62,17 @@ export interface Domaine extends Serializable {
 export interface Adresse {
     adresse_id?: number;
     rue?: string;
-    utilisteur?: Utilisateur;
+    utilisteur?: User;
     pays?: string;
     ville?: string;
     quartier?: string;
 }
 
-export interface Utilisateur extends Serializable {
+export interface User extends Serializable {
     user_id?: number;
     firstname?: string;
     lastname?: string;
+    pseudo?: string;
     email?: string;
     cin?: string;
     phone_number?: string;

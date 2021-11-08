@@ -1,13 +1,13 @@
 import { Router } from '@angular/router';
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, AbstractControl, FormControl } from '@angular/forms';
-import { InscriptionService } from '../services/inscription/inscription-service.service';
+import { InscriptionService } from '../services/registration/registration-service.service';
 import { LoginproxyService } from '../services/loginproxy.service';
 
 @Component({
-  selector: 'app-inscription',
-  templateUrl: './inscription.component.html',
-  styleUrls: ['./inscription.component.scss']
+  selector: 'app-registration',
+  templateUrl: './registration.component.html',
+  styleUrls: ['./registration.component.scss']
 })
 export class InscriptionComponent implements OnInit {
 
@@ -24,13 +24,15 @@ export class InscriptionComponent implements OnInit {
   retreivedImage:any;
   ImageBaseData:string | ArrayBuffer=null;
   @Input() ErrorLogin: string;
-
+  validPattern: string;
   constructor(private formBuilder: FormBuilder, private inscriptionService: InscriptionService, private router: Router , private Loginproxy:LoginproxyService ) { }
 
   ngOnInit(): void {
     this.registerForm = this.formBuilder.group({
+
       lastname: ['', Validators.required],
       firstname: ['', Validators.required],
+      pseudo: ['', Validators.pattern(this.validPattern),Validators.required],
       phone_number: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       postalcode: ['', [Validators.required, Validators.minLength(6)]],
@@ -122,6 +124,7 @@ export class InscriptionComponent implements OnInit {
   Test() {
     this.registerForm.controls['lastname'].setValue('MOAD');
     this.registerForm.controls['firstname'].setValue('MOAD');
+    this.registerForm.controls['pseudo'].setValue('MOADXXRR');
     this.registerForm.controls['phone_number'].setValue('0605662626');
     this.registerForm.controls['email'].setValue("MOAD52@hotmail.fr");
     this.registerForm.controls['postalcode'].setValue("1111111");
@@ -134,7 +137,7 @@ export class InscriptionComponent implements OnInit {
     this.registerForm.controls['quartier'].setValue("moard");
     this.registerForm.controls['cin'].setValue("VIZZZZ");
     this.registerForm.controls['role'].setValue("Baker");
-      this.registerForm.addControl('image', new FormControl(''), ); // Add new form control
+    this.registerForm.addControl('image', new FormControl(''), ); // Add new form control
     
 
 

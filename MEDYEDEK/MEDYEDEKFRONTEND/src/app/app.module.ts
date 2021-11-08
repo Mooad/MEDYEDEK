@@ -1,11 +1,8 @@
 import { ErrordialogComponent } from './errordialog/errordialog.component';
 import { ErrorDialogService } from './services/errordialog.service';
-
-
 import { BrowserModule } from '@angular/platform-browser';
 import { APP_INITIALIZER , NgModule } from '@angular/core';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -22,14 +19,13 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SomethingwrongComponent } from './somethingwrong/somethingwrong.component';
-import { InscriptionComponent } from './inscription/inscription.component';
+import { InscriptionComponent } from './registration/registration.component';
 import { AuthInterceptor } from './interceptor/AuthInterceptor';
 import { LoginnavComponent } from './loginnav/loginnav.component';
 import { InscriptionstepsComponent } from './inscriptionsteps/inscriptionsteps.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { SpinnerOverlayComponent } from './spinner-overlay/spinner-overlay.component';
 import { NewpostComponent } from './newpost/newpost.component';
-import { MyprofileComponent } from './myprofile/myprofile.component';
 import { ConfirmaccountComponent } from './confirmaccount/confirmaccount.component';
 import { PasswordResetComponent } from './password-reset/password-reset.component';
 import { ConfirmationResetComponent } from './confirmation-reset/confirmation-reset.component';
@@ -40,7 +36,8 @@ import { FooterComponent } from './footer/footer.component';
 import { ConfirmResetPassDialogComponent } from './confirm-reset-pass-dialog/confirm-reset-pass-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DialogService } from './services/DialogService';
-
+import { RouterModule } from '@angular/router';
+import { MyprofileComponent } from './myprofile/myprofile.component';
 
 
 export function initializerFn(jsonAppConfigService: JsonAppConfigService) {
@@ -66,7 +63,6 @@ export function initializerFn(jsonAppConfigService: JsonAppConfigService) {
     SpinnerComponent,
     SpinnerOverlayComponent,
     NewpostComponent,
-    MyprofileComponent,
     ConfirmaccountComponent,
     PasswordResetComponent,
     ConfirmationResetComponent,
@@ -74,7 +70,7 @@ export function initializerFn(jsonAppConfigService: JsonAppConfigService) {
     GetIntouchComponent,
     UsefulLinksComponent,
     FooterComponent,
-    ConfirmResetPassDialogComponent  ],
+    ConfirmResetPassDialogComponent ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -83,7 +79,8 @@ export function initializerFn(jsonAppConfigService: JsonAppConfigService) {
     HttpClientModule,
     BrowserAnimationsModule,
     ScrollingModule,
-    MatDialogModule
+    MatDialogModule,
+    RouterModule
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA],
