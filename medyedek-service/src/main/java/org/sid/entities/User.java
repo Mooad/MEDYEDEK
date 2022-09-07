@@ -15,7 +15,7 @@ import java.util.Base64;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "TYPE_UTILISATEUR", discriminatorType = DiscriminatorType.STRING, length = 10)
-public abstract class Utilisateur implements Serializable {
+public abstract class User implements Serializable {
     /**
      *
      */
@@ -25,6 +25,7 @@ public abstract class Utilisateur implements Serializable {
     protected int user_id;
     protected String firstname;
     protected String lastname;
+    protected String pseudo;
     protected String email;
     protected String cin;
     protected String phone_number;
@@ -39,22 +40,23 @@ public abstract class Utilisateur implements Serializable {
     @ManyToOne(targetEntity = Domaine.class)
     @JoinColumn(name = "domaine_id", foreignKey = @ForeignKey(name = "FK_utilisateur_domaine"))
     protected Domaine domaine;
-    @OneToOne(targetEntity = Adresse.class)
+    @OneToOne(targetEntity = Address.class)
     @JoinColumn(name = "adresse_id", foreignKey = @ForeignKey(name = "FK_adresse_utilisateur"))
-    protected Adresse adresse;
+    protected Address address;
     protected String password;
     protected String userToken;
     protected String temp_pass;
 
 
-    public Utilisateur(String firstname, String lastname, String email, String cin, String phone_number, Domaine domaine, Adresse adresse, String password, String image,Role role,String token) {
+    public User(String firstname, String lastname,String pseudo, String email, String cin, String phone_number, Domaine domaine, Address address, String password, String image,Role role,String token) {
         this.firstname = firstname;
         this.lastname = lastname;
+        this.pseudo=pseudo;
         this.email = email;
         this.cin = cin;
         this.phone_number = phone_number;
         this.domaine = domaine;
-        this.adresse = adresse;
+        this.address = address;
         this.password = password;
         this.image = image==null ? null : Base64.getEncoder().encode(image.getBytes());
         this.userToken = token;

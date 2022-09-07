@@ -3,6 +3,7 @@ import { postService } from '../services/postServices';
 import { AppConfig } from '../config/appConfig';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { Content, PostDto } from '../entities/Post';
+import { post } from 'jquery';
 
 @Component({
   selector: 'app-post',
@@ -23,12 +24,13 @@ export class PostComponent implements OnInit {
   this.getImageFromService();
 
   if( this.post.postContent.length>0)
-  {  this.selectedImage = 'data:image/png;base64,'  + this.post.postContent[0].content;
+  { 
+     this.selectedImage = 'data:image/png;base64,'  + this.post.postContent[0].content;
   
   }
 }
   getImageFromService() {
-      this.post.beneficiaire.image =   'data:image/png;base64,' + this.post.beneficiaire.image ;
+   return   this.post.user.image ;
       
 }
 
@@ -45,7 +47,7 @@ export class PostComponent implements OnInit {
 }
 
    setImg(){
-	return  this.selectedImage = 'data:image/png;base64,'  + this.post.postContent[this.i].content;
+	return  this.selectedImage =  this.post.postContent[this.i].content;
 	
 }
 }

@@ -9,9 +9,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
 @EnableJpaRepositories(basePackageClasses = UtilisateurRepository.class)
-@EntityScan({"org.sid.entities"})
-@ComponentScan({"org.sid.entities","org.sid.repositories","org.sid.user","org.sid.login","org.sid.controller","org.sid.jwt"})
-public class MedyedekAuthApplication {
+ public class MedyedekAuthApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(MedyedekAuthApplication.class, args);

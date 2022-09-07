@@ -19,7 +19,6 @@ public class PostService {
     PostsRepository postsRepo;
     @Autowired
     ContentRepository contentRepository;
-
     @Autowired
     PostMapper postMapper;
 
@@ -35,7 +34,7 @@ public class PostService {
         }
         List<PostDto> postDtos = new ArrayList<>();
         for (Post p : postsList) {
-            PostDto postDto = postMapper.PosttoDto(p);
+            PostDto postDto = postMapper.posttoDto(p);
 
             postDto.postContent =  contentRepository.getContentsOfPost(p.getId_post());
             postDtos.add(postDto);

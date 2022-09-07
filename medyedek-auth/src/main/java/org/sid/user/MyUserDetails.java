@@ -1,6 +1,6 @@
 package org.sid.user;
 
-import org.sid.entities.Utilisateur;
+import org.sid.entities.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,13 +17,13 @@ public class MyUserDetails implements UserDetails {
     private boolean active;
     private List<GrantedAuthority> authorities;
 
-    public MyUserDetails(Utilisateur utilisateur) {
+    public MyUserDetails(User user) {
 
 
-        this.username = utilisateur.getEmail();
-        this.password = utilisateur.getPassword();
+        this.username = user.getEmail();
+        this.password = user.getPassword();
         this.active = true;
-        this.authorities = Arrays.stream(utilisateur.getRole().getRolename()
+        this.authorities = Arrays.stream(user.getRole().getRolename()
                 .split(",")).map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList());
     }

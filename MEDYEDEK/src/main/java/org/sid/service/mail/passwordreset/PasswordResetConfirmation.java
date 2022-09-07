@@ -3,7 +3,7 @@ package org.sid.service.mail.passwordreset;
 import com.google.common.io.Resources;
 import com.sun.jersey.api.NotFoundException;
 import org.apache.commons.lang.RandomStringUtils;
-import org.sid.dto.user.UserResetDto;
+import org.sid.dto.user.SimpleUserDto;
 import org.sid.handler.UserPasswordResetService;
 import org.sid.mailconfirmation.ResetConfirmation;
 import org.sid.repositories.UtilisateurRepository;
@@ -31,8 +31,8 @@ public class PasswordResetConfirmation {
     UserPasswordResetService userPasswordResetService;
 
     @PostMapping("/change-pass")
-    public UserResetDto sendResetPasswordEmailConfirmation(@RequestBody UserResetDto userResetDto) throws IOException {
-        if(userResetDto.getUserEmail()!=null) {
+    public SimpleUserDto sendResetPasswordEmailConfirmation(@RequestBody SimpleUserDto simpleUserDto) throws IOException {
+        if(simpleUserDto.getUserEmail()!=null) {
             URL url = null;
             ClassLoader classLoader = getClass().getClassLoader();
             URL resource = classLoader.getResource("Reset-Password-Confirmation.txt");
@@ -43,18 +43,18 @@ public class PasswordResetConfirmation {
 
             String MailBody = Resources.toString(resource, StandardCharsets.UTF_8);
 
-            resetConfirmation.sendMail(userResetDto.getUserEmail(),
+            resetConfirmation.sendMail(simpleUserDto.getUserEmail(),
                     MailBody, "MEDYEDEK ACCOUNT PASSWORD RESET", temp_pass, "");
 
 
-            userPasswordResetService.updateUserPasswordAfterReset(userResetDto.getUserEmail(), temp_pass);
+            userPasswordResetService.updateUserPasswordAfterReset(simpleUserDto.getUserEmail(), temp_pass);
         }
         else
         {
             throw  new  NotFoundException();
         }
 
-        return userResetDto;
+        return simpleUserDto;
     }
 
     public static String generateRandomPassword(int len) {

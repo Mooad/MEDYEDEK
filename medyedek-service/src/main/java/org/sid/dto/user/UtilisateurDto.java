@@ -1,4 +1,4 @@
-package org.sid.dto;
+package org.sid.dto.user;
 
 
 import lombok.AllArgsConstructor;
@@ -19,6 +19,7 @@ public class UtilisateurDto implements Serializable{
 	private int user_id;
 	private String 	firstname;
 	private String 	lastname;
+	private int pseudo;
 	private String age;
 	private String 	email;
 	private String 	cin;

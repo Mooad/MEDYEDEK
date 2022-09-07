@@ -7,10 +7,15 @@ import { ProfileInformationsComponent } from './profile-informations/profile-inf
 import { ProfileGeneralSettingsComponent } from './profile-general-settings/profile-general-settings.component';
 import { ProfileSecuritySettingsComponent } from './profile-security-settings/profile-security-settings.component';
 import { RouterModule, RouterOutlet } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
+import { ScrollingModule } from '@angular/cdk/scrolling';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
-  declarations: [MyprofileComponent,
+  declarations: [
     ProfileInformationsComponent,
     ProfileGeneralSettingsComponent,
     ProfileSecuritySettingsComponent
@@ -18,7 +23,13 @@ import { RouterModule, RouterOutlet } from '@angular/router';
   imports: [
     CommonModule,
     MyprofileRoutingModule,
-    RouterModule
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    ScrollingModule,
+    MatDialogModule,
+    
   ],
   exports: [RouterModule]  
 })

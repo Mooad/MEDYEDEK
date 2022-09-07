@@ -26,8 +26,8 @@ public class Post implements Serializable {
 	public Typepost typepost;
 	public String textContent;
 	@OneToOne
-	@JoinColumn(name="beneficiaire_id",foreignKey = @ForeignKey(name = "FK_beneficiaire_id"))
-	public Beneficiaire Beneficiaire;
+	@JoinColumn(name="user",foreignKey = @ForeignKey(name = "FK_user_id"))
+	public User user;
 
 
 }

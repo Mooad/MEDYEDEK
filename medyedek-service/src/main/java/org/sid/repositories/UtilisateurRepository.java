@@ -1,6 +1,6 @@
 package org.sid.repositories;
 
-import org.sid.entities.Utilisateur;
+import org.sid.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -12,20 +12,19 @@ import java.util.List;
 
 @CrossOrigin
 @Repository
-public interface UtilisateurRepository extends JpaRepository<Utilisateur, Integer> {
+public interface UtilisateurRepository extends JpaRepository<User, Integer> {
 
-    @Query(value="select * from utilisateur  where email = :email",nativeQuery = true)
-    List<Utilisateur> getUserLogin(@Param("email") String email);
+    @Query(value="select * from User  where email = :email",nativeQuery = true)
+    List<User> getUserLogin(@Param("email") String email);
 
     @Modifying
-    @Query("update Utilisateur u set u.isValidUser = '01' where u.userToken =:token")
+    @Query("update User u set u.isValidUser = '01' where u.userToken =:token")
     void validateUser(@Param("token") String token);
 
     @Modifying
-    @Query("update Utilisateur u set u.temp_pass = :temp_password where u.email =:email")
+    @Query("update User u set u.temp_pass = :temp_password where u.email =:email")
     void updateTemporaryPassword(@Param("email") String email,@Param("temp_password")String temp_password);
 
-    @Query(value="select * from utilisateur  where  user_token = :token",nativeQuery = true)
-    List<Utilisateur> getUserbyToken(@Param("token") String token);
-
+    @Query(value="select * from User  where  user_token = :token",nativeQuery = true)
+    List<User> getUserbyToken(@Param("token") String token);
 }

@@ -1,7 +1,6 @@
 package org.sid;
 
 
-
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -11,31 +10,43 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import springfox.documentation.service.ApiInfo;
+import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spring.web.plugins.Docket;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
+import java.util.Collection;
+import java.util.Collections;
 
 
-
-@EntityScan({"org.sid.entities"})
-@EnableJpaRepositories({"org.sid.repositories"})
-@ComponentScan({"org.sid.entities","org.sid.config","org.sid.service.*","org.sid.mailconfirmation","org.sid.setting","org.sid.repositories","org.sid.serviceproxy","org.sid.mappers","org.sid.conf","org.sid.handler","org.sid.service.filter"})
 @SpringBootApplication
 @EnableAutoConfiguration(exclude = {org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration.class})
-public class MedeyedekApp  implements CommandLineRunner {
-	
+@EnableSwagger2
+public class MedeyedekApp implements CommandLineRunner {
 
-	
-	public static void main(String[] args) {
-		SpringApplication.run(MedeyedekApp.class, args);
-	}
-	public void run(String... args) throws Exception {	
-			  	   
-		 		
-		System.out.println("MEDYEDEK IS STARTED");
-		
-	
-	}
-	
-	@Bean
-	public ModelMapper modelMapper() {
-	    return new ModelMapper();
-	}
+
+    public static void main(String[] args) {
+        SpringApplication.run(MedeyedekApp.class, args);
+    }
+
+    public void run(String... args) throws Exception {
+
+
+        System.out.println("MEDYEDEK IS STARTED");
+
+
+    }
+
+    @Bean
+    public Docket medyedekSwaggerConf() {
+        return new Docket(DocumentationType.SWAGGER_2).select().build().apiInfo(new ApiInfo("MEDYEDEK API INFO", "All endpoints documentation and errors that are returned", "1.0", "", new springfox.documentation.service.Contact("MOAD FAJRI", "http://javabrains.io", "fajrimoad@gmail.com"), "@MEDYEDEK", "http://localhost:4200", Collections.emptyList()));
+
+    }
+
+    @Bean
+    public ModelMapper modelMapper() {
+        return new ModelMapper();
+    }
+
+
 }

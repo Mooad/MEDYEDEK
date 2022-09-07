@@ -3,7 +3,7 @@ package org.sid.serviceproxy;
 import com.google.common.io.Resources;
 import com.google.gson.Gson;
 import org.apache.commons.lang.RandomStringUtils;
-import org.sid.dto.UtilisateurDto;
+import org.sid.dto.user.UtilisateurDto;
 import org.sid.dto.mappers.AdresseMapper;
 import org.sid.entities.*;
 import org.sid.exception.exceptionBeans.AccountAlreadyExistsException;
@@ -24,7 +24,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 @Component
-public class InscriptionService {
+public class RegistrationService {
 
     @Autowired
     private UtilisateurRepository utilisateurRepo;
@@ -43,14 +43,14 @@ public class InscriptionService {
         AdresseMapper adresseMapper = new AdresseMapper();
 
         if (utilisateurDTO.getEmail() != null) {
-            List<Utilisateur> users = utilisateurRepo.getUserLogin(utilisateurDTO.getEmail());
+            List<User> users = utilisateurRepo.getUserLogin(utilisateurDTO.getEmail());
             if (users.size() > 0) {
                 throw new AccountAlreadyExistsException(utilisateurDTO.getEmail());
             }
         }
         //Getting ROLE + ADRESSE + DOMAINES of the user
-        Adresse adresse = adresseMapper.mapAdresseFromUser(utilisateurDTO);
-        adresseRepository.save(adresse);
+        Address address = adresseMapper.mapAdresseFromUser(utilisateurDTO);
+        adresseRepository.save(address);
         Role role = roleRepository.getOne(utilisateurDTO.getRole());
 
         Domaine chosen_domain = getUserDomaine(domaineRepo.findAll(), utilisateurDTO);
@@ -63,17 +63,17 @@ public class InscriptionService {
 
         //User Token
         String token = generateConfirmationToken();
-        Utilisateur registredUser = null;
+        User registredUser = null;
         utilisateurDTO.setConfirmationmdp(hash(utilisateurDTO.getConfirmationmdp()));
         if (utilisateurDTO.getRole() == RoleConsts.DONNATEUR) {
-            registredUser = utilisateurRepo.save(new Donnateur(utilisateurDTO.getFirstname(), utilisateurDTO.getLastname(),
+            registredUser = utilisateurRepo.save(new Donnateur(utilisateurDTO.getFirstname(), utilisateurDTO.getLastname(), registredUser.getPseudo(),
                     utilisateurDTO.getEmail(), utilisateurDTO.getCin(), utilisateurDTO.getPhone_number(),
-                    chosen_domain, adresse, utilisateurDTO.getConfirmationmdp(), utilisateurDTO.getImage(), role, token));
+                    chosen_domain, address, utilisateurDTO.getConfirmationmdp(), utilisateurDTO.getImage(), role, token));
         }
         if (utilisateurDTO.getRole() == RoleConsts.BENEFICIAIRE) {
-            registredUser = utilisateurRepo.save(new Beneficiaire(utilisateurDTO.getFirstname(), utilisateurDTO.getLastname(),
+            registredUser = utilisateurRepo.save(new Beneficiaire(utilisateurDTO.getFirstname(), utilisateurDTO.getLastname(), registredUser.getPseudo(),
                     utilisateurDTO.getEmail(), utilisateurDTO.getCin(), utilisateurDTO.getPhone_number(),
-                    chosen_domain, adresse, utilisateurDTO.getConfirmationmdp(), utilisateurDTO.getImage(), role, token));
+                    chosen_domain, address, utilisateurDTO.getConfirmationmdp(), utilisateurDTO.getImage(), role, token));
         }
 
 

@@ -4,8 +4,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AppConfig } from '../config/appConfig';
-import { AjaxResponse } from '../entities/AjaxResponse';
-import { UserResetDto, PasswordDto } from '../entities/UserResetDto';
+import { SimpleUserDto, PasswordDto } from '../entities/UserResetDto';
 
 @Injectable({
     providedIn: 'root'
@@ -16,8 +15,8 @@ export class ChangePassword {
     constructor(private http: HttpClient, private appConfig: AppConfig) { }
 
 
-    public changeUserPassword(email:String): Observable<UserResetDto[]> {
-               return this.http.post<UserResetDto[]>(this.appConfig.changePasswordUrl,{"userEmail":email});
+    public changeUserPassword(email:String): Observable<SimpleUserDto[]> {
+               return this.http.post<SimpleUserDto[]>(this.appConfig.changePasswordUrl,{"userEmail":email});
     }
 
     public confirmNewPassword(passwordDto : PasswordDto): Observable<PasswordDto[]> {

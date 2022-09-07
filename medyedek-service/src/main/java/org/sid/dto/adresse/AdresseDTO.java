@@ -1,4 +1,4 @@
-package org.sid.dto;
+package org.sid.dto.adresse;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,10 +10,10 @@ import lombok.Setter;
 @Getter
 @Setter
 public class AdresseDTO {
-	
-	private int adresse_id;
-	private String Pays;
-	private String Ville;
-	private String Quartier;
-	private String rue;
+	private int adress_id;
+	private String country;
+	private String city;
+	private String district;
+	private String street;
+	private String postalCode;
 }

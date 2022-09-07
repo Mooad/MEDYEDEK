@@ -1,42 +1,90 @@
+<div class="col-md-3 border-right">
 
-               <div class="col-md-3 border-right">
+    <div *ngIf="profile"  class="col-lg-4 order-lg-1 text-center profile-image">
+        <img [src]="this.profile.image"  class="rounded-circle mt-5">
+        <h6 class="mt-2">Upload a different photo</h6>
+        <label class="custom-file">
+            <input  type="file" id="file" class="custom-file-input" (change)="onFileChanged($event)">
+        </label>
+    </div>
+   
 
-
-       		   </div>
-        <div class="col-md-3 border-right">
-
-            <div class="col-lg-4 order-lg-1 text-center">
-                <img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">                <h6 class="mt-2">Upload a different photo</h6>
-                <label class="custom-file">
-                    <input type="file" id="file" class="custom-file-input">
-                    <span class="custom-file-control">Choose file</span>
-                </label>
-            </div>
-
-
-            <!-- <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+    <!-- <div class="d-flex flex-column align-items-center text-center p-3 py-5">
                 <img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
                 <span class="font-weight-bold">Edogaru</span><span class="text-black-50">edogaru@mail.com.my</span><span> </span></div> -->
-        </div>
+</div>
+
+<form [formGroup]="profileFrom" (ngSubmit)="onSubmit()">
+    <div>
         <div class="col-md-5 border-right">
             <div class="p-3 py-5">
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <h4 class="text-right">Profile Settings</h4>
                 </div>
-                <div class="row mt-2">
-                    <div class="col-md-12"><label class="labels">Name</label><input type="text" class="form-control" placeholder="first name" value=""></div>
+
+                <div class="col-md-12">
+                    <div class="col-md-12"><label class="labels">First Name</label><input type="text"
+                           formControlName="firstname" [(ngModel)]="this.profile.firstname" [value]="this.profile.firstname" class="form-control"
+                            pattern="[a-zA-Z ]*"  maxlength="10" placeholder="first name" maxlength="10" minlength="2"></div>
+                </div>
+                <div class="col-md-12">
+                    <div class="col-md-12"><label class="labels">Last Name</label><input type="text"
+                            formControlName="lastname"  [(ngModel)]="this.profile.lastname" [value]="this.profile.lastname" class="form-control"
+                            pattern="[a-zA-Z ]*" maxlength="10"  placeholder="first name" maxlength="10" minlength="2"></div>
                 </div>
                 <div class="row mt-3">
-                    <div class="col-md-12"><label class="labels">Pseudo</label><input type="text" class="form-control" placeholder="enter phone number" value=""></div>
-                    <div class="col-md-12"><label class="labels">City</label><input type="text" class="form-control" placeholder="enter address line 1" value=""></div>
-                  
-                  
-                    <div class="col-md-12"><label class="labels">Postcode</label><input type="text" class="form-control" placeholder="Postcode" value=""></div>
+                    <div class="col-md-12"><label class="labels">Pseudo</label><input type="text"
+                            formControlName="pseudo" [(ngModel)]="this.profile.pseudo" [value]="this.profile.pseudo" class="form-control"
+                            pattern="[a-zA-Z ]*" maxlength="10"  placeholder="enter your pseudo" value="" maxlength="10" minlength="2">
+                    </div>
+                    <div class="col-md-12"><label class="labels">Postal Code</label><input type="text"
+                            formControlName="postalCode" [(ngModel)]="this.profile.address.postalCode" [value]="this.profile.address.postalCode" class="form-control"
+                            pattern="[0-9]*" maxlength="10"    placeholder="Postcode" value="" maxlength="10" minlength="2"></div>
+
+                    <div class="col-md-12"><label class="labels">Phone Number</label><input type="text"
+                            formControlName="phone_number" [(ngModel)]="this.profile.phone_number" [value]="this.profile.phone_number" class="form-control"
+                            placeholder="PhoneNumber" pattern="[0-9]*" maxlength="10"></div>
+
+                    <div class="col-md-12"><label class="labels">country</label><input type="text"
+                            formControlName="country" [value]="this.profile.address.country" class="form-control"
+                            pattern="[a-zA-Z ]*" maxlength="10"  placeholder="Country" [(ngModel)]="this.profile.address.country"></div>
+                    <div class="typeUtilisateur">
+                        <b>
+                            <p> you use the application as a :</p>
+                        </b>
+                        <label>
+                            <input type="radio" value="DONN" [(ngModel)]="this.profile.role.rolename" name="role" formControlName="role">
+                            <span>GIVER</span>
+                        </label>
+
+                        <label>
+                            <input type="radio" value="BENEF"  [(ngModel)]="this.profile.role.rolename" name="role" formControlName="role" >
+                            <span>NEEDER</span>
+                        </label>
+                    </div>
+
+                   <div class="col-md-12"><label class="labels">City</label><input type="text" formControlName="city"
+                    pattern="[a-zA-Z ]*"    [value]="this.profile.address.city" class="form-control" placeholder="City" [(ngModel)]="this.profile.address.city"></div>
+
+                    <div class="col-md-12"><label class="labels">District</label><input type="text"
+                            formControlName="district" [(ngModel)] = "this.profile.address.district" [value]="this.profile.address.district" class="form-control"
+                            pattern="[a-zA-Z ]*"    placeholder="District"></div>
+
+                    <div class="col-md-12"><label class="labels">Street</label><input type="text"
+                            formControlName="street" [(ngModel)] = "this.profile.address.street" [value]="this.profile.address.street" class="form-control"
+                            placeholder="Street"></div>
+                    
+
+                    <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button"
+                        (click)="onSubmit()">Edit
+                        Profile</button></div>
                 </div>
-                <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Edit Profile</button></div>
             </div>
         </div>
-       <!--  <div class="col-md-4">
+
+    </div>
+</form>
+<!--  <div class="col-md-4">
             <div class="p-3 py-5">
                 <div class="d-flex justify-content-between align-items-center experience"><span>Edit Experience</span><span class="border px-3 p-1 add-experience"><i class="fa fa-plus"></i>&nbsp;Experience</span></div><br>
                 <div class="col-md-12"><label class="labels">Experience in Designing</label><input type="text" class="form-control" placeholder="experience" value=""></div> <br>

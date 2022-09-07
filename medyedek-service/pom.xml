@@ -43,8 +43,9 @@
 			<jsonLibrary>jackson2</jsonLibrary>
 			<classes>
 				<class>org.sid.dto.post.PostDto</class>
-				<class>org.sid.dto.user.UserResetDto</class>
+				<class>org.sid.dto.user.SimpleUserDto</class>
 				<class>org.sid.dto.password.PasswordDto</class>
+				<class>org.sid.dto.profile.ProfileDto</class>
 			</classes>
 			<outputFile>../MEDYEDEK/MEDYEDEKFRONTEND/src/app/entities/Post.ts</outputFile>
 			<outputFile>../MEDYEDEK/MEDYEDEKFRONTEND/src/app/entities/UserResetDto.ts</outputFile>

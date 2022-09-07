@@ -10,7 +10,7 @@
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.1.9.RELEASE</version>
     </parent>
-    <groupId>medyedek-global</groupId>
+    <groupId>io.githlab.fajrimoad.medyedek-global</groupId>
     <artifactId>medyedek-global</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
@@ -282,6 +282,19 @@
             <version>2.5.0.RELEASE</version>
         </dependency>
 
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>4.13.2</version>
+                <scope>test</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-core</artifactId>
+                <version>3.2.4</version>
+                <scope>test</scope>
+            </dependency>
     </dependencies>
 
     <packaging>pom</packaging>
@@ -290,6 +303,7 @@
         <module>/MEDYEDEK</module>
         <module>/medyedek-auth</module>
         <module>/medyedek-service</module>
+        <module>CodingGamesTest</module>
     </modules>
 
 

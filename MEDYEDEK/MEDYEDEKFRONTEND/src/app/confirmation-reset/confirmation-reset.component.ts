@@ -4,8 +4,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ChangePassword } from '../services/ChangePassword';
-import { PasswordDto } from '../entities/UserResetDto';
 import { DialogService } from '../services/DialogService';
+import { PasswordDto } from '../entities/UserResetDto';
 
 @Component({
   selector: 'app-confirmation-reset',

@@ -12,15 +12,15 @@
     display: block;
     padding: 12px;
     text-decoration: none;
+    border-radius: 5px;
   }
   
- .vertical-menu a:hover {
-    background-color: #ccc;
-  }
+
   
   .vertical-menu a.active {
     background-color: #04AA6D;
     color: white;
+    width: auto;
   }
 
   .profile-informations-to-modify
@@ -28,3 +28,11 @@
     position: relative;
     padding-left: 40%;
   }
+  @media screen and (max-height: 450px) {
+    .vertical-menu {right: 15px;}
+ }
+ @media screen and (max-height: 450px) {
+  .vertical-menu {
+    position: absolute;
+    top: 30%;}
+}

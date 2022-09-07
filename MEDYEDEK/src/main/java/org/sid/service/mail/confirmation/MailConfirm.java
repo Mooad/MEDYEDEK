@@ -1,6 +1,6 @@
 package org.sid.service.mail.confirmation;
 
-import org.sid.entities.Utilisateur;
+import org.sid.entities.User;
 import org.sid.repositories.UtilisateurRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,10 +28,10 @@ public class MailConfirm {
     @RequestMapping("/ValidateSignUp")
     public String validateSubscription(@RequestParam("token")String token) throws IOException {
 
-        List<Utilisateur> users = userRepo.getUserbyToken(token);
+        List<User> users = userRepo.getUserbyToken(token);
 
         if (token.length() > 30 && users.size() > 0) {
-            Utilisateur user = users.get(0);
+            User user = users.get(0);
             //calculating the difference bettween registration time and now
             LocalTime registerationTime = LocalTime.parse(token.substring(31));
 

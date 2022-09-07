@@ -1,17 +1,15 @@
 package org.sid.user;
 
-import org.sid.entities.Utilisateur;
+import org.sid.entities.User;
 import org.sid.repositories.UtilisateurRepository;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 
@@ -26,8 +24,8 @@ public class MyUserDetailService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         //searching valid users with the email provided
-        List<Utilisateur> users = utilisateurRepository.getUserLogin(email);
-        Predicate<Utilisateur> isNotValid = item -> item.isNotValid();
+        List<User> users = utilisateurRepository.getUserLogin(email);
+        Predicate<User> isNotValid = item -> item.isNotValid();
 
         users.removeIf(isNotValid);
 
@@ -40,5 +38,12 @@ public class MyUserDetailService implements UserDetailsService {
         }
 
         return myUserDetails;
+    }
+
+    public Optional<User> usergetting()
+
+    {
+      return   utilisateurRepository.findById(1);
+
     }
 }

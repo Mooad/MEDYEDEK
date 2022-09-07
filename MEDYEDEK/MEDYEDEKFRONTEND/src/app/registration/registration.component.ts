@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import { Component, OnInit, Input } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, AbstractControl, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { InscriptionService } from '../services/registration/registration-service.service';
 import { LoginproxyService } from '../services/loginproxy.service';
 
@@ -70,9 +70,7 @@ export class InscriptionComponent implements OnInit {
     }
   
   onSubmit() {
-    let reader = new FileReader();
-    let readerBlob = new FileReader();
-
+  
     console.log(this.registerForm);
     this.submitted = true;
     // stop here if form is invalid
@@ -81,9 +79,6 @@ export class InscriptionComponent implements OnInit {
       alert('Merci de renseigner tout les champs necessaires');
     }
     else {
-      // display form values on success
-
-      var PrenomUtilisateur = this.registerForm.controls['firstname'].value;
      
       //Adding the selected image to the JSON
     

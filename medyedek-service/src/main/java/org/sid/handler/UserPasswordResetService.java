@@ -1,7 +1,7 @@
 package org.sid.handler;
 
 import com.sun.jersey.api.NotFoundException;
-import org.sid.entities.Utilisateur;
+import org.sid.entities.User;
 import org.sid.repositories.UtilisateurRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,7 +23,7 @@ public class UserPasswordResetService {
     public void updateUserPasswordAfterReset(String email, String temp_password) {
         boolean password_updated = false;
         
-        List<Utilisateur> utilisateur = utilisateurRepository.getUserLogin(email);
+        List<User> utilisateur = utilisateurRepository.getUserLogin(email);
 
         if (utilisateur.size() > 0) {
             utilisateurRepository.updateTemporaryPassword(email, temp_password);

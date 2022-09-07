@@ -1,6 +1,6 @@
 package org.sid.dto.validators;
 
-import org.sid.dto.UtilisateurDto;
+import org.sid.dto.user.UtilisateurDto;
 import org.springframework.stereotype.Service;
 
 @Service

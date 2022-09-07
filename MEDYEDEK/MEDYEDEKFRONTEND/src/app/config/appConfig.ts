@@ -3,11 +3,11 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export abstract class AppConfig {
 
-    baseUrl: string;
-    title: string;
-     authUrl: string;
-     syncUrl :string;
-     changePasswordUrl :string;
-     confirmPassword :string;
+    baseUrl:                   string;
+    title:                     string;
+    authUrl:                   string;
+    syncUrl :                  string;
+    changePasswordUrl :        string;
+    confirmPassword :          string;
 
 }

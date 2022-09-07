@@ -29,6 +29,8 @@ export class AuthInterceptor implements HttpInterceptor {
     //handle your auth error or rethrow
     if (err.status === 401) {
         sessionStorage.clear();
+        localStorage.clear();
+
         this.router.navigate(['/login'])
         //navigate /delete cookies or whatever
         // if you've caught / handled the error, you don't want to rethrow it unless you also want downstream consumers to have to handle it as well.

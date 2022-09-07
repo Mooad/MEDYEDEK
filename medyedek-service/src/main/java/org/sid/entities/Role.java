@@ -21,5 +21,5 @@ public class Role {
 	private int role_id;
 	private String rolename;
 	@OneToMany
-	private List<Utilisateur> utilisateurs;
+	private List<User> utilisateurs;
 }

@@ -7,6 +7,7 @@ import { first } from 'rxjs/operators';
 import { ConfirmResetPassDialogComponent } from '../confirm-reset-pass-dialog/confirm-reset-pass-dialog.component';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { DialogService } from '../services/DialogService';
+import { AppConfig } from '../config/appConfig';
 
 @Component({
   selector: 'app-login',
@@ -24,7 +25,7 @@ export class LoginComponent implements OnInit {
   public LOGO = 'medyedek.jpeg';
   dialogRef: MatDialogRef<ConfirmResetPassDialogComponent>;
 
-  constructor(private loginproxy: LoginproxyService, private formBuilder: FormBuilder, private router: Router,public dialog: MatDialog , private dialogService: DialogService) {
+  constructor(private loginproxy: LoginproxyService, private formBuilder: FormBuilder, private router: Router, private dialogService: DialogService,private appConfig:AppConfig) {
 
   }
 
@@ -64,6 +65,10 @@ export class LoginComponent implements OnInit {
             this.loading = false;
         });
 
+
+    //Storing the connected user
+   localStorage.setItem("userEmail", this.loginForm.value['email']);
+   
     if(access instanceof HttpErrorResponse)
     {
       this.logged=false;

@@ -1,8 +1,10 @@
 package org.sid.dto.mappers;
 
 
-import org.sid.dto.UtilisateurDto;
-import org.sid.entities.Adresse;
+import org.sid.dto.profile.ProfileDto;
+import org.sid.dto.user.UtilisateurDto;
+import org.sid.entities.Address;
+import org.sid.entities.User;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -15,16 +17,26 @@ public class AdresseMapper {
 	public AdresseMapper()
 	{}
 	
-	public Adresse mapAdresseFromUser(UtilisateurDto utilisateurDto)
+	public Address mapAdresseFromUser(UtilisateurDto utilisateurDto)
 	{
-		Adresse  adresse = new Adresse();
-		adresse.setPays(utilisateurDto.getPays());
-		adresse.setVille(utilisateurDto.getVille());
-		adresse.setQuartier(utilisateurDto.getQuartier());
-		adresse.setRue(utilisateurDto.getRue());
-		return adresse;
+		Address  adress = new Address();
+		adress.setCountry(utilisateurDto.getPays());
+		adress.setCity(utilisateurDto.getVille());
+		adress.setDistrict(utilisateurDto.getQuartier());
+		adress.setStreet(utilisateurDto.getRue());
+		adress.setPostalCode(utilisateurDto.getPostalcode());
+		return adress;
 	}
-	
+
+	public void mapAdresseFromProfileDto(ProfileDto profileDto,User user )
+	{
+		user.getAddress().setCountry(profileDto.getAddress().getCountry());
+		user.getAddress().setCity(profileDto.getAddress().getCity());
+		user.getAddress().setDistrict(profileDto.getAddress().getDistrict());
+		user.getAddress().setStreet(profileDto.getAddress().getCity());
+		user.getAddress().setPostalCode(profileDto.getPostalCode());
+
+	}
 	@Override
 	public String toString() {
 	  StringBuilder sb = new StringBuilder();

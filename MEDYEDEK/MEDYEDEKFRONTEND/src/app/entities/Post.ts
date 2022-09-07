@@ -6,7 +6,7 @@ export interface PostDto {
     id_post?: number;
     typepost?: Typepost;
     textContent?: string;
-    beneficiaire?: Beneficiaire;
+    user?: Utilisateur;
     postContent?: Content[];
 }
 
@@ -32,7 +32,7 @@ export interface Post extends Serializable {
     typepost?: Typepost;
     textContent?: string;
     Beneficiaire?: Beneficiaire;
-    beneficiaire?: Beneficiaire;
+    user?: Utilisateur;
 }
 
 export interface Role {

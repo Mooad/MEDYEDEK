@@ -38,6 +38,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { DialogService } from './services/DialogService';
 import { RouterModule } from '@angular/router';
 import { MyprofileComponent } from './myprofile/myprofile.component';
+import { SharedProfile } from './services/SharedProfile';
+
 
 
 export function initializerFn(jsonAppConfigService: JsonAppConfigService) {
@@ -70,7 +72,8 @@ export function initializerFn(jsonAppConfigService: JsonAppConfigService) {
     GetIntouchComponent,
     UsefulLinksComponent,
     FooterComponent,
-    ConfirmResetPassDialogComponent ],
+    ConfirmResetPassDialogComponent ,
+    MyprofileComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -93,6 +96,7 @@ export function initializerFn(jsonAppConfigService: JsonAppConfigService) {
    AuthGuardService,
    ErrorDialogService,
    DialogService,
+   SharedProfile,
    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   {
     provide: APP_INITIALIZER,

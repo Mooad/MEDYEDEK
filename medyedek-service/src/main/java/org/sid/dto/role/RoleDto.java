@@ -1,16 +1,15 @@
-package org.sid.dto.user;
+package org.sid.dto.role;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.io.Serializable;
-
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-public class UserResetDto implements Serializable {
-    public String userEmail;
+public class RoleDto {
+    private int role_id;
+    private String rolename;
 }

@@ -8,7 +8,15 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel="spring")
 public interface PostMapper {
 
-    PostDto PosttoDto(Post post);
+    PostDto posttoDto(Post post);
 
     Post dtoToPost(PostDto postDto);
+
+    default String map(byte[] image) {
+        return image != null ? new String(image) : null;
+    }
+    default byte[] map(String image) {
+        return image != null ? image.getBytes() : null;
+    }
+
 }

@@ -26,7 +26,7 @@
 			<p class="divider-text">
 				<b> <span class="bg-light">INSCRIPTION USING BELOW INFORMATIONS</span></b>
 			</p>
-			<form class="form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+			 <form class="form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
 
 				<div class="container row">
 					<div class="col-md-6">
@@ -427,7 +427,7 @@
 						<span class="input-group-text"> <i class="fa fa-building"></i> </span>
 					</div>
 					<input class="form-control" placeholder="city" type="text" formControlName="city" required
-						pattern="[a-zA-Z ]*" [ngClass]="{ 'is-invalid': submitted && f.city.errors }" />
+					 [ngClass]="{ 'is-invalid': submitted && f.city.errors }" />
 						<div *ngIf="submitted && f.city.errors" class="invalid-feedback">
 							<div *ngIf="f.city.errors.required">city is mandatory</div>
 						</div>
@@ -438,7 +438,7 @@
 						<span class="input-group-text"> <i class="fa fa-child"></i> </span>
 					</div>
 					<input class="form-control" placeholder="Age" type="number" formControlName="age" required
-						pattern="[0-9]*" [ngClass]="{ 'is-invalid': submitted && f.age.errors }" />
+						 [ngClass]="{ 'is-invalid': submitted && f.age.errors }" />
 						<div *ngIf="submitted && f.age.errors" class="invalid-feedback">
 							<div *ngIf="f.age.errors.required">City is mandatory</div>
 						</div>
@@ -449,7 +449,7 @@
 						<span class="input-group-text"> <i class="fa fa-road"></i> </span>
 					</div>
 					<input class="form-control" placeholder="Rue" type="text" formControlName="rue" required
-						pattern="[a-zA-Z ]*" [ngClass]="{ 'is-invalid': submitted && f.rue.errors }" />
+						 [ngClass]="{ 'is-invalid': submitted && f.rue.errors }" />
 						<div *ngIf="submitted && f.rue.errors" class="invalid-feedback">
 							<div *ngIf="f.rue.errors.required">age is mandatory</div>
 						</div>
