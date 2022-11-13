@@ -6,17 +6,17 @@ import { ConnexionState } from './entities/ConnexionState';
 import { AppConfig } from './config/appConfig';
 
 
-@Injectable() 
+@Injectable()
 export class AuthGuardService implements CanActivate {
 
 connexionState:ConnexionState;
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot)
     : Observable<boolean> | Promise<boolean> | boolean {
-    
+
     if (sessionStorage.getItem('thCurUsr') && sessionStorage.getItem('thCurUsr').length>0) {
       let headers = new HttpHeaders();
-     this.createAuthorizationHeader(headers); 
+     this.createAuthorizationHeader(headers);
       this.http.get<ConnexionState>(this.appConfig.syncUrl,{headers: {'Authorization': "Bearer "+ sessionStorage.getItem('thCurUsr')}}).subscribe(
         (res) => {this.connexionState=res;
           if(res.status==='401')
@@ -34,7 +34,7 @@ connexionState:ConnexionState;
   }
    createAuthorizationHeader(headers:HttpHeaders) {
 
-    headers.append('Authorization', 'Bearer '+sessionStorage.getItem('thCurUsr')); 
+    headers.append('Authorization', 'Bearer '+sessionStorage.getItem('thCurUsr'));
     return headers
   }
 

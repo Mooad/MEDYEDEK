@@ -18,8 +18,7 @@ public class UserPasswordResetService {
     public UserPasswordResetService() {
     }
 
-    ;
-    @Transactional
+	@Transactional
     public void updateUserPasswordAfterReset(String email, String temp_password) {
         boolean password_updated = false;
         

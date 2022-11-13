@@ -25,9 +25,9 @@ public class MyUserDetailService implements UserDetailsService {
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         //searching valid users with the email provided
         List<User> users = utilisateurRepository.getUserLogin(email);
-        Predicate<User> isNotValid = item -> item.isNotValid();
+        Predicate<User> isNotValid = item -> item.isValid();
 
-        users.removeIf(isNotValid);
+       // users.removeIf(isNotValid);
 
         MyUserDetails myUserDetails = null;
         if (!users.isEmpty() && users != null) {

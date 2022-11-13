@@ -10,10 +10,7 @@ public class UserValidator {
 	}
 
 	public boolean validerDonneesUtilisateur(UtilisateurDto utilisateurDto) {
-		if (utilisateurDto.getCin() != null && utilisateurDto.getFirstname() != null
-				&& utilisateurDto.getLastname() != null)
-			return true;
-		else
-			return false;
+		return utilisateurDto.getCin() != null && utilisateurDto.getFirstname() != null
+				&& utilisateurDto.getLastname() != null;
 	}
 }

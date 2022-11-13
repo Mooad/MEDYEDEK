@@ -11,19 +11,17 @@
         </dependency>
     </dependencies>
     <parent>
-		<groupId>medyedek-global</groupId>
-		<artifactId>medyedek-global</artifactId>
+		<groupId>io.gitlab.fajrimoad</groupId>
+		<artifactId>Medyedek</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<groupId>org.sid</groupId>
 	<artifactId>medyedek-service</artifactId>
 	<name>MedyedekService</name>
 	<description>medyedek services </description>
-	
-	<properties>
-		<java.version>1.8</java.version>
-	</properties>
-<build>
+
+	<packaging>jar</packaging>
+
+	<build>
 	<plugins>
 	<plugin>
 		<groupId>cz.habarta.typescript-generator</groupId>

@@ -5,7 +5,7 @@ import org.sid.entities.Post;
 import org.mapstruct.Mapper;
 
 
-@Mapper(componentModel="spring")
+ @Mapper(componentModel="spring")
 public interface PostMapper {
 
     PostDto posttoDto(Post post);

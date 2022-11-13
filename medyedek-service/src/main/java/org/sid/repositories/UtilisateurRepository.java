@@ -14,7 +14,7 @@ import java.util.List;
 @Repository
 public interface UtilisateurRepository extends JpaRepository<User, Integer> {
 
-    @Query(value="select * from User  where email = :email",nativeQuery = true)
+    @Query(value="select * from user  where email = :email",nativeQuery = true)
     List<User> getUserLogin(@Param("email") String email);
 
     @Modifying
@@ -25,6 +25,6 @@ public interface UtilisateurRepository extends JpaRepository<User, Integer> {
     @Query("update User u set u.temp_pass = :temp_password where u.email =:email")
     void updateTemporaryPassword(@Param("email") String email,@Param("temp_password")String temp_password);
 
-    @Query(value="select * from User  where  user_token = :token",nativeQuery = true)
+    @Query(value="select * from user  where  user_token = :token",nativeQuery = true)
     List<User> getUserbyToken(@Param("token") String token);
 }

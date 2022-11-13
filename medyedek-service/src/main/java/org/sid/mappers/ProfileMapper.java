@@ -3,15 +3,14 @@ package org.sid.mappers;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
-import org.mapstruct.Named;
 import org.sid.dto.profile.ProfileDto;
 import org.sid.entities.User;
 
-@Mapper(componentModel="spring")
+ @Mapper(componentModel="spring")
 public interface ProfileMapper {
     @Mappings({
-            @Mapping(target = "image", source = "user.image"),
-            @Mapping(target = "address", source = "user.address")
+            @Mapping(target = "image", source = "image"),
+            @Mapping(target = "address", source = "address")
 
     })
     ProfileDto UtilisateurToProfileDto(User user);

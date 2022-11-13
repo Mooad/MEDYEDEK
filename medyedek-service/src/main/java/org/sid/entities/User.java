@@ -15,6 +15,7 @@ import java.util.Base64;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "TYPE_UTILISATEUR", discriminatorType = DiscriminatorType.STRING, length = 10)
+@Table(name = "user")
 public abstract class User implements Serializable {
     /**
      *
@@ -44,6 +45,7 @@ public abstract class User implements Serializable {
     @JoinColumn(name = "adresse_id", foreignKey = @ForeignKey(name = "FK_adresse_utilisateur"))
     protected Address address;
     protected String password;
+
     protected String userToken;
     protected String temp_pass;
 
@@ -64,13 +66,10 @@ public abstract class User implements Serializable {
     }
 
 
-    public boolean isNotValid() {
-        if (isValidUser ==null || !this.isValidUser.equals("01")) {
-            return true;
-        }
-        return false;
+    public boolean isValid() {
+		return isValidUser == null || !this.isValidUser.equals("01");
 
-    }
+	}
 
 
 }

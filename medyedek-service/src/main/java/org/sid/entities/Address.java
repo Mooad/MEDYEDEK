@@ -14,6 +14,7 @@ import javax.persistence.*;
 @Setter
 @DynamicUpdate
 @Entity
+@Table(name="address")
 public class Address {
 
 	@Id   @GeneratedValue(strategy=GenerationType.AUTO)

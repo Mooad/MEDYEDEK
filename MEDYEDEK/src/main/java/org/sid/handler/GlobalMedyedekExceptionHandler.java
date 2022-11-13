@@ -18,9 +18,13 @@ import java.util.Collections;
 import java.util.List;
 
 @ControllerAdvice
+
 public class GlobalMedyedekExceptionHandler {
     /**
-     * Provides handling for exceptions throughout this service.
+     * Initial handleException exception handler
+     * @param ex : the exception handeled
+     * @param request : the request param
+     * @return ApiError Object with status and code
      */
     @ExceptionHandler({UserNotFoundException.class})
     public final ResponseEntity<ApiError> handleException(Exception ex, WebRequest request) {
@@ -39,7 +43,7 @@ public class GlobalMedyedekExceptionHandler {
         }
         else if(ex instanceof AccountAlreadyExistsException) {
             HttpStatus status = HttpStatus.FORBIDDEN;
-            return handleAccountAlreadyExistsException(ex, null, headers, status, request);
+            return handleAccountAlreadyExistsException(ex, headers, status, request);
         }
         else {
             HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
@@ -49,6 +53,11 @@ public class GlobalMedyedekExceptionHandler {
 
     /**
      * Customize the response for UserNotFoundException.
+     * @param ex UserNotFoundException exception
+     * @param headers Http Headers
+     * @param status Http Status
+     * @param request  web request
+     * @return ApiError Object with status and code
      */
     protected ResponseEntity<ApiError> handleUserNotFoundException(UserNotFoundException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
         List<String> errors = Collections.singletonList(ex.getMessage());
@@ -57,17 +66,26 @@ public class GlobalMedyedekExceptionHandler {
 
     /**
      * Customize the response for UserNotFoundException.
+     * @param ex NotAuthorizedException exception
+     * @param headers Http Headers
+     * @param status Http Status
+     * @param request  web request
+     * @return ApiError Object with status and code
      */
     protected ResponseEntity<ApiError> handleNotAuthorizedException(NotAuthorizedException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
         List<String> errors = Collections.singletonList(ex.getMessage());
         return handleExceptionInternal(ex, new ApiError(HttpStatus.FORBIDDEN, "not authorized exception", ErrorCodes.ACCOUNT_NOT_AUTHORIZED, errors), headers, status, request);
     }
 
-
     /**
      * A single place to customize the response body of all Exception types.
+     * @param ex Exception exception
+     * @param headers Http Headers
+     * @param status Http Status
+     * @param request  web request
+     * @return ApiError Object with status and code
      */
-    protected ResponseEntity<ApiError> handleAccountAlreadyExistsException(Exception ex, ApiError body, HttpHeaders headers, HttpStatus status, WebRequest request) {
+    protected ResponseEntity<ApiError> handleAccountAlreadyExistsException(Exception ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
         List<String> errors = Collections.singletonList(ex.getMessage());
         return handleExceptionInternal(ex, new ApiError(HttpStatus.FORBIDDEN, "Account already exists",ErrorCodes.ACCOUNT_ALREADY_EXISTS, errors), headers, status, request);
 

@@ -14,7 +14,6 @@ import javax.persistence.Table;
 @Setter
 @DynamicUpdate
 @Entity
-@Table(name="donnateur")
 @DiscriminatorValue("DONN")
 public class Donnateur extends User {
 

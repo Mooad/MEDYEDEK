@@ -90,7 +90,7 @@ public class RegistrationService {
 
     public String generateConfirmationToken() {
         StringBuilder token = new StringBuilder(RandomStringUtils.randomAlphanumeric(20));
-        return token.append(LocalDateTime.now().toString()).toString();
+        return token.append(LocalDateTime.now()).toString();
     }
 
     public Domaine getUserDomaine(List<Domaine> domaines, UtilisateurDto utilisateurDto) {

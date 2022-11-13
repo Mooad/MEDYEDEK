@@ -58,5 +58,5 @@ public class PasswordChanger {
     }
 
         static BiFunction<String,String,Boolean> compareTempPassWithStoredOne =
-                (existingPassword , receivedPassword) -> (existingPassword.equals(receivedPassword)) ? true:false;
+                (existingPassword , receivedPassword) -> existingPassword.equals(receivedPassword);
 }

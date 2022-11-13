@@ -15,15 +15,15 @@ export class InscriptionService {
     return this.http.post(this.appConfig.baseUrl + 'addUser', user)
       .subscribe(() =>
       (data) =>{
-            this.dialogService.confirmationDialog("Your Account was created please confirm your subscription by checking your inbox");   
+            this.dialogService.confirmationDialog("Your Account was created please confirm your subscription by checking your inbox");
       },
         (error: HttpErrorResponse) => {
           if(error.error.message ==="MEDERR010")
-          {        this.dialogService.confirmationDialog("The Account that was entered already exist");        
+          {        this.dialogService.confirmationDialog("The Account that was entered already exist");
           }
-          console.error(error);;
+          console.error(error);
         })
-        
+
 
   }
 }

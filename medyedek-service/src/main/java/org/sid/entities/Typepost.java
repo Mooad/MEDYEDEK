@@ -15,6 +15,7 @@ import java.util.List;
 @Setter
 @Entity
 @Transient
+@Table(name="typepost")
 public class Typepost {
 
 	

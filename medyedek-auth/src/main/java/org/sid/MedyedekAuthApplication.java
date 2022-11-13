@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
 @EnableJpaRepositories(basePackageClasses = UtilisateurRepository.class)
- public class MedyedekAuthApplication {
+public class MedyedekAuthApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(MedyedekAuthApplication.class, args);

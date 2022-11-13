@@ -17,7 +17,7 @@ export class SearchLeftComponent implements OnInit {
   constructor(private appConfig: AppConfig, private typePostService: TypePostService,private router :Router) { }
   ngOnInit(): void {
 
-    
+
   }
 
   loadScript() {
@@ -26,7 +26,7 @@ export class SearchLeftComponent implements OnInit {
     node.type = 'text/javascript'; // set the script type
     node.async = true; // makes script run asynchronously
     node.charset = 'utf-8'    // append to head of document
-    document.getElementsByTagName('head')[0].appendChild(node); 
+    document.getElementsByTagName('head')[0].appendChild(node);
   }
 
   private getTypePosts() {

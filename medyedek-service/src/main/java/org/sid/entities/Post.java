@@ -13,7 +13,7 @@ import java.io.Serializable;
 @Getter
 @Setter
 @Entity
-@Table(name="post") 
+@Table(name="post")
 public class Post implements Serializable {
 	/**
 	 * 

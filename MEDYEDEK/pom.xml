@@ -2,11 +2,11 @@
 <project>
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>medyedek-global</groupId>
-		<artifactId>medyedek-global</artifactId>
+		<groupId>io.gitlab.fajrimoad</groupId>
+		<artifactId>Medyedek</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<groupId>org.sid</groupId>
+	<groupId>io.gitlab.fajrimoad</groupId>
 	<artifactId>medyedek</artifactId>
 	<name>medyedek</name>
 	<description>Application MEDYEDEK</description>
@@ -14,13 +14,15 @@
 	<packaging>jar</packaging>
 
 
-	
+
 	<dependencies>
 		<dependency>
-			<groupId>org.sid</groupId>
+			<groupId>io.gitlab.fajrimoad</groupId>
 			<artifactId>medyedek-service</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
+
+
 
 	</dependencies>
 

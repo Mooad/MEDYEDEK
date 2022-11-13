@@ -5,7 +5,7 @@ import { LoginproxyService } from '../services/loginproxy.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { first } from 'rxjs/operators';
 import { ConfirmResetPassDialogComponent } from '../confirm-reset-pass-dialog/confirm-reset-pass-dialog.component';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef } from '@angular/material/dialog';
 import { DialogService } from '../services/DialogService';
 import { AppConfig } from '../config/appConfig';
 
@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit {
   public LOGO = 'medyedek.jpeg';
   dialogRef: MatDialogRef<ConfirmResetPassDialogComponent>;
 
+  // tslint:disable-next-line:max-line-length
   constructor(private loginproxy: LoginproxyService, private formBuilder: FormBuilder, private router: Router, private dialogService: DialogService,private appConfig:AppConfig) {
 
   }
@@ -37,12 +38,12 @@ export class LoginComponent implements OnInit {
     }
 
     this.initForm();
-    
+
   }
- 
+
   initForm() {
     this.loginForm = this.formBuilder.group({
-      email: ['', [Validators.email,Validators.required]],
+      email: ['', Validators.required],
       mdp: ['', Validators.required],
       kms: ['']
 
@@ -68,7 +69,7 @@ export class LoginComponent implements OnInit {
 
     //Storing the connected user
    localStorage.setItem("userEmail", this.loginForm.value['email']);
-   
+
     if(access instanceof HttpErrorResponse)
     {
       this.logged=false;
@@ -92,7 +93,7 @@ else
 {
   this.dialogService.confirmationDialog("Please enter your email :)")
 }
-  
+
 }
 
   }

@@ -6,8 +6,8 @@ import java.io.Serializable;
 
 public class ApiSuccess implements Serializable {
 
-    private HttpStatus status;
-    private String message;
+    private final HttpStatus status;
+    private final String message;
 
     public ApiSuccess(HttpStatus status, String message) {
         super();

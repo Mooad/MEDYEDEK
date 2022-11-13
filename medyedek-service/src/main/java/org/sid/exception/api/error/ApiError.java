@@ -3,14 +3,15 @@ package org.sid.exception.api.error;
 import org.springframework.http.HttpStatus;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class ApiError {
 
-    private HttpStatus status;
-    private String message;
+    private final HttpStatus status;
+    private final String message;
     private String code;
-    private List<String> errors;
+    private final List<String> errors;
 
     public ApiError(HttpStatus status, String message, String code,List<String> errors) {
         super();
@@ -24,6 +25,6 @@ public class ApiError {
         super();
         this.status = status;
         this.message = message;
-        errors = Arrays.asList(error);
+        errors = Collections.singletonList(error);
     }
 }

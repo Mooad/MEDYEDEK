@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-// Generated using typescript-generator version 2.24.612 on 2022-08-27 12:05:45.
+// Generated using typescript-generator version 2.24.612 on 2022-11-12 21:39:33.
 
 export interface PostDto {
     id_post?: number;
@@ -56,7 +56,7 @@ export interface User extends Serializable {
     password?: string;
     userToken?: string;
     temp_pass?: string;
-    notValid?: boolean;
+    valid?: boolean;
 }
 
 export interface Content {
