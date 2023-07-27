@@ -13,7 +13,6 @@
 .profile-button:hover {
    background: #682773
 }
-
 .profile-button:focus {
    background: #682773;
    box-shadow: none
@@ -23,19 +22,16 @@
    background: #682773;
    box-shadow: none
 }
-
 .back:hover {
    color: #682773;
    cursor: pointer
 }
-
 .labels {
    font-size: 18px;
    font-family: Georgia, 'Times New Roman', Times, serif;
    color: rgb(73, 73, 73);
-   
-}
 
+}
 .add-experience:hover {
    background: #BA68C8;
    color: #fff;
@@ -43,7 +39,7 @@
    border: solid 1px #BA68C8
 }
 		.vertical-menu {
-  width: 200px;
+  width: 400px;
 }
 
 .vertical-menu a {
@@ -53,11 +49,9 @@
   padding: 12px;
   text-decoration: none;
 }
-
 .vertical-menu a:hover {
   background-color: #ccc;
 }
-
 .vertical-menu a.active {
   background-color: #04AA6D;
   color: white;
@@ -65,11 +59,19 @@
 .profile-image{
    width: 5%;
    height: 5%;
-   left: 25%;
+   left: 70%;
    position: fixed;
 }
 .profile-image img{
    width: 200%;
    height: 200%;
    left: 25%;
+}
+.custom-file
+{
+  width: 50%;
+}
+.text-right
+{
+  font-size: 25px;
 }

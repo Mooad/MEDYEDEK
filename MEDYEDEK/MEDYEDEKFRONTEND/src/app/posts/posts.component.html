@@ -1,4 +1,5 @@
-
-<div class ="container" *ngFor="let post of Posts">
+<div class="container"  *ngFor="let post of $posts | async">
   <app-post [post]="post"></app-post>
+
+  <div *ngIf="isLoading$| async" >Loading...</div>
 </div>

@@ -5,16 +5,16 @@
 	top: 11px;
 	height: auto;
 	border-radius: 5px;
-	background-color: rgba(233,233,233,1.00);
-	width: 100%;
+  background-color: rgb(235 235 235);
+  width: 100%;
 	-webkit-box-shadow: 1px 1px 1px 1px rgba(169,169,169,1.00);
 	box-shadow: 1px 1px 1px 1px rgba(169,169,169,1.00);
 	padding-top: 48px;
 	padding-bottom: 34px;
 	margin-bottom: 12px;
 	text-shadow: 0px 0px rgba(226,226,226,0.49);
-	@media only screen 
-	and (min-device-width :250px) 
+	@media only screen
+	and (min-device-width :250px)
 	and (max-device-width : 425px) {
 		right: 20px;
 		left: -20%;
@@ -95,16 +95,7 @@ li {
 	height: 289px;
 	position: relative ;
 }
-.card-footer
-{
-	right: 20px;
-	display: flex;
-    align-items: center;
-    justify-content: center;
-	align-content: center;
-	position: relative ;
 
-}
 
 .slider{
 	right: 30px;
@@ -112,7 +103,7 @@ li {
 	position: relative;
 
 }
- 
+
 .img-box img{
 	width:100%;
 }

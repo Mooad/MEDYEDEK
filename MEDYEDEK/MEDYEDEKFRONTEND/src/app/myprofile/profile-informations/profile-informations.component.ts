@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { AppConfig } from 'src/app/config/appConfig';
 import { ProfileDto } from 'src/app/entities/UserResetDto';
-import { FormGroup, FormBuilder, Validators, FormControl,ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators} from '@angular/forms';
 import { ProfileService } from 'src/app/services/profile.service';
 import { DialogService } from 'src/app/services/DialogService';
 
@@ -24,9 +23,9 @@ export class ProfileInformationsComponent implements OnInit {
     this.profile = JSON.parse(localStorage.getItem("currentProfile"));
 
     if (this.profile) {
-      if(this.profile.image.substring(0,20).includes("data:image"))
+      if(!this.profile.image.startsWith("data:image"))
       {
-        this.profile.image =  this.profile.image
+        this.profile.image = 'data:image/jpeg;base64,' + this.profile.image
 
     }
     }
@@ -45,21 +44,21 @@ export class ProfileInformationsComponent implements OnInit {
       street:[this.profile.address.street , Validators.required],
     }, {
     });
-   
+
   }
   onSubmit() {
-  
+
     console.log(this.profileFrom);
     // stop here if form is invalid
     if (this.profileFrom.invalid) {
-      alert('Merci de renseigner tout les champs necessaires');
+      alert('Merci de renseigner les bonnes Informations');
       return;
     }
     else {
       console.log(this.profileFrom);
      this.profileService.syncUserProfile(this.profile)
       .subscribe(
-          (res) => { 
+          (res) => {
             {
               localStorage['currentProfile']= JSON.stringify(this.profile);
               this.dialogService.confirmationDialog("Your Account Informations are updated");
@@ -71,7 +70,7 @@ export class ProfileInformationsComponent implements OnInit {
 
       //Gets called when the user selects an image
       public onFileChanged(event) {
-    
+
         let me = this;
         let file = event.target.files[0];
         let reader = new FileReader();
@@ -83,6 +82,7 @@ export class ProfileInformationsComponent implements OnInit {
           me.profile.image = reader.result.toString();
 
         };
+        this.profile.image = me.profile.image;
         reader.onerror = function (error) {
           console.log('Error: ', error);
         };

@@ -1,9 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { postService } from '../services/postServices';
-import { AppConfig } from '../config/appConfig';
-import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-import { Content, PostDto } from '../entities/Post';
-import { post } from 'jquery';
+import {Component, OnInit, Input} from '@angular/core';
+import {SafeUrl} from '@angular/platform-browser';
+import {PostDto} from "../entities/UserResetDto";
+import {ContentService} from "../services/ContentService";
+import {select, Store} from "@ngrx/store";
+import * as ContentActions from './../store/state/post/content/ContentActions'
+import {Content} from "../entities/Post";
+import {contentSelectorByIDPost} from "../store/state/post/content/ContentSelectors";
 
 @Component({
   selector: 'app-post',
@@ -12,42 +14,63 @@ import { post } from 'jquery';
 })
 export class PostComponent implements OnInit {
 
-  @Input() post : PostDto;
+  @Input() post: PostDto;
+  content: Content[];
+
   @Input() textContent: string;
-  @Input() imageUrl : SafeUrl;
-  @Input() selectedImage : String;
+  @Input() imageUrl: SafeUrl;
+  @Input() selectedImage: String;
   slider_img = document.querySelector('.slider-img');
+  isLoading: boolean = true;
+
   i = 1;
-  constructor(private postService: postService, private appConfig: AppConfig , private sanitizer:DomSanitizer) { }
+
+  constructor(private contentService: ContentService, private store: Store) {
+  }
 
   ngOnInit(): void {
-  this.getImageFromService();
+    this.getImageFromService();
 
-  if( this.post.postContent.length>0)
-  { 
-     this.selectedImage = 'data:image/png;base64,'  + this.post.postContent[0].content;
-  
+
+    this.store.pipe(select(contentSelectorByIDPost(this.post.post_id))).subscribe(
+      value => {
+        this.content = value;
+
+        if (this.content && this.content.length > 0) {
+          this.selectedImage = 'data:image/jpeg;base64,' + this.content[0].content;
+        }
+        this.isLoading = false;
+
+      }
+    );
+    this.store.dispatch(ContentActions.selectContents({postId: this.post.post_id}));
+
   }
-}
+
   getImageFromService() {
-   return   this.post.user.image ;
-      
-}
+    return this.post.userImage;
 
- prev(){
-	if(this.i <= 0) this.i  = this.post.postContent.length;	
-	this.i --;
-	return this.setImg();			 
-}
+  }
 
- next(){
-	if(this.i >= this.post.postContent.length-1) this.i = -1;
-	this.i++;
-	return this.setImg();			 
-}
+  prev() {
+    if (this.i <= 0) this.i = this.content.length;
+    this.i--;
+    console.log(this.i);
+    return this.setImg();
+  }
 
-   setImg(){
-	return  this.selectedImage =  this.post.postContent[this.i].content;
-	
-}
+  next() {
+    if (this.i >= this.content.length - 1) this.i = -1;
+    this.i++;
+    console.log(this.i);
+    return this.setImg();
+  }
+
+  setImg() {
+    return this.selectedImage = 'data:image/jpeg;base64,' + this.content[this.i].content;
+  }
+
+  synchronizeInteractionWithPost(value) {
+    //
+  }
 }

@@ -1,0 +1,57 @@
+<div class="comments-section">
+  <div class="new-comment">
+    <textarea [(ngModel)]="newCommentText" placeholder="Write a new comment" #commentTextArea class="comment-input" (input)="autoResizeTextArea(commentTextArea)"></textarea>
+    <button class="darkGrey" (click)="submitComment()">Comment</button>
+  </div>
+
+  <div class="comments-container" *ngIf="comments">
+    <ng-container *ngFor="let comment of comments.commentsTree.comments.slice(0, numCommentsToShow)">
+      <div class="comment">
+        <div class="comment-details">
+          <p>{{ comment.user }}</p>
+          <p class="comment-content">{{ comment.text }}</p>
+        </div>
+        <button class="grey" (click)="toggleReplies(comment._id)">
+          {{ showReply[comment._id] ? 'Hide Replies' : 'Show Replies' }}
+        </button>
+        <span class="reply-count" *ngIf="comment && comment.commentsTree && comment.commentsTree.comments.length > 0">
+          {{ comment.commentsTree.comments.length }} replies
+        </span>
+
+        <div class="reply-input" *ngIf="showReply[comment._id]">
+          <textarea [(ngModel)]="replyText[comment._id]" placeholder="Write a reply" class="comment-input" (input)="autoResizeTextArea(commentTextArea)"></textarea>
+          <button class="darkGrey" (click)="submitReply(comment._id, $event)">Submit Reply</button>
+        </div>
+
+        <div class="sub-comments" *ngIf="comment && comment.commentsTree && comment.commentsTree.comments.length > 0 && showReply[comment._id]">
+          <ng-container *ngTemplateOutlet="recursiveComments; context: { comments: comment.commentsTree.comments }"></ng-container>
+        </div>
+      </div>
+    </ng-container>
+    <button style="background-color: lightgrey ;height: fit-content ;border-radius:10px;"
+            (click)="showMoreComments()">Show More</button>
+  </div>
+
+  <!-- Recursive comment template -->
+  <ng-template #recursiveComments let-comments="comments">
+    <div class="sub-comments" *ngFor="let subComment of comments">
+      <div class="comment">
+        <div class="comment-details">
+          <p>{{ subComment.user }}</p>
+          <p class="comment-content">{{ subComment.text }}</p>
+        </div>
+        <button class="grey" (click)="toggleReplies(subComment._id)">
+          {{ showReply[subComment._id] ? 'Hide Replies' : 'Show Replies' }}
+        </button>
+        <span class="reply-count" *ngIf="subComment && subComment.commentsTree && subComment.commentsTree.comments.length > 0">
+          {{ subComment.commentsTree.comments.length }} replies
+        </span>
+
+        <div class="reply-input" *ngIf="showReply[subComment._id]">
+          <textarea [(ngModel)]="replyText[subComment._id]" placeholder="Write a reply" class="comment-input" (input)="autoResizeTextArea(commentTextArea)"></textarea>
+          <button class="darkGrey" (click)="submitReply(subComment._id, $event)">Submit Reply</button>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</div>

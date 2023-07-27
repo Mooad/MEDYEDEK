@@ -1,0 +1,27 @@
+<div class="post-comments">
+    <h3 class="post-comments-heading">Comments</h3>
+    <div *ngFor="let comment of comments" class="comment">
+      <p class="comment-text">{{ comment.text }}</p>
+      <div class="comment-actions">
+        <button class="like-button" (click)="likeComment(comment)">
+          <i class="far fa-heart"></i>
+          <span>Like</span>
+        </button>
+        <button class="reply-button" (click)="replyComment(comment)">
+          <i class="fas fa-reply"></i>
+          <span>Reply</span>
+        </button>
+        <button class="delete-button" (click)="deleteComment(comment)">
+          <i class="far fa-trash-alt"></i>
+          <span>Delete</span>
+        </button>
+      </div>
+    </div>
+    <form class="comment-form" >
+      <input type="text" class="comment-input" placeholder="Write a comment..." [(ngModel)]="newCommentText">
+      <button type="submit" class="comment-button">
+        <i class="far fa-comment"></i>
+        <span>Comment</span>
+      </button>
+    </form>
+  </div>

@@ -1,0 +1,129 @@
+/* comments-section.component.scss */
+.comments-section {
+  margin: 0 auto;
+  padding: 10px;
+  position: relative;
+  right: 5%;
+  border-radius: 7px; /* Add border-radius to the comment section */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+}
+
+.new-comment {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.comments-container {
+  max-height: 400px;
+  overflow-y: auto;
+  width: 100%;
+}
+
+.comment {
+  margin-bottom: 10px;
+  border-radius: 7px; /* Add border-radius to the comments */
+  padding: 10px;
+}
+
+.comment-details {
+  padding-left: 10px;
+}
+
+.comment-details p {
+  margin: 5px 0;
+}
+
+.reply-input {
+  padding-left: 10px;
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.reply-input input {
+  flex: 1;
+  margin-right: 10px;
+}
+
+.sub-comments {
+  padding-left: 20px;
+}
+
+.reply-count {
+  margin-left: 10px;
+  font-size: 12px;
+}
+
+.grey-background {
+  background-color: grey;
+}
+
+.grey,
+.darkGrey {
+  background-color: grey;
+  color: white; /* To make the text color white on grey and darkGrey buttons */
+  border-radius: 7px; /* Add border-radius to the buttons */
+}
+
+.comment-content {
+  max-width: 90%; /* Limit the width of the comment content */
+}
+
+.comment-input {
+  width: 100%;
+  resize: none; /* Disable manual resizing of the textarea */
+  overflow: hidden; /* Hide vertical scrollbar */
+}
+
+.comments-section textarea {
+  resize: none;
+  overflow-y: hidden;
+  border: 1px solid #ccc;
+  border-radius: 7px;
+  padding: 10px;
+  width: 100%;
+  font-size: 14px;
+}
+
+/* Style for the buttons */
+.mat-raised-button,
+button.mat-button,
+button.mat-raised-button {
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 7px;
+  padding: 8px 12px;
+  margin: 5px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.mat-raised-button:hover,
+button.mat-button:hover,
+button.mat-raised-button:hover {
+  background-color: #1976d2;
+  color: white;
+}
+
+.mat-raised-button:active,
+button.mat-button:active,
+button.mat-raised-button:active {
+  background-color: #0d47a1;
+}
+
+.darkGrey {
+  background-color: #333;
+  color: white; /* To make the text color white on dark grey buttons */
+  height: 50px;
+}
+
+.darkGrey:hover {
+  background-color: #444;
+}
+
+.darkGrey:active {
+  background-color: mediumvioletred;
+}

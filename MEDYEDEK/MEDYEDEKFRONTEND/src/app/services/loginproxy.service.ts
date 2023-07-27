@@ -1,10 +1,10 @@
-import { HttpClient, HttpResponse, HttpErrorResponse } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
-import { AppConfig } from '../config/appConfig';
-import { TokenStorageService } from '../bearer/TokenStorageService';
-import { map } from "rxjs/operators";
-import { BehaviorSubject, Observable } from 'rxjs';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {Router} from '@angular/router';
+import {AppConfig} from '../config/appConfig';
+import {TokenStorageService} from '../bearer/TokenStorageService';
+import {map} from "rxjs/operators";
+import {BehaviorSubject, Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -29,11 +29,14 @@ export class LoginproxyService {
 
   login(username: string, password: string,kms: string)  : any{
 
-    // Provide username and password for authentication, and once authentication is successful, 
-//store JWT token in session   
+    // Provide username and password for auth
+    // entication, and once authentication is successful,
+//store JWT token in session
+    const headers = this.createBasicAuthToken(username, password);
+    const options = { headers: headers };
 
 return this.http
-.post<any>(this.appConfig.authUrl, { username, password ,kms})
+.post<any>(this.appConfig.authUrl, { username, password ,kms},options)
 .pipe(map(user => {
   // store user details and jwt token in local storage to keep user logged in between page refreshes
   sessionStorage.setItem('thCurUsr', user['token']);
@@ -45,14 +48,14 @@ return this.http
 
 
   createBasicAuthToken(username: string, password: string) {
-    return 'Basic ' + window.btoa(username + ":" + password);
-  }
+    const token = btoa(`${username}:${password}`);
+    return new HttpHeaders().set('Authorization', `Basic ${token}`);  }
 
   registerSuccessfulLogin(username, password) {
     localStorage.setItem('thCurUsr', JSON.stringify(username + ":" + password));
   }
 
-  
+
   isUserLoggedIn() {
     let user = sessionStorage.getItem("username");
     console.log(!(user === null));

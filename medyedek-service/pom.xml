@@ -3,13 +3,6 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-    <dependencies>
-        <dependency>
-            <groupId>org.apache.velocity</groupId>
-            <artifactId>velocity</artifactId>
-            <version>1.5</version>
-        </dependency>
-    </dependencies>
     <parent>
 		<groupId>io.gitlab.fajrimoad</groupId>
 		<artifactId>Medyedek</artifactId>
@@ -19,43 +12,16 @@
 	<name>MedyedekService</name>
 	<description>medyedek services </description>
 
+
 	<packaging>jar</packaging>
 
 	<build>
-	<plugins>
-	<plugin>
-		<groupId>cz.habarta.typescript-generator</groupId>
-		<artifactId>typescript-generator-maven-plugin</artifactId>
-		<version>2.24.612</version>
-		<executions>
-			<execution>
-				<id>generate</id>
-				<goals>
-					<goal>generate</goal>
-				</goals>
-				<phase>process-classes</phase>
-			</execution>
-		</executions>
-		<configuration>
-
-			<jsonLibrary>jackson2</jsonLibrary>
-			<classes>
-				<class>org.sid.dto.post.PostDto</class>
-				<class>org.sid.dto.user.SimpleUserDto</class>
-				<class>org.sid.dto.password.PasswordDto</class>
-				<class>org.sid.dto.profile.ProfileDto</class>
-			</classes>
-			<outputFile>../MEDYEDEK/MEDYEDEKFRONTEND/src/app/entities/Post.ts</outputFile>
-			<outputFile>../MEDYEDEK/MEDYEDEKFRONTEND/src/app/entities/UserResetDto.ts</outputFile>
-			<outputKind>module</outputKind>
-			<outputFileType>implementationFile</outputFileType>
-			<mapClasses>asInterfaces</mapClasses>
-			<mapEnum>asEnum</mapEnum>
-			<nonConstEnums>true</nonConstEnums>
-			<optionalProperties>useLibraryDefinition</optionalProperties>
-		</configuration>
-	</plugin>
-	</plugins>
+		<sourceDirectory>src</sourceDirectory>
+		<testSourceDirectory>src/test</testSourceDirectory>
 </build>
+
+	<properties>
+		<java.version>17</java.version>
+	</properties>
 
 </project>

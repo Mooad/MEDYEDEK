@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, ElementRef } from '@angular/core';
-import { postService } from '../services/postServices';
+import { PostService } from '../services/postServices';
 import { AppConfig } from '../config/appConfig';
 import { TypePostService } from '../services/type-post-service';
 import { Router } from '@angular/router';
@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
   @Input() Url: string;
 
 
-  constructor(private appConfig: AppConfig, postservice: postService,
+  constructor(private appConfig: AppConfig, postservice: PostService,
     private typePostService: TypePostService,
     private elementRef: ElementRef,
     private router: Router,

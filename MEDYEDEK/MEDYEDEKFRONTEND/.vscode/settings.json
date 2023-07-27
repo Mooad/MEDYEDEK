@@ -1,6 +1,0 @@
-{
-    "debug.javascript.codelens.npmScripts": "all",
-    "debug.allowBreakpointsEverywhere": true,
-    "debug.console.closeOnEnd": true,
-    "window.zoomLevel": 0.1
-}

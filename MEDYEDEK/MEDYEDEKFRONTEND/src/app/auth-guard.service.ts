@@ -15,10 +15,12 @@ connexionState:ConnexionState;
     : Observable<boolean> | Promise<boolean> | boolean {
 
     if (sessionStorage.getItem('thCurUsr') && sessionStorage.getItem('thCurUsr').length>0) {
-      let headers = new HttpHeaders();
-     this.createAuthorizationHeader(headers);
-      this.http.get<ConnexionState>(this.appConfig.syncUrl,{headers: {'Authorization': "Bearer "+ sessionStorage.getItem('thCurUsr')}}).subscribe(
-        (res) => {this.connexionState=res;
+
+      const headers = this.createBasicAuthToken(sessionStorage.getItem('thCurUsr'));
+      const options = { headers: headers };
+
+      this.http.get<ConnexionState>(this.appConfig.syncUrl,options).subscribe(
+        (res) => {this.connexionState = res;
           if(res.status==='401')
           {
             this.router.navigate(['/login']);
@@ -32,11 +34,9 @@ connexionState:ConnexionState;
 
    // return false;
   }
-   createAuthorizationHeader(headers:HttpHeaders) {
+  createBasicAuthToken(token: string) {
+    return new HttpHeaders().set('Authorization', `Bearer ${token}`);  }
 
-    headers.append('Authorization', 'Bearer '+sessionStorage.getItem('thCurUsr'));
-    return headers
-  }
 
   constructor(private router: Router,private http:HttpClient,private appConfig:AppConfig) {
 

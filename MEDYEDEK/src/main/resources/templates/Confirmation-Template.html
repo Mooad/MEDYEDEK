@@ -1,9 +1,10 @@
 <tbody>
 <script type="text/javascript" >
 function confirm() {
-
+// todo
+//make urls in the page parametrable --> {$medyedekBack}
   var xhr = new XMLHttpRequest();
-  xhr.open("GET", 'http://localhost:8093/ValidateSignUp?token', false);
+  xhr.open("GET", 'http://localhost:8081/ValidateSignUp?token', false);
   xhr.setRequestHeader('Content-Type', 'application/json');
   xhr.setRequestHeader('Access-Control-Allow-Origin' ,'*');
   xhr.send();
@@ -107,7 +108,7 @@ function confirm() {
                 <tr>
                     <td bgcolor="#ffffff" align align="center"
                         style="padding: 20px 30px 20px 30px; color: #666666; font-family: &apos;Lato&apos;, Helvetica, Arial, sans-serif; font-size: 12px; font-weight: 400; line-height: 25px;">
-                    <p style="margin: 0;"><a href="http://localhost:8093/ValidateSignUp?token" style="color: #17b3a3; background-color: green;
+                    <p style="margin: 0;"><a href="http://localhost:8081/ValidateSignUp?token" style="color: #17b3a3; background-color: green;
                                                                                                                             color: black;
                                                                                                                             position :relative;
                                                                                                                             border-radius :5px;

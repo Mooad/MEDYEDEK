@@ -39,6 +39,23 @@ import { DialogService } from './services/DialogService';
 import { RouterModule } from '@angular/router';
 import { MyprofileComponent } from './myprofile/myprofile.component';
 import { SharedProfile } from './services/SharedProfile';
+import { PostInteractionComponent } from './post-interaction/post-interaction.component';
+import { PostCommentsComponent } from './post-comments/post-comments.component';
+import {StoreModule} from "@ngrx/store";
+import {StoreDevtoolsModule} from "@ngrx/store-devtools";
+import {environment} from "../environments/environment";
+import {postreducers} from "./store/state/posts/Postreducers";
+import {EffectsModule} from "@ngrx/effects";
+import {PostEffects} from "./store/state/posts/Posteffects";
+import {CommonModule} from "@angular/common";
+import {contentreducers} from "./store/state/post/content/ContentReducers";
+import {ContentEffects} from "./store/state/post/content/ContentEffects";
+import {CommentEffects} from "./store/state/post/comments/CommentEffects";
+import { CommentsSectionComponent } from './comments-section/comments-section.component';
+import {commentreducers} from "./store/state/post/comments/CommentReducers";
+import {MatExpansionModule} from "@angular/material/expansion";
+import {MatInputModule} from "@angular/material/input";
+import {MatButtonModule} from "@angular/material/button";
 
 
 
@@ -73,7 +90,10 @@ export function initializerFn(jsonAppConfigService: JsonAppConfigService) {
     UsefulLinksComponent,
     FooterComponent,
     ConfirmResetPassDialogComponent ,
-    MyprofileComponent],
+    MyprofileComponent,
+    PostInteractionComponent,
+    PostCommentsComponent,
+    CommentsSectionComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -83,11 +103,43 @@ export function initializerFn(jsonAppConfigService: JsonAppConfigService) {
     BrowserAnimationsModule,
     ScrollingModule,
     MatDialogModule,
-    RouterModule
+    RouterModule,
+    EffectsModule.forRoot(),
+    CommonModule,
+    StoreModule.forRoot({reducers: postreducers},),
+    StoreModule.forRoot({reducers: contentreducers},),
+    StoreModule.forRoot({reducers: commentreducers},),
+
+    //{
+    //runtimeChecks: {
+    //strictStateImmutability: false,
+    // strictActionImmutability: false,
+    // },}
+    StoreModule.forFeature('posts', postreducers),
+    StoreModule.forFeature('content', contentreducers),
+    StoreModule.forFeature('comment', commentreducers),
+
+    EffectsModule.forFeature([PostEffects, ContentEffects, CommentEffects]),
+
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: environment.production,
+      autoPause: true,
+      features: {
+        pause: false,
+        lock: true,
+        persist: true
+      }
+    }),
+    BrowserModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    MatInputModule,
+    MatButtonModule,
+    MatExpansionModule,
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA],
-    entryComponents: [ErrordialogComponent,ConfirmResetPassDialogComponent],
   providers: [{
     provide: AppConfig,
     deps: [HttpClient],

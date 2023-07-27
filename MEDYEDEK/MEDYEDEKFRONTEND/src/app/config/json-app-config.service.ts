@@ -14,18 +14,24 @@ export class JsonAppConfigService extends AppConfig {
 
   // This function needs to return a promise
   load() {
-    return this.http.get<AppConfig>('app.config.json')
-      .toPromise()
-      .then(data => {
-        this.title = data.title;
-        this.baseUrl = data.baseUrl;
-        this.authUrl = data.authUrl;
-        this.syncUrl = data.syncUrl;
-        this.changePasswordUrl = data.changePasswordUrl;
-        this.confirmPassword = data.confirmPassword;
-      })
-      .catch(() => {
-        console.error('Could not load configuration');
-      });
+    try {
+      return this.http.get<AppConfig>('app.config.json')
+        .toPromise()
+        .then(data => {
+          this.title = data.title;
+          this.baseUrl = data.baseUrl;
+          this.authUrl = data.authUrl;
+          this.syncUrl = data.syncUrl;
+          this.changePasswordUrl = data.changePasswordUrl;
+          this.confirmPassword = data.confirmPassword;
+        })
+        .catch(() => {
+          console.error('Could not load configuration');
+        });
+    }
+   catch (e) {
+     console.error('Could not load configuration');
+
+   }
   }
 }

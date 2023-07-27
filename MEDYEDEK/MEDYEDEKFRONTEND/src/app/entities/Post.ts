@@ -2,12 +2,14 @@
 /* eslint-disable */
 // Generated using typescript-generator version 2.24.612 on 2021-07-13 21:45:16.
 
+
 export interface PostDto {
     id_post?: number;
     typepost?: Typepost;
     textContent?: string;
-    user?: Utilisateur;
+    userImage?: string;
     postContent?: Content[];
+    commentContent?: string;
 }
 
 export interface Typepost {
@@ -19,6 +21,28 @@ export interface Typepost {
 export interface Beneficiaire extends Utilisateur {
     nombre_postes?: number;
 }
+// comments-dto.interface.ts
+export interface CommentDto {
+  _id?: string;
+  user_id: number,
+  post_id: number,
+  commentsTree: {
+    comments: Comment[];
+  };
+}
+
+export interface Comment {
+  _id: string;
+  text: string;
+  content: string;
+  user : string;
+  user_id : number;
+  post_id: number;
+  level: number;
+  commentsTree?: { comments: Comment[] };
+  parent?: string;
+
+}
 
 export interface Content {
     id?: number;
@@ -28,11 +52,11 @@ export interface Content {
 }
 
 export interface Post extends Serializable {
-    id_post?: number;
+    post_id?: number;
+    user_id?: number;
     typepost?: Typepost;
     textContent?: string;
-    Beneficiaire?: Beneficiaire;
-    user?: Utilisateur;
+    userImage?: string;
 }
 
 export interface Role {

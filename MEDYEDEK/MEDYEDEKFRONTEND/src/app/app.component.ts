@@ -1,4 +1,4 @@
-import { postService } from './services/postServices';
+import { PostService } from './services/postServices';
 import { Component, Input, OnInit, ElementRef } from '@angular/core';
 import { AppConfig } from './config/appConfig';
 import { TypePostService } from './services/type-post-service';

@@ -1,0 +1,8 @@
+FROM tomcat:8.5-alpine
+LABEL maintainer="fajrimoad@gmail.com"
+
+COPY  medyedek-auth.war  /usr/local/tomcat/webapps/medyedek-auth.war
+
+EXPOSE 8080
+
+CMD ["catalina.sh", "run"]

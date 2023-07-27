@@ -9,6 +9,7 @@ import { PostsComponent } from './posts/posts.component';
 import { ConfirmaccountComponent } from './confirmaccount/confirmaccount.component';
 import { PasswordResetComponent } from './password-reset/password-reset.component';
 import { ConfirmationResetComponent } from './confirmation-reset/confirmation-reset.component';
+import {PostCommentsComponent} from "./post-comments/post-comments.component";
 
 
 const routes: Routes = [
@@ -30,11 +31,11 @@ const routes: Routes = [
     component: MyprofileComponent,
     children: [
       {
-        path: 'userprofile/infos', 
+        path: 'userprofile/infos',
         component: ProfileInformationsComponent,
       },
       {
-        path: 'userprofile/security', 
+        path: 'userprofile/security',
         component: ProfileSecuritySettingsComponent,
       },
       {

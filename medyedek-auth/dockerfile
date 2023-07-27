@@ -1,0 +1,11 @@
+FROM tomcat:8.5-alpine
+LABEL maintainer="fajrimoad@gmail.com"
+
+
+RUN wget https://s01.oss.sonatype.org/content/repositories/snapshots/io/gitlab/fajrimoad/medyedek/0.0.1-SNAPSHOT/medyedek-0.0.1-20230228.114825-3.war
+
+COPY  medyedek-auth.war  /usr/local/tomcat/webapps/medyedek-auth.war
+
+EXPOSE 8080
+
+CMD ["catalina.sh", "run"]

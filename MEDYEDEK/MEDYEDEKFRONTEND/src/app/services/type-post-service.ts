@@ -13,6 +13,6 @@ export class TypePostService {
   constructor(private http: HttpClient, private appConfig: AppConfig) { this.url = "typeposts";}
 
   public getTypePosts() {
-    return this.http.get("http://localhost:8093/typeposts");
+    return this.http.get("http://localhost:8081/typeposts");
   }
 }

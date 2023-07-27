@@ -1,9 +1,7 @@
-import { Subject } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpEvent, HttpRequest } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AppConfig } from '../config/appConfig';
-import { AjaxResponse } from '../entities/AjaxResponse';
 import { Utilisateur } from '../entities/Post';
 import { Router } from '@angular/router';
 

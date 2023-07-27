@@ -11,9 +11,9 @@ import { LoginproxyService } from '../services/loginproxy.service';
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
-  constructor(private loginproxy: LoginproxyService, private formBuilder: FormBuilder, private router: Router) 
+  constructor(private loginproxy: LoginproxyService, private formBuilder: FormBuilder, private router: Router)
   {
-    this.loginproxy.login(undefined, undefined);
+    this.loginproxy.login(undefined, undefined,undefined);
   }
 
   ngOnInit(): void {
@@ -27,12 +27,12 @@ export class LoginComponent implements OnInit {
       mdp: ['', Validators.required]
     });
   }
- 
+
   onSubmitForm() {
     const formValue = this.loginForm.value;
-  const o =   this.loginproxy.login(formValue['email'], formValue['mdp']).subscribe((value) => {
+  const o =   this.loginproxy.login(formValue['email'], formValue['mdp'],"0").subscribe((value) => {
            console.log("Oh an error occured"+value);
-  }, 
+  },
 
   (error) => {
     console.log('Uh-oh, an error occurred! : ' + error);
