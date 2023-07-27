@@ -1,5 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
+// @ts-ignore
 import { InitialSearchServiceService } from './initial-search-service.service';
 
 describe('InitialSearchServiceService', () => {
