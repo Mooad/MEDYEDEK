@@ -65,12 +65,18 @@ public class PostReactiveRepository {
                 .user(User.builder()
                         .user_id(row.get("user", Integer.class))
                                 .image(row.get("image", String.class))
-                        // Map other fields from the 'role' table
+                        // Map other field   s from the 'role' table
                         .build())
                 .build();
         // Map other columns as needed
     }
 
+    public void saveCommentGrappeToComment(int post_id ,String id_comment_grappe) {
+
+        databaseClient.sql("update medyedek.post set commentContent = '" + id_comment_grappe + " ' where post_id = " + post_id)
+                .fetch().first().subscribe();
+
+    }
 
     public void savePost(Post post) {
 

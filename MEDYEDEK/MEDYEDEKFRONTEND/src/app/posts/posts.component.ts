@@ -6,6 +6,8 @@ import {select, Store} from "@ngrx/store";
 import * as PostActions from "../store/state/posts/PostActions";
 import {Observable} from "rxjs";
 import {isLoading, posts} from "../store/state/posts/Postselectors";
+import {ProfileService} from "../services/profile.service";
+import {ProfileDto} from "../entities/UserResetDto";
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -19,14 +21,15 @@ export class PostsComponent implements OnInit {
      $posts: Observable<PostDto[]>;
   //public dataSource: FactsDataSource;
     isLoading$ : Observable<boolean>;
-
-  constructor(private postService: PostService,  private appConfig: AppConfig,private store :Store) {
+  profile: ProfileDto
+  constructor(private postService: PostService,  private appConfig: AppConfig,private store :Store, private profileService:ProfileService) {
     this.isLoading$ = this.store.pipe(select(isLoading));
     this.$posts = this.store.pipe(select(posts));
 
     //this.dataSource = n ew FactsDataSource(postService);
     this.$posts.subscribe(value =>
       console.log(value));
+
 
   }
 
@@ -35,6 +38,7 @@ export class PostsComponent implements OnInit {
   ngOnInit(): void {
     this.store.dispatch(PostActions.getPosts());
     this.Url = this.appConfig.baseUrl;
+    this.profileService.getUserProfile(localStorage.getItem("userEmail")).subscribe(value => this.profile = value);
 
   }
 

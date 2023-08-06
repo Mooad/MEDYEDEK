@@ -1,11 +1,13 @@
 package org.web.services.service.interaction;
 
 
-import org.sid.services.dto.comment.PostComments;
+import org.apache.commons.lang.StringUtils;
+import org.sid.services.dto.comment.CommentAttachementDto;
+import org.sid.services.dto.comment.CommentDto;
 import org.sid.services.dto.comment.SearchCommentDto;
-import org.sid.services.nosql.document.Comment;
 import org.sid.services.nosql.document.CommentsGrappes;
-import org.sid.services.serviceproxy.Impl.CommentServiceImpl;
+import org.sid.services.serviceproxy.Impl.CommentServiceLevel0Impl;
+import org.sid.services.serviceproxy.Impl.PostCommentAttacherImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
@@ -17,11 +19,22 @@ public class CommentsController {
 
 
     @Autowired
-    CommentServiceImpl commentService;
-    @PostMapping("commnent")
-    public Mono<Comment> commentPost(@RequestBody PostComments postComments)
+    CommentServiceLevel0Impl commentService;
+
+    @Autowired
+    PostCommentAttacherImpl postCommentAttacher;
+
+    @PostMapping("comment")
+    public Mono<CommentsGrappes> commentPost(@RequestBody CommentDto commentDto)
     {
-        return commentService.commentPost(postComments);
+        System.out.println("Adding Comment to Post "+ commentDto.getPost_id());
+        return commentService.commentPost(commentDto);
+    }
+    @PostMapping("attachComment")
+    public void attachCommentGrappeToPost(@RequestBody CommentAttachementDto commentAttachementDto)
+    {
+        System.out.println("This is a comment attched");
+         postCommentAttacher.attachCommentTreeIdentifierToPost(commentAttachementDto);
     }
 
 
@@ -29,7 +42,7 @@ public class CommentsController {
     @PostMapping("search")
     public Mono<CommentsGrappes> searchPostComments(@RequestBody SearchCommentDto commentIdentifier)
     {
-        return commentService.searchPostComments(commentIdentifier);
+        return (StringUtils.isNotBlank(commentIdentifier.identifier) ? commentService.searchPostComments(commentIdentifier) : null);
     }
 
 }

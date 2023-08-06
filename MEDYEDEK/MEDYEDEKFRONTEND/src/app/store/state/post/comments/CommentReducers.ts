@@ -1,7 +1,8 @@
-import {createReducer, on} from "@ngrx/store";
+import {createAction, createReducer, on, props} from "@ngrx/store";
 import * as Actions from './CommentActions'
 import {AppStateInterface} from "../../AppState.interface";
 import {CommentReducerFunctions} from "./CommentReducerFunctions";
+import {Comment} from "../../../../entities/Post";
 
 export const initialState: AppStateInterface = {
   isLoading: false,
@@ -20,6 +21,12 @@ export const commentreducers = createReducer(initialState,
 
   on(Actions.addCommentLevel0, (state) => ({...state, isLoading: true})),
   on(Actions.addCommentLevel0Success, (state,action) =>
-    ({...state, isLoading: false , commentsState : commentReducerFunctions.updateCommentInsertionFirstState(state.commentsState,action.comment)})),
-  on(Actions.addCommentLevel0Failure, (state,action) => ({...state, isLoading: false, error: action.error })));
+    ({...state, isLoading: false , commentsState : commentReducerFunctions.updateCommentInsertionFirstState(state.commentsState,action.commentsDTO)})),
+  on(Actions.addCommentLevel0Failure, (state,action) => ({...state, isLoading: false, error: action.error })),
 
+
+
+on(Actions.addCommentLevelx, (state) => ({...state, isLoading: true})),
+  on(Actions.addCommentLevelxSuccess, (state,action) =>
+    ({...state, isLoading: false , commentsState : commentReducerFunctions.replaceCommentTreeAfterReplyAdded(action.reply, action.comments ,state.commentsState)})),
+  on(Actions.addCommentLevelxFailure, (state,action) => ({...state, isLoading: false, error: action.error })));

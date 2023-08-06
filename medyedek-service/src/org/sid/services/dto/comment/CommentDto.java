@@ -1,5 +1,6 @@
 package org.sid.services.dto.comment;
 
+import org.springframework.data.annotation.Id;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,13 +12,16 @@ import lombok.Setter;
 @Setter
 public class CommentDto {
 
-    private String id;
+    @Id
+    private String _id;
     private String text;
     private String content;
-    private String post_id;
-    private String user_id;
+    private Integer post_id;
+    private Integer user_id;
     private Integer level;
     private String parent;
     private CommentsTreeDTO commentsTree;
+
+
 
 }

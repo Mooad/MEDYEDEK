@@ -34,12 +34,26 @@ addCommentLevel0$ = createEffect(() =>
     ofType(CommentActions.addCommentLevel0),
     mergeMap(({ comment }) =>
       this.commentService.insertCommentlevel0(comment).pipe(
-        map((comment) => CommentActions.addCommentLevel0Success({ comment })),
+        map((commentsDTO) => CommentActions.addCommentLevel0Success({ commentsDTO })),
         catchError((error) => of(CommentActions.addCommentLevel0Failure({ error: error.message })))
       )
     )
   )
 );
+
+
+  addCommentLevelx$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(CommentActions.addCommentLevelx),
+      mergeMap(({ parent_id,reply, comments }) =>
+        this.commentService.insertCommentlevelx(reply).pipe(
+          map((reply) => CommentActions.addCommentLevelxSuccess({ reply,comments })),
+          catchError((error) => of(CommentActions.addCommentLevelxFailure({ error: error.message })))
+        )
+      )
+    )
+  );
+
 
 }
 

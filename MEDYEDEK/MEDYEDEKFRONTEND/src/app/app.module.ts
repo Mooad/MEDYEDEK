@@ -56,6 +56,7 @@ import {commentreducers} from "./store/state/post/comments/CommentReducers";
 import {MatExpansionModule} from "@angular/material/expansion";
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
+import {Utils} from "./services/utils/UtilMethods";
 
 
 
@@ -149,6 +150,7 @@ export function initializerFn(jsonAppConfigService: JsonAppConfigService) {
    ErrorDialogService,
    DialogService,
    SharedProfile,
+    Utils,
    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   {
     provide: APP_INITIALIZER,

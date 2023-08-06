@@ -6,7 +6,7 @@ export const getComments = createAction('[Comment] Get Comment')
 export const selectComments = createAction(
   '[Comment] Select Commments',
   props<{ identifier: string }>()
-);
+)
 
 
 
@@ -14,8 +14,16 @@ export const getCommentSuccess = createAction('[Comment] Get Comments success', 
 export const getCommentFailure = createAction('[Comment] Get Comments failure', props<{error: string }>());
 
 export const addCommentLevel0 = createAction(
-  '[Comment] Add Comment',
+  '[Comment] Add Comment Level 0',
   props<{ comment: Comment }>()
 );
-export const addCommentLevel0Success = createAction('[Comment] Get Comments success', props<{comment : Comment }>());
-export const addCommentLevel0Failure = createAction('[Comment] Get Comments failure', props<{error: string }>());
+export const addCommentLevel0Success = createAction('[Comment] Add Comment Level 0 success', props<{commentsDTO : any }>());
+export const addCommentLevel0Failure = createAction('[Comment] Add Comment Level 0 failure', props<{error: string }>());
+
+
+export const addCommentLevelx = createAction(
+  '[Comment] Add Comment level X',
+  props<{parent_id:string,  reply: Comment , comments : Comment[] }>()
+);
+export const addCommentLevelxSuccess = createAction('[Comment] Add Comment Level X success', props<{reply : any, comments:Comment[] }>());
+export const addCommentLevelxFailure = createAction('[Comment] Add Comment Level X failure', props<{error: string }>());

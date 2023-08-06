@@ -31,11 +31,14 @@ export interface CommentDto {
   };
 }
 
+export interface CommentAttachement {
+  post_id?: number;
+  comment_id?: string,
+}
 export interface Comment {
   _id: string;
   text: string;
   content: string;
-  user : string;
   user_id : number;
   post_id: number;
   level: number;

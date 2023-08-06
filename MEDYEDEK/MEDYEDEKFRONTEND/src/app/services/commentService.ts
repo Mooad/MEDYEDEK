@@ -1,13 +1,9 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {map, Observable, of} from 'rxjs';
+import {Observable, of} from 'rxjs';
 import {AppConfig} from '../config/appConfig';
-import {CommentDto, Comment} from '../entities/Post';
-import {AppStateInterface} from '../store/state/AppState.interface';
-import {select, State, Store} from '@ngrx/store';
-import {withLatestFrom} from 'rxjs/operators';
-import {selectComments} from "../store/state/post/comments/CommentActions";
-import {commentSelectorByID, commmentSelector, state} from "../store/state/post/comments/CommentSelectors";
+import {CommentAttachement, CommentDto} from "../entities/Post";
+import {Comment } from '../entities/Post';
 
 @Injectable({
   providedIn: 'root',
@@ -15,47 +11,66 @@ import {commentSelectorByID, commmentSelector, state} from "../store/state/post/
 export class CommentService {
 
 
-  constructor(private http: HttpClient, private appConfig: AppConfig, private store: Store) {
+  constructor(private http: HttpClient, private appConfig: AppConfig) {
   }
 
   public getCommentsGrappe(identifier: string): Observable<CommentDto[]> {
     return this.http.post<CommentDto[]>(this.appConfig.baseUrl + 'postComments/search', {identifier});
   }
 
-  public insertCommentlevel0(comment: Comment): Observable<Comment> {
+  public insertCommentlevel0(comment: Comment): Observable<any> {
     console.log('Comment service comment: ' + comment.text);
     // Get the current comments state as an observable
-           return of(comment);
-
-  }
-
-   findComment(comments: CommentDto[], userId: number, parentId: string): Comment | null {
-    for (const commentDto of comments) {
-      const comment = this.findCommentInTree(commentDto.commentsTree.comments, userId, parentId);
-      if (comment) {
-        return comment;
-      }
+    if(!comment.parent )
+    {
+      return  this.http.post<any>(this.appConfig.baseUrl + 'postComments/comment', {
+        text: comment.text,
+        content: comment.content,
+        post_id: comment.post_id,
+        user_id: comment.user_id,
+        level: 0,
+        parent: null,
+        commentsTree:{}
+      });
     }
-    return null;
+      return  this.http.post<any>(this.appConfig.baseUrl + 'postComments/comment', {
+        text: comment.text,
+        content: comment.content,
+        post_id: comment.post_id,
+        user_id: comment.user_id,
+        level: 0,
+        parent: comment.parent,
+        commentsTree:{}
+      });
+
   }
 
-   findCommentInTree(comments: Comment[], userId: number, parentId: string): Comment | null {
-    for (const comment of comments) {
-      if (comment.user_id === userId && comment._id === parentId) {
-        return comment;
-      }
-      if (comment.commentsTree && comment.commentsTree.comments.length > 0) {
-        const subComment =  this.findCommentInTree(comment.commentsTree.comments, userId, parentId);
-        if (subComment) {
-          return subComment;
-        }
-      }
+  public insertCommentlevelx(comment: Comment): Observable<any> {
+    return of(comment);
+  }
+  public synchroniseCommentlevelx(comment: Comment): Observable<any> {
+    if(comment.parent )
+    {
+      return  this.http.post<any>(this.appConfig.baseUrl + 'postReply/reply', {
+        _id:comment._id,
+        text: comment.text,
+        content: comment.content,
+        post_id: comment.post_id,
+        user_id: comment.user_id,
+        level: 0,
+        parent: comment.parent,
+        commentsTree:{}
+      });
     }
-    return null;
   }
 
+  public attachCommentToPost( commentAttachement :CommentAttachement ) : void
+{
+  this.http.post<any>(this.appConfig.baseUrl + 'postComments/attachComment', commentAttachement).subscribe();
+}
 
 }
+
 
 //
 // Pour la personne qui souhaite ouvrir une société de création d'enseignes publicitaires et qui recherche des livres sur la vente, la compréhension du client et la publicité, voici quelques suggestions de livres qui pourraient l'aider à approfondir ces sujets :

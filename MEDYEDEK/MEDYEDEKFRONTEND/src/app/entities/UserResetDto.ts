@@ -28,6 +28,7 @@ export interface PasswordDto extends Serializable {
 }
 
 export interface ProfileDto {
+  user_id: number ;
   image?: string;
   firstname?: string;
   lastname?: string;

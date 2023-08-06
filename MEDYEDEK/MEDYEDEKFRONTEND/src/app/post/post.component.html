@@ -28,7 +28,7 @@
             <app-post-interaction [post]="post" (postInteraction)="synchronizeInteractionWithPost($event)"></app-post-interaction>
       <li>
           <div class="comments">
-            <app-comments-section [identifier]="post.commentContent" [post_id] ="post.post_id"></app-comments-section>
+            <app-comments-section [profile]="profile" [identifier]="post.commentContent" [post_id] ="post.post_id"></app-comments-section>
           </div>
          </li>
 

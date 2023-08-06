@@ -14,6 +14,7 @@ import org.sid.services.entities.Adress;
 @Getter
 @Setter
 public class ProfileDto {
+    public int user_id;
     public String image;
     public String firstname;
     public String lastname;

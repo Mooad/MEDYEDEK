@@ -1,11 +1,12 @@
 import {Component, OnInit, Input} from '@angular/core';
 import {SafeUrl} from '@angular/platform-browser';
-import {PostDto} from "../entities/UserResetDto";
+import {PostDto, ProfileDto} from "../entities/UserResetDto";
 import {ContentService} from "../services/ContentService";
 import {select, Store} from "@ngrx/store";
 import * as ContentActions from './../store/state/post/content/ContentActions'
 import {Content} from "../entities/Post";
 import {contentSelectorByIDPost} from "../store/state/post/content/ContentSelectors";
+import {ProfileService} from "../services/profile.service";
 
 @Component({
   selector: 'app-post',
@@ -20,12 +21,14 @@ export class PostComponent implements OnInit {
   @Input() textContent: string;
   @Input() imageUrl: SafeUrl;
   @Input() selectedImage: String;
-  slider_img = document.querySelector('.slider-img');
+  @Input() profile: ProfileDto;
+
   isLoading: boolean = true;
 
   i = 1;
 
-  constructor(private contentService: ContentService, private store: Store) {
+  constructor(private contentService: ContentService, private store: Store,private  profileService: ProfileService) {
+
   }
 
   ngOnInit(): void {
