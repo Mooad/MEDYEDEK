@@ -29,4 +29,11 @@ export const commentreducers = createReducer(initialState,
 on(Actions.addCommentLevelx, (state) => ({...state, isLoading: true})),
   on(Actions.addCommentLevelxSuccess, (state,action) =>
     ({...state, isLoading: false , commentsState : commentReducerFunctions.replaceCommentTreeAfterReplyAdded(action.reply, action.comments ,state.commentsState)})),
-  on(Actions.addCommentLevelxFailure, (state,action) => ({...state, isLoading: false, error: action.error })));
+  on(Actions.addCommentLevelxFailure, (state,action) => ({...state, isLoading: false, error: action.error })),
+
+on(Actions.deleteCommentLevel0, (state) => ({...state, isLoading: true})),
+  on(Actions.deleteCommentLevel0Success, (state,action) =>
+    ({...state, isLoading: false ,  commentsState : commentReducerFunctions.deleteCommentLevel0FromState(state.commentsState,action.comment)})),
+  on(Actions.deleteCommentLevel0Failure, (state,action) => ({...state, isLoading: false, error: action.error })));
+
+

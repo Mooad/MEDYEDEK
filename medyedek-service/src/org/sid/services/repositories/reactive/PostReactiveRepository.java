@@ -78,6 +78,12 @@ public class PostReactiveRepository {
 
     }
 
+    public void deleteCommentGrappefromComment(int post_id ) {
+
+        databaseClient.sql("update medyedek.post set commentContent = '" + " ' where post_id = " + post_id)
+                .fetch().first().subscribe();
+
+    }
     public void savePost(Post post) {
 
         //**        R2dbcEntityTemplate template = new R2dbcEntityTemplate(databaseClient.getConnectionFactory());

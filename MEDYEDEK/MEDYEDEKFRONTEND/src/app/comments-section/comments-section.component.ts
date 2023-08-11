@@ -6,6 +6,9 @@ import { CommentService } from '../services/commentService';
 import * as CommentActions from '../store/state/post/comments/CommentActions';
 import {ProfileDto} from "../entities/UserResetDto";
 import {Utils} from "../services/utils/UtilMethods";
+import {CommentActionConfirmationComponent} from "../comment-action-confirmation/comment-action-confirmation.component";
+import {MatDialog} from "@angular/material/dialog";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-comments-section',
@@ -25,7 +28,7 @@ export class CommentsSectionComponent implements OnInit {
 
   @ViewChild('commentTextArea') commentTextArea!: ElementRef<HTMLTextAreaElement>;
 
-  constructor(private commentService: CommentService, private store: Store, private utils: Utils) {}
+  constructor(private commentService: CommentService, private store: Store, private utils: Utils,private dialog: MatDialog) {}
 
   ngOnInit(): void {
     if (this.identifier) {
@@ -45,7 +48,25 @@ export class CommentsSectionComponent implements OnInit {
     this.showReply[commentId] = !this.showReply[commentId];
   }
 
+// Inside your component class
+  deleteComment(deletedCommment: Comment): void {
 
+    this.openConfirmationDialog({type: "delete comment :" , question:"Are you sure you want to delete the comment ?"}).subscribe(
+      result => {
+        if (result) {
+          // User confirmed the action
+          this.store.dispatch(CommentActions.deleteCommentLevel0({comment:deletedCommment}));
+          this.commentService.updateAllTree(this.comments);
+        } else {
+          // User did not confirm the action
+          console.log('User did not confirm the action.');
+        }
+      }
+    )
+
+  console.log(parent);
+
+  }
 
   submitComment(): void {
     const newCommentText = this.newCommentText.trim();
@@ -65,7 +86,7 @@ export class CommentsSectionComponent implements OnInit {
       user_id:this.profile.user_id, // Replace with the actual user or get from a service
       text : newCommentText,
       post_id : this.post_id,
-      parent : this.identifier
+      parent : this.identifier.trim() == '' ? null : this.identifier
     };
 
 
@@ -86,7 +107,7 @@ export class CommentsSectionComponent implements OnInit {
     }
     const uniqueId: string = this.utils.generateCustomUniqueId();
 
-    if (parent.parent) {
+
       const reply : Comment = {
         _id: uniqueId,
         content: "",
@@ -99,10 +120,11 @@ export class CommentsSectionComponent implements OnInit {
           comments: [], // Replies cannot have further replies initially
         }
       };
-      this.store.dispatch(CommentActions.addCommentLevelx({parent_id:reply.parent , reply: reply , comments :this.comments.commentsTree.comments}));
-      this.commentService.synchroniseCommentlevelx(reply).subscribe();
 
-    }
+
+      this.store.dispatch(CommentActions.addCommentLevelx({parent_id:reply.parent , reply: reply , comments :this.comments.commentsTree.comments}));
+      this.commentService.synchroniseCommentlevelx(reply,this.identifier).subscribe();
+
 
   }
 
@@ -133,8 +155,17 @@ export class CommentsSectionComponent implements OnInit {
       console.log('value ' +value)
     });
   }
+  openConfirmationDialog(action:any): Observable<any> {
+    const dialogRef = this.dialog.open(CommentActionConfirmationComponent, {
+      width: '400px', // You can adjust the width as needed
+      data: {
+        title: action.type,
+        message: action.question
+      }
+    });
+
+    return dialogRef.afterClosed();
 
 
-
-
+  }
 }

@@ -4,8 +4,10 @@ import org.apache.commons.lang.StringUtils;
 import org.bson.types.ObjectId;
 import org.sid.services.dto.comment.CommentDto;
 import org.sid.services.dto.comment.SearchCommentDto;
+import org.sid.services.exception.exceptionBeans.DataSavingException;
 import org.sid.services.nosql.document.CommentsGrappes;
 import org.sid.services.nosql.repositories.CommentsTreeRepository;
+import org.sid.services.repositories.reactive.PostReactiveRepository;
 import org.sid.services.serviceproxy.services.CommentServiceLevel0;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -20,6 +22,9 @@ public class CommentServiceLevel0Impl implements CommentServiceLevel0 {
 
     @Autowired
     private CommentsTreeRepository commentsTreeRepository;
+    @Autowired
+    PostReactiveRepository postReactiveRepository;
+
 
     @Override
     public Mono<CommentsGrappes> commentPost(CommentDto commentDto) {
@@ -57,5 +62,21 @@ public class CommentServiceLevel0Impl implements CommentServiceLevel0 {
     @Override
     public  Mono<CommentsGrappes> searchPostComments(SearchCommentDto identifier) {
         return commentsTreeRepository.findById(StringUtils.trim(identifier.identifier));
+    }
+
+
+    @Override
+    public Mono<CommentsGrappes> updateCommentTree(CommentsGrappes commentsGrappes) {
+
+        postReactiveRepository.deleteCommentGrappefromComment(commentsGrappes.getPost_id());
+
+
+        if (commentsGrappes.getCommentsTree().get("comments").size() == 1) {
+            commentsTreeRepository.delete(commentsGrappes);
+        } else {
+            return commentsTreeRepository.save(commentsGrappes);
+        }
+
+        throw new DataSavingException("");
     }
 }

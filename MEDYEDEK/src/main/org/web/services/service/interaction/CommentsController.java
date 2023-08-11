@@ -45,4 +45,9 @@ public class CommentsController {
         return (StringUtils.isNotBlank(commentIdentifier.identifier) ? commentService.searchPostComments(commentIdentifier) : null);
     }
 
+    @PostMapping("updateTree")
+    public Mono<CommentsGrappes> updatePostComment(@RequestBody CommentsGrappes commentsGrappes)
+    {
+        return commentService.updateCommentTree(commentsGrappes);    }
+
 }

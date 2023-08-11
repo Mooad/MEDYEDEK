@@ -55,6 +55,20 @@ addCommentLevel0$ = createEffect(() =>
   );
 
 
+  deleteCommentLevel0 = createEffect(() =>
+    this.actions$.pipe(
+      ofType(CommentActions.deleteCommentLevel0),
+      mergeMap(({ comment }) =>
+       of(comment).pipe(
+          map((comment) => CommentActions.deleteCommentLevel0Success({ comment })),
+          catchError((error) => of(CommentActions.deleteCommentLevel0Failure({ error: error.message })))
+        )
+      )
+    )
+  );
+
+
+
 }
 
 

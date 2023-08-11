@@ -2,6 +2,7 @@ package org.sid.services.exception.handler;
 
 
 import org.sid.services.exception.constants.ErrorCodes;
+import org.sid.services.exception.exceptionBeans.DataSavingException;
 import org.sid.services.exception.exceptionBeans.NotAuthorizedException;
 import org.sid.services.exception.exceptionBeans.UserNotFoundException;
 import org.sid.services.exception.api.error.ApiError;
@@ -35,7 +36,14 @@ public class GlobalExceptionHandler {
             NotAuthorizedException nae = (NotAuthorizedException) ex;
 
             return handleNotAuthorizedException(nae, headers, status, request);
-        } else {
+        }
+        else if (ex instanceof DataSavingException) {
+            HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
+            DataSavingException nae = (DataSavingException) ex;
+
+            return handleDataSavingException(nae, headers, status, request);
+        }
+        else {
             HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
             return handleExceptionInternal(ex, null, headers, status, request);
         }
@@ -47,6 +55,11 @@ public class GlobalExceptionHandler {
     protected ResponseEntity<ApiError> handleUserNotFoundException(UserNotFoundException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
         List<String> errors = Collections.singletonList(ex.getMessage());
         return handleExceptionInternal(ex, new ApiError(HttpStatus.NOT_FOUND, "the entity is not found", ErrorCodes.ACCOUNT_NOT_FOUND, errors), headers, status, request);
+    }
+
+    protected ResponseEntity<ApiError> handleDataSavingException(DataSavingException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
+        List<String> errors = Collections.singletonList(ex.getMessage());
+        return handleExceptionInternal(ex, new ApiError(HttpStatus.NOT_FOUND, "Error while saving the data", ErrorCodes.ACCOUNT_NOT_FOUND, errors), headers, status, request);
     }
 
     /**

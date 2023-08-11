@@ -59,12 +59,58 @@
   background-color: grey;
 }
 
-.grey,
-.darkGrey {
-  background-color: grey;
-  color: white; /* To make the text color white on grey and darkGrey buttons */
-  border-radius: 7px; /* Add border-radius to the buttons */
+
+.comment-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
+
+.delete-button,
+.reply-button,
+.delete-button,
+.modify-button {
+  padding: 6px 12px;
+  font-size: 12px;
+  color: white;
+  border-radius: 10px;
+  margin-right: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  border: 2px solid transparent;
+}
+
+.delete-button {
+  background-color: #3f51b5;
+}
+
+.reply-button {
+  background-color: #6bb7c9;
+}
+
+.delete-button {
+  background-color: #000000;
+}
+
+.modify-button {
+  background-color: #fbc02d;
+}
+
+.delete-button:hover,
+.reply-button:hover,
+.delete-button:hover,
+.modify-button:hover {
+  background-color: rgba(0, 0, 0, 0.1); /* Light hover effect */
+  border-color: #3498db; /* Show border on hover */
+  color: #3498db; /* Change text color on hover */
+}
+
+/* On hover styles */
+.post-button:hover {
+  background-color: #333;
+  color: white;
+}
+
 
 .comment-content {
   max-width: 90%; /* Limit the width of the comment content */
@@ -126,4 +172,30 @@ button.mat-raised-button:active {
 
 .darkGrey:active {
   background-color: mediumvioletred;
+}
+.comment-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.action-button {
+  padding: 6px 12px;
+  font-size: 12px;
+  border: 2px solid #3498db;
+  background-color: #3498db;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  margin-right: 6px; /* Adjust spacing between buttons */
+}
+
+.action-button:hover {
+  background-color: #2980b9;
+}
+
+.reply-count {
+  font-size: 12px;
+  margin-left: 6px;
 }

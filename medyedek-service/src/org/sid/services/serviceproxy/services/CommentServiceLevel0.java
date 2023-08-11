@@ -9,9 +9,11 @@ import reactor.core.publisher.Mono;
 
 public interface CommentServiceLevel0 {
 
-     Mono<CommentsGrappes>  commentPost(CommentDto commentDto);
-
+     Mono<CommentsGrappes> commentPost(CommentDto commentDto);
 
 
      Mono<CommentsGrappes> searchPostComments(SearchCommentDto identifier);
+
+
+     Mono<CommentsGrappes> updateCommentTree(CommentsGrappes commentsGrappes);
 }

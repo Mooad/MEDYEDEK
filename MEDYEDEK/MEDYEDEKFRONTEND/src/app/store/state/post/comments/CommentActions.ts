@@ -27,3 +27,11 @@ export const addCommentLevelx = createAction(
 );
 export const addCommentLevelxSuccess = createAction('[Comment] Add Comment Level X success', props<{reply : any, comments:Comment[] }>());
 export const addCommentLevelxFailure = createAction('[Comment] Add Comment Level X failure', props<{error: string }>());
+
+
+export const deleteCommentLevel0 = createAction(
+  '[Comment] Delete Comment Level 0',
+  props<{ comment: Comment }>()
+);
+export const deleteCommentLevel0Success = createAction('[Comment] Delete Comment Level 0 success', props<{comment : any }>());
+export const deleteCommentLevel0Failure = createAction('[Comment] Delete Comment Level 0 failure', props<{error: string }>());

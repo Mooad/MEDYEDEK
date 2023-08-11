@@ -37,6 +37,25 @@ export class CommentReducerFunctions {
     return commentsSnapshot.filter(value => value != null);
   }
 
+  deleteCommentLevel0FromState(comments: CommentDto[], deletedComment: any): CommentDto[] {
+
+
+    const globalSnapshot: CommentDto[] = JSON.parse(JSON.stringify(comments));
+
+    const indexOfCommentTree = globalSnapshot.findIndex((commentDto) => commentDto && commentDto.post_id === deletedComment.post_id);
+
+    // Deep copy the comments array, including nested objects within commentsTree.
+
+        const commentSnapshot: CommentDto = JSON.parse(JSON.stringify(globalSnapshot[indexOfCommentTree]));
+
+        if(commentSnapshot.commentsTree && globalSnapshot)
+        {
+          globalSnapshot[indexOfCommentTree].commentsTree.comments =    this.deleteCommentWithId(commentSnapshot.commentsTree.comments , deletedComment);
+        }
+
+    return globalSnapshot;
+
+  }
 
   replaceCommentTreeAfterReplyAdded(subComment: Comment, comment: Comment[], commentsDtos: CommentDto[]): CommentDto[] {
     if (commentsDtos) {
@@ -53,18 +72,37 @@ export class CommentReducerFunctions {
 
 
   addSubCommentToParent(subComment: Comment, comments: Comment[]): Comment[] {
+
+      for (const comment of comments) {
+        if (comment._id === subComment.parent) {
+          if (!comment.commentsTree || !comment.commentsTree.comments) {
+            comment.commentsTree = { comments: [] };
+          }
+
+          comment.commentsTree.comments.push(subComment);
+          return;
+        } else if (comment.commentsTree?.comments) {
+          this.addSubCommentToParent(subComment, comment.commentsTree.comments);
+        }
+      }
+
+  }
+
+
+  deleteCommentWithId(comments: Comment[], deletedComment: any): Comment[] {
+  if(comments)
+  {
     for (const comment of comments) {
-      if (comment._id === subComment.parent) {
+      if (comment._id === deletedComment._id) {
         if (!comment.commentsTree || !comment.commentsTree.comments) {
           comment.commentsTree = { comments: [] };
         }
-
-        comment.commentsTree.comments.push(subComment);
-        return;
+        return comments.filter(value => value._id !== deletedComment._id);
       } else if (comment.commentsTree?.comments) {
-         this.addSubCommentToParent(subComment, comment.commentsTree.comments);
-        }
+        this.deleteCommentWithId(comment.commentsTree.comments , deletedComment);
       }
+    }
+  }
 
   }
 

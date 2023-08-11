@@ -57,6 +57,7 @@ import {MatExpansionModule} from "@angular/material/expansion";
 import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import {Utils} from "./services/utils/UtilMethods";
+import { CommentActionConfirmationComponent } from './comment-action-confirmation/comment-action-confirmation.component';
 
 
 
@@ -94,7 +95,8 @@ export function initializerFn(jsonAppConfigService: JsonAppConfigService) {
     MyprofileComponent,
     PostInteractionComponent,
     PostCommentsComponent,
-    CommentsSectionComponent],
+    CommentsSectionComponent,
+    CommentActionConfirmationComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

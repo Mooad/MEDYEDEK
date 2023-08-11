@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
 import {AppConfig} from '../config/appConfig';
 import {CommentAttachement, CommentDto} from "../entities/Post";
@@ -48,19 +48,37 @@ export class CommentService {
   public insertCommentlevelx(comment: Comment): Observable<any> {
     return of(comment);
   }
-  public synchroniseCommentlevelx(comment: Comment): Observable<any> {
+
+  public updateAllTree(commentDto: CommentDto){
+   this.http.post<CommentDto[]>(this.appConfig.baseUrl + 'postComments/updateTree', commentDto).subscribe(commentDto =>{
+     console.log(commentDto);
+   },
+     error => {
+     console.log(error);
+     })
+  }
+  public synchroniseCommentlevelx(comment: Comment,identifier:string): Observable<any> {
     if(comment.parent )
     {
-      return  this.http.post<any>(this.appConfig.baseUrl + 'postReply/reply', {
-        _id:comment._id,
-        text: comment.text,
-        content: comment.content,
-        post_id: comment.post_id,
-        user_id: comment.user_id,
-        level: 0,
-        parent: comment.parent,
-        commentsTree:{}
-      });
+
+      const httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json'
+        })
+      };
+      return  this.http.post<any>(this.appConfig.baseUrl + 'postReply/reply', { commentDto :
+          {
+            _id:comment._id,
+            text: comment.text,
+            content: comment.content,
+            post_id: comment.post_id,
+            user_id: comment.user_id,
+            level: comment.level,
+            parent: comment.parent,
+            commentsTree:{}
+          },
+        identifier : identifier
+      },httpOptions);
     }
   }
 
