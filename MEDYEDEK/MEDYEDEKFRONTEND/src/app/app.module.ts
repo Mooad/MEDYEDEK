@@ -40,7 +40,6 @@ import { RouterModule } from '@angular/router';
 import { MyprofileComponent } from './myprofile/myprofile.component';
 import { SharedProfile } from './services/SharedProfile';
 import { PostInteractionComponent } from './post-interaction/post-interaction.component';
-import { PostCommentsComponent } from './post-comments/post-comments.component';
 import {StoreModule} from "@ngrx/store";
 import {StoreDevtoolsModule} from "@ngrx/store-devtools";
 import {environment} from "../environments/environment";
@@ -58,6 +57,8 @@ import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import {Utils} from "./services/utils/UtilMethods";
 import { CommentActionConfirmationComponent } from './comment-action-confirmation/comment-action-confirmation.component';
+import { AddingPostModalComponent } from './adding-post-modal/adding-post-modal.component';
+import { PickerComponent } from '@ctrl/ngx-emoji-mart';
 
 
 
@@ -94,9 +95,9 @@ export function initializerFn(jsonAppConfigService: JsonAppConfigService) {
     ConfirmResetPassDialogComponent ,
     MyprofileComponent,
     PostInteractionComponent,
-    PostCommentsComponent,
     CommentsSectionComponent,
-    CommentActionConfirmationComponent],
+    CommentActionConfirmationComponent,
+    AddingPostModalComponent,],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -140,6 +141,7 @@ export function initializerFn(jsonAppConfigService: JsonAppConfigService) {
     MatInputModule,
     MatButtonModule,
     MatExpansionModule,
+    PickerComponent
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA],

@@ -2,4 +2,9 @@
   <app-post [profile]="profile" [post]="post"></app-post>
 
   <div *ngIf="isLoading$| async" >Loading...</div>
+
 </div>
+
+
+<button class="open-modal-button" (click)="openModal()" >Add Post</button>
+

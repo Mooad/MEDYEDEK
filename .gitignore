@@ -1,6 +1,59 @@
-/**/.idea/*
-/**/target/*
-*.iws
-**.iml
+# Dependencies
+**/node_modules/
+
+# Java / Maven build output
+**/target/
+*.class
+*.jar
+*.war
+*.ear
+
+# JavaScript / Angular build output and caches
+**/dist/
+**/tmp/
+**/out-tsc/
+**/bazel-out/
+**/.angular/
+**/.sass-cache/
+**/coverage/
+
+# IDE and editor files
+**/.idea/
+**/.vscode/
+**/.settings/
+**/.project
+**/.classpath
+**/.factorypath
+**/.apt_generated/
+*.iml
 *.ipr
-**/node_modules/*
+*.iws
+*.sublime-workspace
+
+# Logs, crash reports, and profiling output
+*.log
+hs_err_pid*.log
+chrome-profiler-events*.json
+speed-measure-plugin*.json
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Local environment and tool state
+.env
+.env.*
+!.env.example
+.history/
+.c9/
+connect.lock
+libpeerconnection.log
+typings/
+
+# Operating-system files
+.DS_Store
+Thumbs.db
+
+# Legacy local-only material
+/Decorator/
+**/*.pack

@@ -1,0 +1,38 @@
+<div class="modal-content" [@fadeIn] [formGroup]="postForm">
+
+  <!-- Top: User Image and Name -->
+  <div class="user-info">
+    <img [src]="getImage()" class="profilePicture">
+    <div class="user-name">{{getUserName()}}</div>
+  </div>
+
+  <!-- Post Text Input -->
+  <textarea class="post-text" formControlName="postText" placeholder="What's on your mind?" (input)="onInput($event)"></textarea>
+
+  <!-- Icon to open the popin -->
+  <div class="icon fa fa-plus" (click)="togglePopin()"></div>
+
+  <!-- Popin with the different icons -->
+  <div *ngIf="showPopin" class="popin">
+    <div class="icon fa fa-picture-o" (click)="onImageIconClick()"></div>
+    <div class="icon fa fa-location-arrow" (click)="onLocationIconClick()"></div>
+    <div class="icon fa fa-film" (click)="onGifIconClick()"></div>
+    <div class="icon fa fa-smile-o" (click)="toggleEmojiPicker()"></div>
+
+    <div *ngIf="showEmojiPicker" class="emoji-picker">
+      <emoji-mart (emojiClick)="addEmojiToText($event)"></emoji-mart>
+    </div>
+  </div>
+
+  <!-- ComboBox: Helper and Needer -->
+  <select formControlName="postType" class="input-element post-type">
+    <option value="helper">Helper</option>
+    <option value="needer">Needer</option>
+  </select>
+
+  <!-- Buttons: Post and Cancel -->
+  <div class="buttons">
+    <button class="cancel-button" (click)="closeModal()">Cancel</button>
+    <button class="post-button" (click)="post()" [disabled]="!postForm.valid">Post</button>
+  </div>
+</div>

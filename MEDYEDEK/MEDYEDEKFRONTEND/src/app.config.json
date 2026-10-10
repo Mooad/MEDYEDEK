@@ -1,0 +1,8 @@
+{
+    "baseUrl": "http://localhost:8081/medyedek/",
+    "title": "My awesome app",
+    "authUrl" : "http://localhost:8080/medyedek-auth/authenticate",
+    "syncUrl" : "http://localhost:8080/medyedek-auth/syncAuth",
+    "changePasswordUrl" : "http://localhost:8081/medyedek/change-pass",
+    "confirmPassword" : "http://localhost:8081/medyedek/change-pass-after-confirm"
+  }

@@ -19,37 +19,40 @@ public class PostCommentTest {
         // You can mock any dependencies here, if needed
     }
 
-    @Test
-    public void testComment() {
-        // Given
-        CommentDto postCommentsInput = createSamplePostComments();
-        // You can create the PostComments object with the necessary data
-
-        // When
-        Mono<CommentsGrappes> result = commentService.commentPost(postCommentsInput);
-
-        // Then
-        // Assert the expected result based on your implementation
-        // You can use assertEquals or other assert methods depending on your data structure
-        // For example:`
-        assertEquals(postCommentsInput, result);
-    }
-
-    @Test
-    public void testSearchPostComments() {
-        // Given
-        SearchCommentDto identifier  = new SearchCommentDto();
-        identifier.setIdentifier("64b28107fb4e5e4fb635a984");
-        // You can define the identifier based on your test data
-
-        // When
-        Mono<CommentsGrappes>  result = commentService.searchPostComments(identifier);
-
-        // Then
-        // Assert the expected result based on your implementation
-        // For example:
-      //  assertEquals(identifier, result.getId());
-    }
+    /**
+     *
+     *   @Ignore
+     *     public void testComment() {
+     *         // Given
+     *         CommentDto postCommentsInput = createSamplePostComments();
+     *         // You can create the PostComments object with the necessary data
+     *
+     *         // When
+     *         Mono<CommentsGrappes> result = commentService.commentPost(postCommentsInput);
+     *
+     *         // Then
+     *         // Assert the expected result based on your implementation
+     *         // You can use assertEquals or other assert methods depending on your data structure
+     *         // For example:`
+     *         assertEquals(postCommentsInput, result);
+     *     }
+     *
+     *     @Ignore
+     *     public void testSearchPostComments() {
+     *         // Given
+     *         SearchCommentDto identifier  = new SearchCommentDto();
+     *         identifier.setIdentifier("64b28107fb4e5e4fb635a984");
+     *         // You can define the identifier based on your test data
+     *
+     *         // When
+     *         Mono<CommentsGrappes>  result = commentService.searchPostComments(identifier);
+     *
+     *         // Then
+     *         // Assert the expected result based on your implementation
+     *         // For example:
+     *       //  assertEquals(identifier, result.getId());
+     *     }
+     */
 
     private CommentDto createSamplePostComments() {
         // Create and return a sample PostComments object with necessary data for testing

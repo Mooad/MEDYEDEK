@@ -2,11 +2,29 @@
 	left: 40%;
 	top: 48px;
 	width: 30%;
-	@media only screen 
-	and (min-device-width :250px) 
+	@media only screen
+	and (min-device-width :250px)
 	and (max-device-width : 1024px) {
 		width: 90%;
 		padding-left:50px;
 /* Styles */
 }
+}
+/* posts.component.scss */
+.open-modal-button {
+  position: fixed;
+  bottom: 100px;
+  right: 200px;
+  background-color: black;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 130%;
+  font-family: Dialog, serif;
+}
+
+.open-modal-button:hover {
+  background-color: #333; /* Change the color as needed */
 }

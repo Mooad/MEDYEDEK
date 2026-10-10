@@ -38,11 +38,11 @@ public class CommentServiceLevelXImpl implements CommentServiceLevelX {
 
     public void addSubCommentToParent(List<CommentDto>  commentsTree, CommentDto reply) {
         for (CommentDto comment : commentsTree) {
+            if ((comment.getCommentsTree() == null) || comment.getCommentsTree().getComments() == null) {
+                comment.setCommentsTree(new CommentsTreeDTO());
+                comment.getCommentsTree().setComments(new ArrayList<>());
+            }
             if (Objects.equals(comment.get_id(), reply.getParent())) {
-                if ((comment.getCommentsTree() ==null) || comment.getCommentsTree().getComments() == null) {
-                    comment.setCommentsTree(new CommentsTreeDTO());
-                    comment.getCommentsTree().setComments(new ArrayList<>());
-                }
                comment.getCommentsTree().getComments().add(reply);
             } else if (comment.getCommentsTree().getComments() != null) {
                 this.addSubCommentToParent(comment.getCommentsTree().getComments(), reply);

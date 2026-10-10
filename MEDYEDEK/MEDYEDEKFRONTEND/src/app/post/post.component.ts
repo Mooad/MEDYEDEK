@@ -52,7 +52,6 @@ export class PostComponent implements OnInit {
 
   getImageFromService() {
     return this.post.userImage;
-
   }
 
   prev() {

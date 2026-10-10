@@ -68,10 +68,10 @@ public class CommentServiceLevel0Impl implements CommentServiceLevel0 {
     @Override
     public Mono<CommentsGrappes> updateCommentTree(CommentsGrappes commentsGrappes) {
 
-        postReactiveRepository.deleteCommentGrappefromComment(commentsGrappes.getPost_id());
 
 
         if (commentsGrappes.getCommentsTree().get("comments").size() == 1) {
+            postReactiveRepository.deleteCommentGrappefromComment(commentsGrappes.getPost_id());
             commentsTreeRepository.delete(commentsGrappes);
         } else {
             return commentsTreeRepository.save(commentsGrappes);

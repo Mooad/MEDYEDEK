@@ -9,7 +9,6 @@ import { PostsComponent } from './posts/posts.component';
 import { ConfirmaccountComponent } from './confirmaccount/confirmaccount.component';
 import { PasswordResetComponent } from './password-reset/password-reset.component';
 import { ConfirmationResetComponent } from './confirmation-reset/confirmation-reset.component';
-import {PostCommentsComponent} from "./post-comments/post-comments.component";
 
 
 const routes: Routes = [
